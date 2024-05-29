@@ -19,13 +19,13 @@
                                         <img src="<?= base_url() ?>/assets/img/logo_login.png" class="logo-persegi img-fluid" alt="Gambar Persegi">
                                         </div>
                                         <h1 class="h4 text-gray-900 mb-4">Sistem Informasi Bimbingan Konseling</h1>
-                                        <h1 class="h4 text-gray-900 mb-4">SMK Batik 1 Surakarta</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">SMK BATIK 1 SURAKARTA</h1>
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="NISN / Email">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
