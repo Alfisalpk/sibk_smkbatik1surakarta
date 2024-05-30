@@ -16,24 +16,17 @@
                                         </div>
                         <h1 class="h4 text-gray-900 mb-4">Buat Akun Bimbingan Konseling</h1>
                     </div>
-                    <form class="user">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                    placeholder="NISN">
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                    placeholder="Username">
-                            </div>
+                    <?= view('Myth\Auth\Views\_message_block') ?>
+                    <form action="<?= url_to('register') ?>" method="post" class="user">
+                        <?= csrf_field() ?>
+
+                        <div class="form-group">
+                            <input type="username" class="form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username"
+                                placeholder="Username">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                placeholder="Nama Lengkap">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                placeholder="Email Address">
+                            <input type="email" class="form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email"
+                                placeholder="<?=lang('Auth.email')?>" value="<?= old('email') ?>">
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">

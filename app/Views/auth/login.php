@@ -25,7 +25,7 @@
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="NISN / Email">
+                                                placeholder="Username / Email">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
