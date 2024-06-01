@@ -21,26 +21,55 @@
                                         <h1 class="h4 text-gray-900 mb-4">Sistem Informasi Bimbingan Konseling</h1>
                                         <h1 class="h4 text-gray-900 mb-4">SMK BATIK 1 SURAKARTA</h1>
                                     </div>
-                                    <form class="user">
+                                    <?= view('Myth\Auth\Views\_message_block') ?>
+                                    
+                                    <!-- Coopy Dari Login MyAuth -->
+                                    <form class="user" action="<?= url_to('login') ?>" method="post"><?= csrf_field() ?>
+                                    <?php if ($config->validFields === ['email']): ?>
+
+
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                            <input type="email" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>"
+                                                name="login" aria-describedby="emailHelp"
                                                 placeholder="Username / Email">
+                                                <div class="invalid-feedback">
+								                    <?= session('errors.login') ?>
+							                    </div>
                                         </div>
+                                        <?php else: ?>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <input type="text" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>"
+                                                name="login" aria-describedby="emailHelp"
+                                                placeholder="Username / Email">
+                                                <div class="invalid-feedback">
+								                    <?= session('errors.login') ?>
+							                    </div>
                                         </div>
+                                        <?php endif; ?>
+
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>"
+                                                name="password" placeholder="Password">
+                                                <div class="invalid-feedback">
+								                <?= session('errors.password') ?>
+							                    </div>
+                                        </div>
+                                        
+                                        <?php if ($config->allowRemembering): ?>
+
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input type="checkbox" name="remember" class="form-check-input" <?php if (old('remember')) : ?> checked <?php endif ?>>
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <?php endif; ?>
+
+
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+                                        </button>
                                         <hr>
                                         <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -50,11 +79,17 @@
                                         </a> -->
                                     </form>
                                     
+                                    <?php if ($config->activeResetter): ?>
+
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <p><a class="small" href="<?= url_to('forgot') ?>">Lupa Password?</a></p>
                                     </div>
+                                    <?php endif; ?>
+
+                                        <?php if ($config->allowRegistration) : ?>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <p><a class="small" href="<?= url_to('register') ?>">Belum Punya Akun?</a></p>
+                                        <?php endif; ?>    
                                     </div>
                                 </div>
                             </div>

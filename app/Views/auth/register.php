@@ -22,7 +22,7 @@
 
                         <div class="form-group">
                             <input type="username" class="form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username"
-                                placeholder="Username">
+                                placeholder="Username" value="<?= old('username') ?>">
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email"
@@ -31,20 +31,20 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input type="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.password')?>"
-                                    name="password">
+                                    name="password" autocomplete="off">
                             </div>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control form-control-user"
-                                    id="exampleRepeatPassword" placeholder="Ulangi Password">
+                                <input type="password" class="form-control form-control-user <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.repeatPassword')?>"
+                                    name="pass_confirm" placeholder="Ulangi Password" type="password" autocomplete="off">
                             </div>
                         </div>
-                        <a href="login.html" class="btn btn-primary btn-user btn-block">
-                            Register Account
-                        </a>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                        <?=lang('Auth.register')?>
+                        </button>
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a class="small" href="login.html">Already have an account? Login!</a>
+                     <p><a class="small" href="<?= url_to('login') ?>">Sudah Memiliki Akun? <?=lang('Auth.signIn')?></a></p>
                     </div>
                 </div>
             </div>
