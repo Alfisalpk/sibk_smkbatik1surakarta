@@ -24,7 +24,8 @@
                                     <?= view('Myth\Auth\Views\_message_block') ?>
                                     
                                     <!-- Coopy Dari Login MyAuth -->
-                                    <form class="user" action="<?= url_to('login') ?>" method="post"><?= csrf_field() ?>
+                                    <form class="user" action="<?= url_to('login') ?>" method="post">
+                                    <?= csrf_field() ?>
                                     <?php if ($config->validFields === ['email']): ?>
 
 
@@ -39,7 +40,7 @@
                                         <?php else: ?>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>"
-                                                name="login" aria-describedby="emailHelp"
+                                                name="login"
                                                 placeholder="Username / Email">
                                                 <div class="invalid-feedback">
 								                    <?= session('errors.login') ?>
