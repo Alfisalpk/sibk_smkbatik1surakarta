@@ -26,8 +26,8 @@
                                     <!-- Coopy Dari Login MyAuth -->
                                     <form class="user" action="<?= url_to('login') ?>" method="post">
                                     <?= csrf_field() ?>
-                                    <?php if ($config->validFields === ['email']): ?>
-
+                                    
+                                    <?php if ($config->validFields === ['email']) : ?>
 
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>"
@@ -47,7 +47,7 @@
 							                    </div>
                                         </div>
                                         <?php endif; ?>
-
+                                        
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>"
                                                 name="password" placeholder="Password">
@@ -56,7 +56,7 @@
 							                    </div>
                                         </div>
                                         
-                                        <?php if ($config->allowRemembering): ?>
+                                        <?php if ($config->allowRemembering) : ?>
 
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -66,8 +66,6 @@
                                             </div>
                                         </div>
                                         <?php endif; ?>
-
-
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
