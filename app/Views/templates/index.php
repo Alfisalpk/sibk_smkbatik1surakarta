@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>SIBK SMK Batik 1 Surakarta</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -32,7 +32,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="<?= base_url() ?>/assets/dist/img/2.png" alt="AdminLTELogo" height="230" width="300">
+    <img class="animation__shake" src="<?= base_url() ?>/assets/dist/img/2.png" alt="SMK Batik 1 Surakarta" height="230" width="300">
   </div>
 
   <!-- Navbar -->
