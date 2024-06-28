@@ -18,103 +18,115 @@
             <!-- Start Sidebar Admin -->
   <?php if(in_groups('admin')): ?>
 
-               <li class="nav-item menu-open">
-            <a href="<?= base_url('admin') ?>" class="nav-link active">
+               <li class="nav-item">
+            <a href="<?= base_url('admin') ?>" class="nav-link <?= $menu == 'dashboard' ? 'active' : '' ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li>
-          <li class="nav-header">Master Data</li>
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+          <li class="nav-item <?= $menu == 'master_data' ? 'menu-open' : '' ?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-school"></i>
+              <p>
+                Master Data
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+            <a href="<?= base_url('master_data_guru') ?>" class="nav-link <?= $submenu == 'master_data_guru' ? 'active' : '' ?>">
               <i class="nav-icon fa-solid fa-chalkboard-user"></i>
               <p>
                 Data Guru
                 <span class="badge badge-info right">2</span>
               </p>
             </a>
-          </li>
-
-          <!-- End Sidebar Admin -->
-
-          
-
-          <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon fa-solid fa-users"></i>
-              <p>
-                Data Siswa
-              </p>
-            </a>
+            </li>
           </li>
           <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
+              <i class="nav-icon fa-solid fa-user-group"></i>
               <p>
-                Kanban Board
-              </p>
-            </a>
+                Data Guru Bk
+                </p>
+                </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('master_data_siswa') ?>" class="nav-link <?= $submenu == 'master_data_siswa' ? 'active' : '' ?>">
+              <i class="nav-icon fa-solid fa-user-graduate"></i>
+              <p>
+                Data Siswa
+                </p>
+                </a>
+          </li>
+                <li class="nav-item">
+                  <a href="<?= base_url('master_data_mapel') ?>" class="nav-link <?= $submenu == 'master_data_mapel' ? 'active' : '' ?>">
+                    <i class="nav-icon fa-solid fa-person-chalkboard"></i>
+                    <p>
+                      Data Mata Pelajaran
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url('master_data_kelas_jurusan') ?>" class="nav-link <?= $submenu == 'master_data_kelas_jurusan' ? 'active' : '' ?>">
+                    <i class="nav-icon fa-solid fa-users-rectangle"></i>
+                    <p>
+                      Data Kelas dan Jurusan
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url('master_kategori_pelanggaran') ?>" class="nav-link <?= $submenu == 'master_kategori_pelanggaran' ? 'active' : '' ?>">
+                    <i class="nav-icon fa-solid fa-clipboard-user"></i>
+                    <p>
+                      Kategori Pelanggaran
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url('master_data_user') ?>" class="nav-link <?= $submenu == 'master_data_user' ? 'active' : '' ?>">
+                    <i class="nav-icon fa-solid fa-users"></i>
+                    <p>
+                      Data User
+                    </p>
+                  </a>
+                </li>
+            </ul>
+          </li>
+
          
-          <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="iframe.html" class="nav-link">
-              <i class="nav-icon fas fa-ellipsis-h"></i>
-              <p>Tabbed IFrame Plugin</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+            <li class="nav-header">Data Laporan</li>
+            <li class="nav-item">
+              </li>
+              <a href="<?= base_url('laporan_pelanggaran_siswa') ?>" class="nav-link <?= $menu == 'lap_pelanggaran_siswa' ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-file"></i>
+                <p>Pelanggaran Siswa</p>
+              </a>
+              <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
-              <p>Documentation</p>
-            </a>
+                <p>Pelanggaran Siswa</p>
+              </a>
           </li>
-          <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+          <li class="nav-header">Pengaturan</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-circle nav-icon"></i>
-              <p>Level 1</p>
+            <a href="<?= base_url('pengaturan_profile') ?>" class="nav-link <?= $menu == 'pengaturan_admin' ? 'active' : '' ?> ">
+              <i class="nav-icon fas fa-regular fa-id-card"></i>
+              <p>Pengaturan Profile</p>
             </a>
           </li>
           </li>
 
-          <li class="nav-header">LABELS</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-danger"></i>
-              <p class="text">Important</p>
-            </a>
-          </li>
   <?php endif; ?>
+        <!-- End Sidebar Admin -->
+
 
       <!-- Area Sidebar Siswa -->
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
-              <p>
-                Kanban Board
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-warning"></i>
-              <p>Warning</p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href='<?= base_url('logout') ?>' class="nav-link">
-            <i class="fa-solid fa-right-from-bracket"></i>
+            <i class="nav-icon fa-solid fa-right-from-bracket"></i>
               <p>Logout</p>
             </a>
           </li>

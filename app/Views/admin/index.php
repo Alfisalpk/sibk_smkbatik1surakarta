@@ -1,13 +1,13 @@
 <?= $this->extend('templates/index'); ?>
  <?= $this->section('page-content'); ?>
- <div class="content-wrapper">
+  <div class="content-wrapper">
  
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard Admin</h1>
+            <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -19,173 +19,276 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+  <!-- Dasboard Admin Start -->
+  <section class="content">
+  <!-- Small Box (Stat card) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
 
-    <!-- Main content -->
-    <!-- Profiles Dashboar Siswa -->
-    <section style="background-color: #eee;">
-  <div class="container py-1">
-    <div class="row">
-      <div class="col">
-        <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
-        </nav>
+                <p>Data Siswa</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-solid fa-user-graduate"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                <p>Data Guru</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-solid fa-chalkboard-user"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>Data Kelas</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-solid fa-users-rectangle"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Data Pelanggaran Siswa</p>
+              </div>
+              <div class="icon">
+                <i class="fas fas fa-file"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+          </section>
+
+          <!-- testing tables -->
+          <div class="container-fluid">
+            
+            <div class="card">
+            <div class="card-header">
+              <h4>
+              Pelanggaran Siswa
+                </h4>
+            </div>
+            <div class="card-body">
+              <table class="table table-hover text-nowrap table-bordered table-responsive">
+              <thead>
+                        <tr>
+                            <th scope="col" style="width: 1vh;">NO</th>
+                            <th scope="col" style="width: 10vh;">ID</th>
+                            <th scope="col" style="width: 50vh;">Nama Lengkap</th>
+                            <th scope="col" style="width: 10vh;">Kelas</th>
+                            <th scope="col" style="width: 10vh;">Tanggal</th>
+                            <th scope="col" style="width: 100vh;">Jenis Pelanggaran</th>
+                            <th scope="col" style="width: 10px;">Detail</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>27163</td>
+                            <td>Alfisal Punjung Kurniawan</td>
+                            <td>XI TKJ 1</td>
+                            <td>Selasa, 27-06-2024</td>
+                            <td>Terlambat Masuk Sekolah</td>
+                            <td><button type="button" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </button></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">2</th>
+                            <td>27163</td>
+                            <td>Nirina Khoirun Naja Musyafa</td>
+                            <td>X DKV 1</td>
+                            <td>Selasa, 27-06-2024</td>
+                            <td>Terlambat Masuk Sekolah</td>
+                            <td><button type="button" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </button></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">3</th>
+                            <td>27163</td>
+                            <td>Maruf Nur Muhammad</td>
+                            <td>XI TKJ 1</td>
+                            <td>Selasa, 27-06-2024</td>
+                            <td>Terlambat Masuk Sekolah</td>
+                            <td><button type="button" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </button></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">4</th>
+                            <td>27163</td>
+                            <td>Alfisal Punjung Kurniawan</td>
+                            <td>XI TKJ 1</td>
+                            <td>Selasa, 27-06-2024</td>
+                            <td>Terlambat Masuk Sekolah</td>
+                            <td><button type="button" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+              
+              
+            </div>
+          </div>
+          </div>
+
+
+
+<!-- Testing Table -->
+
+
+
+
+          <!-- Area Grafik Dashboard Admin -->
+          <!-- <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              Featured
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+
+          </div> -->
+
+
+          <!-- /.card-body -->
+          <!-- <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Responsive Hover Table</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 200px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              /.card-header
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th class="col-100">ID</th>
+                      <th>User</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Reason</th>
+                      <th>Reason</th>
+                      <th>Reason</th>
+                      <th>Testing</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>183</td>
+                      <td>John Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-success">Approved</span></td>
+                      <td>Testing 2</td>
+                      <td>Testing 3</td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>219</td>
+                      <td>Alexander Pierce</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-warning">Pending</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>657</td>
+                      <td>Bob Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-primary">Approved</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>175</td>
+                      <td>Mike Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-danger">Denied</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>175</td>
+                      <td>Mike Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-danger">Denied</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              /.card-body
+            </div>
+            /.card
+          </div> -->
+        </div>
+                </div>
+
+               </div>
+          </div>
+          
       </div>
-    </div>
+      
+      <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- /.row -->  
+         
+  <!-- End Dashboard End -->  
     
-    <div class="row" >
-      <div class="col-lg-4">
-        <div class="card mb-4 shadow p-3 mb-5 bg-body rounded">
-          <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">John Smith</h5>
-            <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-            <div class="d-flex justify-content-center mb-2">
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Follow</button>
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">Message</button>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-4 mb-lg-0 shadow p-3 mb-5 bg-body rounded">
-          <div class="card-body p-0">
-            <ul class="list-group list-group-flush rounded-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0">https://mdbootstrap.com</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-github fa-lg text-body"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0">@mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="card mb-4 shadow p-3 mb-5 bg-body rounded">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Johnatan Smith</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Mobile</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">(098) 765-4321</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Address</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
+
   </div>
-  <!-- END Profiles Dashboar Siswa -->
-  
-
-
 </section>
-    <!-- /.content -->
-  </div>
+  <?= $this->endSection(); ?>
 
-  <?= $this->endSection();
+  
+  
