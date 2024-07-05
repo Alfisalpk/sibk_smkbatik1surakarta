@@ -16,10 +16,31 @@ $routes->get('/master_kategori_pelanggaran', 'Admin::master_kategori_pelanggaran
 $routes->get('/master_data_user', 'Admin::master_data_user');
 $routes->get('/laporan_pelanggaran_siswa', 'Admin::lap_pelanggaran_siswa');
 $routes->get('/pengaturan_profile', 'Admin::pengaturan_profile');
+$routes->get('/login', 'Home::index');
 
 
-$routes->get('/admin', 'Admin::index', ['filter' => 'role:admin']);
-$routes->get('/admin/index', 'Admin::index', ['filter' => 'role:admin']);
+
+// Testingku
+$routes->get('/register', 'AuthController::register');
+$routes->post('/register1', 'AuthController::store');
+$routes->get('/password/request', 'PasswordController::requestReset');
+$routes->post('/password/request', 'PasswordController::sendResetLink');
+$routes->get('/password/reset/(:segment)', 'PasswordController::reset/$1');
+$routes->post('/password/update', 'PasswordController::updatePassword');
+
+
+// tambahkan filter ke routes lainnya yang membutuhkan autentikasi
+$routes->get('/login', 'AuthController::login');
+$routes->post('/login', 'AuthController::authenticate');
+$routes->get('/logout', 'AuthController::logout');
+$routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth']);
+
+
+
+
+
+// $routes->get('/admin', 'Admin::index', ['filter' => 'role:admin']);
+// $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:admin']);
 
 // END Routes Halaman Area Admin
 

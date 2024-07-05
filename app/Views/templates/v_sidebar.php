@@ -2,10 +2,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?= base_url() ?>/assets/dist/img/<?= user()->user_image; ?>" class="img-circle elevation-2" alt="User Image">
+          <img src="<?= base_url() ?>/assets/dist/img/" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"> Hallo <?= user()->username; ?></a>
+          <a href="#" class="d-block"></a>
         </div>
       </div>
 
@@ -16,10 +16,10 @@
                with font-awesome or any other icon font library -->
                
             <!-- Start Sidebar Admin -->
-  <?php if(in_groups('admin')): ?>
+  
 
                <li class="nav-item">
-            <a href="<?= base_url('admin') ?>" class="nav-link <?= $menu == 'dashboard' ? 'active' : '' ?>">
+            <a href="<?= base_url('/') ?>" class="nav-link <?= $menu == 'dashboard' ? 'active' : '' ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -119,7 +119,7 @@
           </li>
           </li>
 
-  <?php endif; ?>
+  
         <!-- End Sidebar Admin -->
 
 

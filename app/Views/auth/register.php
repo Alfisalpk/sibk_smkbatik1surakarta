@@ -16,35 +16,55 @@
                                         </div>
                         <h1 class="h4 text-gray-900 mb-4">Buat Akun Bimbingan Konseling</h1>
                     </div>
-                    <?= view('Myth\Auth\Views\_message_block') ?>
-                    <form action="<?= url_to('register') ?>" method="post" class="user">
-                        <?= csrf_field() ?>
+                     <!-- Menampilkan pesan error -->
+                    <?php if (session()->getFlashdata('error')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->getFlashdata('error') ?>
+                        </div>
+                    <?php endif; ?>        
+                    <!-- Menampilkan pesan sukses -->
+                    <?php if (session()->getFlashdata('success')): ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->getFlashdata('success') ?>
+                        </div>
+                    <?php endif; ?>
+                    <!-- Menampilkan pesan sukses -->
+                    <?php if (session()->getFlashdata('terdaftar')): ?>
+                        <div class="alert alert-warning" role="alert">
+                            <?= session()->getFlashdata('terdaftar') ?>
+                        </div>
+                    <?php endif; ?>
+                    <form action="<?= base_url('register1') ?>" method="post" class="user">
+                    <?= csrf_field() ?>
 
                         <div class="form-group">
-                            <input type="username" class="form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username"
-                                placeholder="Username" value="<?= old('username') ?>">
+                            <input type="number" class="form-control form-control-user" name="nisn"
+                                placeholder="Masukan NISN" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email"
-                                placeholder="<?=lang('Auth.email')?>" value="<?= old('email') ?>">
+                            <input type="username" class="form-control form-control-user" name="username"
+                                placeholder="Nama Lengkap" value="<?= old('nama_lengkap')?>" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control form-control-user" name="email"
+                                placeholder="Email" value="<?= old('email')?>" required>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.password')?>"
-                                    name="password" autocomplete="off">
+                                <input type="password" name="password" class="form-control form-control-user" placeholder="Password" autocomplete="off" value="<?= old('password')?>" required>
                             </div>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control form-control-user <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.repeatPassword')?>"
-                                    name="pass_confirm" placeholder="Ulangi Password" type="password" autocomplete="off">
+                                <input type="password" class="form-control form-control-user"
+                                    name="confirm_password" placeholder="Ulangi Password" type="password" autocomplete="off" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                        <?=lang('Auth.register')?>
+                        Daftar Akun
                         </button>
                     </form>
                     <hr>
                     <div class="text-center">
-                     <p><a class="small" href="<?= url_to('login') ?>">Sudah Memiliki Akun? <?=lang('Auth.signIn')?></a></p>
+                     <p><a class="small" href="<?= base_url('/login') ?>">Sudah Memiliki Akun?</a></p>
                     </div>
                 </div>
             </div>
