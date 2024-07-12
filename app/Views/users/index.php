@@ -35,9 +35,9 @@
       <div class="col-lg-4">
         <div class="card mb-4 shadow p-3 mb-5 bg-body rounded">
           <div class="card-body text-center">
-          <img src="<?= base_url() ?>/assets/dist/img/<?= user()->user_image; ?>" alt="avatar"
+          <img src="" alt="avatar"
               class="rounded-circle img-fluid" style="width: 300px;">
-            <h5 class="my-3"><?= user()->username; ?></h5>
+            <h5 class="my-3">#</h5>
             <p class="text-muted mb-1">Full Stack Developer</p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
             <div class="d-flex justify-content-center mb-2">

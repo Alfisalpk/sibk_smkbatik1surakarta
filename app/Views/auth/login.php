@@ -24,6 +24,11 @@
                                     
                                     
                                     <!-- Coopy Dari Login MyAuth -->
+                                     <?php if (session()->getFlashdata('success')): ?>
+                                        <div class="alert alert-success" role="alert">
+                                            <?= session()->getFlashdata('success') ?>
+                                        </div>
+                                    <?php endif; ?> 
                                      <?php if (session()->getFlashdata('error')): ?>
                                         <div class="alert alert-danger" role="alert">
                                             <?= session()->getFlashdata('error') ?>
@@ -34,7 +39,7 @@
                                     <?= csrf_field() ?>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" value="<?= old('identity')?>"
-                                                name="identity" aria-describedby="emailHelp"
+                                                name="username_or_email" aria-describedby="emailHelp"
                                                 placeholder="Username / Email">
                                                 <div class="invalid-feedback">
 							                    </div>
@@ -71,13 +76,13 @@
                                   
 
                                     <div class="text-center">
-                                        <p><a class="small" href="">Lupa Password?</a></p>
+                                        <p><a class="small" href="<?= base_url('password/request') ?>">Lupa Password?</a></p>
                                     </div>
                                     
 
                                         
                                     <div class="text-center">
-                                        <p><a class="small" href="">Belum Punya Akun?</a></p>
+                                        <p><a class="small" href="<?= base_url('register') ?>">Belum Punya Akun?</a></p>
                                            
                                     </div>
                                 </div>

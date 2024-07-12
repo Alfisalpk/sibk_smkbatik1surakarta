@@ -16,17 +16,16 @@
                with font-awesome or any other icon font library -->
                
             <!-- Start Sidebar Admin -->
-            <?php if (in_groups([1])): // Admin ?>
+  
 
                <li class="nav-item">
-            <a href="<?= base_url('/') ?>" class="nav-link <?= $menu == 'dashboard' ? 'active' : '' ?>">
+            <a href="<?= base_url('admin/dashboard') ?>" class="nav-link <?= $menu == 'dashboard' ? 'active' : '' ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li>
-          
           <li class="nav-item <?= $menu == 'master_data' ? 'menu-open' : '' ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fa-solid fa-school"></i>
@@ -119,34 +118,17 @@
             </a>
           </li>
           </li>
-          <li class="nav-item">
-            <a href='<?= base_url('logout') ?>' class="nav-link">
-            <i class="nav-icon fa-solid fa-right-from-bracket"></i>
-              <p>Logout</p>
-            </a>
-          </li>
 
-          <?php endif; ?>
   
         <!-- End Sidebar Admin -->
 
-            
+
       <!-- Area Sidebar Siswa -->
-      <?php if (in_groups([3])): // Siswa ?>
-          <li class="nav-header">Pengaturan</li>
-          <li class="nav-item">
-            <a href="<?= base_url('pengaturan_profile') ?>" class="nav-link <?= $menu == 'pengaturan_admin' ? 'active' : '' ?> ">
-              <i class="nav-icon fas fa-regular fa-id-card"></i>
-              <p>Testing Halaman Siswa</p>
-            </a>
-          </li>
           <li class="nav-item">
             <a href='<?= base_url('logout') ?>' class="nav-link">
             <i class="nav-icon fa-solid fa-right-from-bracket"></i>
               <p>Logout</p>
             </a>
-          </li>
-          <?php endif; ?>
           </li>
         </ul>
       </nav>

@@ -34,7 +34,7 @@
                             <?= session()->getFlashdata('terdaftar') ?>
                         </div>
                     <?php endif; ?>
-                    <form action="<?= base_url('register1') ?>" method="post" class="user">
+                    <form action="<?= base_url('register') ?>" method="post" class="user">
                     <?= csrf_field() ?>
 
                         <div class="form-group">

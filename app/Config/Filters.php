@@ -24,7 +24,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'auth' => \App\Filters\AuthFilter::class,
+        'auth'          => \App\Filters\AuthenticationMiddleware::class,
+        
         // 'login'      => \Myth\Auth\Filters\LoginFilter::class,
         // 'role'       => \Myth\Auth\Filters\RoleFilter::class,
         // 'permission' => \Myth\Auth\Filters\PermissionFilter::class,
@@ -63,7 +64,10 @@ class Filters extends BaseConfig
      *
      * @var array<string, list<string>>
      */
-    public array $methods = [];
+    public array $methods = [
+        // 'get' => [],
+        // 'post' => [],
+    ];
 
     /**
      * List of filter aliases that should run on any
@@ -74,5 +78,16 @@ class Filters extends BaseConfig
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        'auth' => [
+            'before' => [
+                'admin/*',
+                'guru/*',
+                'siswa/*',
+                'guru_bk/*',
+                'kepala_sekolah/*',
+            ],
+        ],
+    ];
+    
 }

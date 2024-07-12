@@ -3,19 +3,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class UserGuruModel extends Model
 {
-    protected $table = 'users';
+    protected $table = 'user_guru';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['username', 'email', 'password', 'role', 'nisn'];
+    protected $allowedFields = ['username', 'email', 'password', 'role'];
 
     public function updatePassword($id, $password)
     {
         return $this->update($id, ['password' => password_hash($password, PASSWORD_DEFAULT)]);
     }
 }
-
-// catatan melanjutkan daftar, login, reset password
 
 
 ?>
