@@ -51,15 +51,6 @@
 								               
 							                    </div>
                                         </div>
-                                        
-
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" name="remember" class="form-check-input">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
                                      
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
@@ -82,7 +73,7 @@
 
                                         
                                     <div class="text-center">
-                                        <p><a class="small" href="<?= base_url('register') ?>">Belum Punya Akun?</a></p>
+                                        <p><a class="small" href="<?= base_url('register') ?>">Belum Punya Akun? (Siswa)</a></p>
                                            
                                     </div>
                                 </div>

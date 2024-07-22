@@ -85,7 +85,7 @@ class AuthController extends BaseController
                           ->orWhere('email', $usernameOrEmail)
                           ->first();
 
-        // Jika tidak ditemukan di tabel users, cek di tabel user_guru
+        //cek tabel user_guru
         if (!$user) {
             $user = $userGuruModel->where('username', $usernameOrEmail)
                                   ->orWhere('email', $usernameOrEmail)
@@ -99,6 +99,7 @@ class AuthController extends BaseController
                 'username' => $user['username'],
                 'role' => $user['role'],
                 'is_logged_in' => true,
+                // untuk menampilkan info sesi login tambahkan sesuai yang ada di datahbase
             ]);
 
             // Redirect berdasarkan peran
@@ -117,7 +118,7 @@ class AuthController extends BaseController
                     return redirect()->to('/');
             }
         } else {
-            return redirect()->back()->with('error', 'Username atau password salah.');
+            return redirect()->back()->with('error', 'Email atau password salah.');
         }
     }
 
@@ -126,9 +127,6 @@ class AuthController extends BaseController
         session()->destroy();
         return redirect()->to('/login')->with('success', 'Logout berhasil');
     }
-
-
-
 
     // AREA RESET PASSWORD
     public function resetPassword()
@@ -154,7 +152,7 @@ class AuthController extends BaseController
         if ($user) {
             // Buat token reset password
             $token = bin2hex(random_bytes(50));
-            $expires = Time::now()->addHours(1); // Token berlaku 1 jam
+            $expires = Time::now('Asia/Jakarta')->addHours(1); // Token berlaku 1 jam
 
             // Simpan token ke database
             $resetPasswordTokenModel = new ResetPasswordTokenModel();
@@ -162,7 +160,7 @@ class AuthController extends BaseController
                 'email' => $user['email'],
                 'token' => $token,
                 'expires' => $expires,
-                'created_at' => Time::now(),
+                'created_at' => Time::now('Asia/Jakarta'),
             ]);
 
             $resetLink = base_url('/auth/completeResetPassword?token=' . $token);
@@ -170,10 +168,10 @@ class AuthController extends BaseController
             // Kirim email dengan link reset password
             $emailService = \Config\Services::email();
             $emailService->setTo($user['email']);
-            $emailService->setSubject('Reset Password');
-            $emailService->setMessage('Klik link berikut untuk reset password: ' . $resetLink);
+            $emailService->setSubject('Reset Password - Bimbingan Konseling SMK Batik 1 Surakarta');
+            $emailService->setMessage('Hallo, Klik Link Berikut Untuk Reset Password Pada Sistem Informasi Bimbingan Konseling SMK Batik 1 Surakarta: ' . $resetLink);
             if ($emailService->send()) {
-                return redirect()->back()->with('success', 'Email reset password telah dikirim.');
+                return redirect()->back()->with('success', 'Link Reset Password Telah Dikirim Ke Email Anda!.');
             } else {
                 return redirect()->back()->with('error', 'Gagal mengirim email reset password.');
             }
@@ -188,7 +186,7 @@ class AuthController extends BaseController
         $resetPasswordTokenModel = new ResetPasswordTokenModel();
         $tokenData = $resetPasswordTokenModel->where('token', $token)->first();
 
-        if ($tokenData && Time::now()->isBefore($tokenData['expires'])) {
+        if ($tokenData && Time::now('Asia/Jakarta')->isBefore($tokenData['expires'])) {
             return view('auth/complete_reset_password', ['token' => $token]);
         } else {
             return redirect()->to('/auth/resetPassword')->with('error', 'Token tidak valid atau sudah kadaluarsa.');
@@ -203,7 +201,7 @@ class AuthController extends BaseController
         $resetPasswordTokenModel = new ResetPasswordTokenModel();
         $tokenData = $resetPasswordTokenModel->where('token', $token)->first();
 
-        if ($tokenData && Time::now()->isBefore($tokenData['expires'])) {
+        if ($tokenData && Time::now('Asia/Jakarta')->isBefore($tokenData['expires'])) {
             $userModel = new UserModel();
             $userGuruModel = new UserGuruModel();
 

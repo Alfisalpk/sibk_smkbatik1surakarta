@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jul 2024 pada 11.52
+-- Waktu pembuatan: 22 Jul 2024 pada 20.20
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -66,12 +66,13 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 --
 
 CREATE TABLE `reset_password_tokens` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
-  `expires` datetime NOT NULL,
-  `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `expiry` datetime NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -210,6 +211,14 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `nisn`, `username`, `email`, `nama_lengkap`, `password`, `nomor_wa`, `alamat`, `foto`, `role`, `reset_token`, `reset_expiry`, `created_at`, `updated_at`) VALUES
+(12, '2001', 'Alfisal Punjung Kurniawan', 'punjungkurniawan@gmail.com', NULL, '$2y$10$8FyJwMRHiAN/abdkiquSPOdP1W5nmvjEW19fzbzMeiFLCI61HKile', NULL, NULL, NULL, 3, NULL, NULL, '2024-07-07 14:55:40', '2024-07-22 14:37:55'),
+(13, '230820001', 'Kurniawan', 'kurniawan@gmail.com', NULL, '$2y$10$hoQ6JrxTUzXScnUXJ/Khf.NEjfT8Epe7EtN40e4NQgOTW/.lmmCm2', NULL, NULL, NULL, 3, NULL, NULL, '2024-07-16 09:48:47', '2024-07-16 09:48:47');
+
 -- --------------------------------------------------------
 
 --
@@ -232,8 +241,8 @@ CREATE TABLE `user_guru` (
 --
 
 INSERT INTO `user_guru` (`id`, `username`, `email`, `password`, `role`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(3, 'gurualfisal', 'punjungalfisal@gmail.com', '$2y$10$lep57cvAQC3ypV6ZvZWdn.ZskdqvZmEd0HJaF8PUh/lL.NgkJAv8y', '2', '2024-07-06 16:12:35', '2024-07-06 16:12:35', NULL),
-(4, 'guru2', 'alfisalpunjungkurniawan@gmail.com', '$2y$10$VqKhni7TirdR2RT/Ng681OoOgA1rpgtdwirjUMaB6XArWeKeyjLDK', '2', '2024-07-06 16:12:35', '2024-07-06 16:12:35', NULL);
+(11, 'admin Alfisal', 'punjungalfisal@gmail.com', '$2y$10$QCII27x7CfKD2dZBS6zMH.eZUYArO9XJmI0eVkxbqK6MmarcTj0n.', '1', '2024-07-09 06:57:56', '2024-07-09 06:57:56', NULL),
+(12, 'guru Punjung', 'alfisalpunjungkurniawan@gmail.com', '$2y$10$g7UVJAdDL/MYf.sdQIiGiOS1ayJPkkQJeErN1DPOxglzCpk6hMpN2', '2', '2024-07-09 06:57:56', '2024-07-09 06:57:56', NULL);
 
 --
 -- Indexes for dumped tables
@@ -318,7 +327,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `reset_password_tokens`
 --
 ALTER TABLE `reset_password_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`
@@ -348,13 +357,13 @@ ALTER TABLE `tb_suratpanggilan`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_guru`
 --
 ALTER TABLE `user_guru`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

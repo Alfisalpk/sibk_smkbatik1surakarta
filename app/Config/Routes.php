@@ -5,20 +5,14 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-
-// Routes Halaman Area Admin
-$routes->get('/', 'Admin::index');
-// $routes->get('/master_data_guru', 'Admin::master_data_guru');
-// $routes->get('/master_data_siswa', 'Admin::master_data_siswa');
-// $routes->get('/master_data_mapel', 'Admin::master_data_mata_pelajaran');
-// $routes->get('/master_data_kelas_jurusan', 'Admin::master_data_kelas_jurusan');
-// $routes->get('/master_kategori_pelanggaran', 'Admin::master_kategori_pelanggaran');
-// $routes->get('/master_data_user', 'Admin::master_data_user');
-// $routes->get('/laporan_pelanggaran_siswa', 'Admin::lap_pelanggaran_siswa');
-// $routes->get('/pengaturan_profile', 'Admin::pengaturan_profile');
-// $routes->get('/login', 'Home::index');
-
-
+// Apabila tidak ada file lempar not found
+$routes->setDefaultNamespace('App\Controllers');
+$routes->setDefaultController('Home');
+$routes->setDefaultMethod('index');
+$routes->setTranslateURIDashes(false);
+$routes->set404Override(function() {echo view('auth/404'); });
+$routes->setAutoRoute(true);
+// END Apabila tidak ada file lempar not found
 
 // Testingku
 
@@ -36,9 +30,7 @@ $routes->get('/auth/resetPassword', 'AuthController::resetPassword');
 $routes->post('/auth/processResetPassword', 'AuthController::processResetPassword');
 $routes->get('/auth/completeResetPassword', 'AuthController::completeResetPassword');
 $routes->post('/auth/processCompleteResetPassword', 'AuthController::processCompleteResetPassword');
-$routes->get('access-denied', function() {
-    return view('/auth/login');
-});
+$routes->get('access-denied', function() {return view('/auth/access_denied'); });
 
 
 
@@ -52,18 +44,31 @@ $routes->get('/logout', 'AuthController::logout');
 
 
 //area mengatur sidebar 
+// ADMIN SIDEBAR 1
 $routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('dashboard', 'AdminController::dashboard'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_guru', 'AdminController::data_guru'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_kelas_jurusan', 'AdminController::data_kelas_jurusan'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_mapel', 'AdminController::data_mapel'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_siswa', 'AdminController::data_siswa'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_user_guru', 'AdminController::data_user_guru'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('/', 'AdminController::dashboard'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('kategori_pelanggaran', 'AdminController::kategori_pelanggaran'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile'); });
+//END  ADMIN SIDEBAR 1
+
 
 $routes->group('guru', ['filter' => 'auth:2'], function($routes) {
     $routes->get('dashboard', 'GuruController::dashboard');
 });
 
-$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {
-    $routes->get('dashboard', 'SiswaController::dashboard');
-});
+$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('dashboard', 'SiswaController::dashboard'); });
+$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('/', 'SiswaController::dashboard'); });
+$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('pelanggaran_siswa', 'SiswaController::pelanggaran_siswa'); });
+$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('pengaturan_profile_siswa', 'SiswaController::pengaturan_profile_siswa'); });
+$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('riwayat_pelanggaran', 'SiswaController::riwayat_pelanggaran'); });
 
-$routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) {
-    $routes->get('dashboard', 'GuruBkController::dashboard');
+$routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) { $routes->get('dashboard', 'GuruBkController::dashboard');
 });
 
 $routes->group('kepala_sekolah', ['filter' => 'auth:5'], function($routes) {
@@ -75,12 +80,5 @@ $routes->group('kepala_sekolah', ['filter' => 'auth:5'], function($routes) {
 
 // END area mengatur sidebar 
 
-
-
-
-// $routes->get('/admin', 'Admin::index', ['filter' => 'role:admin']);
-// $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:admin']);
-
-// END Routes Halaman Area Admin
 
 

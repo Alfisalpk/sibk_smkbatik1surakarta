@@ -10874,6 +10874,11 @@ a:focus {
   background-position: center;
   background-size: cover;
 }
+.bg-login-image_reset {
+  background: url("../img/img_forgotpassword.JPG");
+  background-position: center;
+  background-size: cover;
+}
 
 .bg-register-image {
   background: url("../img/img_login.JPG");
