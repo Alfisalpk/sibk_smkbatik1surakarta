@@ -4,7 +4,7 @@ namespace App\Controllers;
 class AdminController extends BaseController
 {
 
-
+    // Tampil Ke Halaman dan V sidebar
     public function dashboard()
     {
         $data = [
@@ -24,7 +24,7 @@ class AdminController extends BaseController
             'submenu' => 'data_guru'
 
         ];
-        return view('admin/data_guru', $data);
+        return view('admin/create_guru', $data);
     }
     
     public function data_kelas_jurusan()
@@ -102,6 +102,12 @@ class AdminController extends BaseController
         ];
         return view('admin/pengaturan_profile', $data);
     }
+
+    //END Tampil Ke Halaman dan V sidebar
+
+    // Start CRUD Bagian Dashboard Guru Login
+
+    // END CRUD Bagian Dashboard Guru Login
 }
 
 

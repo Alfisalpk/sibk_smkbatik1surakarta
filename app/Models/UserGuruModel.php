@@ -7,7 +7,9 @@ class UserGuruModel extends Model
 {
     protected $table = 'user_guru';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['username', 'email', 'password', 'role'];
+    protected $allowedFields = ['username', 'email', 'password', 'role', 'created_at', 'updated_at', 'deleted_at'];
+    protected $useSoftDeletes = true;
+    protected $useTimestamps = true;
 
     public function updatePassword($id, $password)
     {

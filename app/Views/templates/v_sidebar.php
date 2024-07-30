@@ -137,8 +137,14 @@
         </li>
         <li class="nav-item">
           <a href="<?= base_url('/admin/pengaturan_profile') ?>" class="nav-link <?= $menu == 'pengaturan_admin' ? 'active' : '' ?> ">
+            <i class="nav-icon fas fa-regular fa-id-card"></i>
+            <p>Testing Halaman Siswa</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('/admin/pengaturan_profile') ?>" class="nav-link <?= $menu == 'pengaturan_admin' ? 'active' : '' ?> ">
             <i class="nav-icon fas fa-solid fa-file-pen"></i>
-            <p>Riwayat Pelanggaran</p>
+            <p>Pelanggaran Siswa</p>
           </a>
         </li>
 
@@ -147,12 +153,6 @@
             <a href="<?= base_url('/admin/pengaturan_profile') ?>" class="nav-link <?= $menu == 'pengaturan_admin' ? 'active' : '' ?> ">
               <i class="nav-icon fas fa-solid fa-sliders"></i>
               <p>Pengaturan Profile</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('/admin/pengaturan_profile') ?>" class="nav-link <?= $menu == 'pengaturan_admin' ? 'active' : '' ?> ">
-              <i class="nav-icon fas fa-regular fa-id-card"></i>
-              <p>Testing Halaman Siswa</p>
             </a>
           </li>
           <?php endif; ?>

@@ -45,28 +45,50 @@ $routes->get('/logout', 'AuthController::logout');
 
 //area mengatur sidebar 
 // ADMIN SIDEBAR 1
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('dashboard', 'AdminController::dashboard'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_guru', 'AdminController::data_guru'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_kelas_jurusan', 'AdminController::data_kelas_jurusan'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_mapel', 'AdminController::data_mapel'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_siswa', 'AdminController::data_siswa'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('data_user_guru', 'AdminController::data_user_guru'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('/', 'AdminController::dashboard'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('kategori_pelanggaran', 'AdminController::kategori_pelanggaran'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa'); });
-$routes->group('admin', ['filter' => 'auth:1'], function($routes) { $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile'); });
+$routes->group('admin', ['filter' => 'auth:1'], function($routes) { 
+    //Validasi Halaman V_Sidebar    
+    $routes->get('dashboard', 'AdminController::dashboard'); 
+    $routes->get('data_guru', 'AdminController::data_guru');
+    $routes->get('data_kelas_jurusan', 'AdminController::data_kelas_jurusan');
+    $routes->get('data_mapel', 'AdminController::data_mapel');
+    $routes->get('data_siswa', 'AdminController::data_siswa');
+    $routes->get('data_user_guru', 'AdminController::data_user_guru');
+    $routes->get('/', 'AdminController::dashboard');
+    $routes->get('kategori_pelanggaran', 'AdminController::kategori_pelanggaran'); 
+    $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa');
+    $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile');
+    //END Validasi Halaman V_Sidebar    
+    // Start Validasi CRUD
+    $routes->get('dashboard', 'AdminController::dashboard');
+    $routes->get('roles', 'RoleController::index');
+    // $routes->get('/admin/create_guru', 'RoleController::role');
+    $routes->post('/admin/store_guru', 'AdminGuruController::storeGuru');
+    // END Validasi CRUD
+
+});
 //END  ADMIN SIDEBAR 1
 
-
 $routes->group('guru', ['filter' => 'auth:2'], function($routes) {
-    $routes->get('dashboard', 'GuruController::dashboard');
+     //Validasi Halaman V_Sidebar
+    $routes->get('dashboard', 'GuruController::dashboardguru');
+    //END Validasi Halaman V_Sidebar 
+    // Start Validasi CRUD
+    $routes->get('create', 'GuruController::create');
+    $routes->post('store', 'GuruController::store');
+    $routes->get('edit/(:num)', 'GuruController::edit/$1');
+    $routes->post('update/(:num)', 'GuruController::update/$1');
+    $routes->get('delete/(:num)', 'GuruController::delete/$1');
+    // END Validasi CRUD
 });
 
-$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('dashboard', 'SiswaController::dashboard'); });
-$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('/', 'SiswaController::dashboard'); });
-$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('pelanggaran_siswa', 'SiswaController::pelanggaran_siswa'); });
-$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('pengaturan_profile_siswa', 'SiswaController::pengaturan_profile_siswa'); });
-$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {$routes->get('riwayat_pelanggaran', 'SiswaController::riwayat_pelanggaran'); });
+// Siswa Area
+$routes->group('siswa', ['filter' => 'auth:3'], function($routes) {
+    $routes->get('dashboard', 'SiswaController::dashboard'); 
+    $routes->get('/', 'SiswaController::dashboard');
+    $routes->get('pelanggaran_siswa', 'SiswaController::pelanggaran_siswa');
+    $routes->get('pengaturan_profile_siswa', 'SiswaController::pengaturan_profile_siswa');
+    $routes->get('riwayat_pelanggaran', 'SiswaController::riwayat_pelanggaran');
+});
 
 $routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) { $routes->get('dashboard', 'GuruBkController::dashboard');
 });
