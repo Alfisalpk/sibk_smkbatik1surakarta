@@ -10,8 +10,5 @@ class RoleModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['role'];
 
-    public function getRoles()
-    {
-        return $this->findAll();
-    }
+
 }

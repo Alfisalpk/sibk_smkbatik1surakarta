@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Jul 2024 pada 20.20
+-- Waktu pembuatan: 12 Agu 2024 pada 06.36
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -104,9 +104,7 @@ INSERT INTO `roles` (`id`, `role`) VALUES
 
 CREATE TABLE `tb_guru` (
   `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `user_guru_id` int(10) UNSIGNED NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `nip` varchar(20) DEFAULT NULL,
   `birth_place` varchar(50) DEFAULT NULL,
@@ -116,10 +114,19 @@ CREATE TABLE `tb_guru` (
   `religion` varchar(50) DEFAULT NULL,
   `gender` enum('L','P') DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
+  `role` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tb_guru`
+--
+
+INSERT INTO `tb_guru` (`id`, `user_guru_id`, `full_name`, `nip`, `birth_place`, `birth_date`, `phone`, `address`, `religion`, `gender`, `subject`, `role`, `created_at`, `updated_at`) VALUES
+(1, 4, 'Alfisal Punjung Guru', '200101003', 'Sukoharjo', '2001-08-23', '081325659017', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', 'L', 'TKJ', 1, '2024-07-31 22:48:14', '2024-07-31 22:48:14'),
+(2, 5, 'Asna Kharismanda Salam', '12345678', 'Surabaya', '2024-08-06', '081332615242', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', 'P', 'Ipa', 2, '2024-07-31 22:59:12', '2024-07-31 22:59:12'),
+(3, 6, 'Multimedia Batik', '123456', 'Kartasura', '2024-08-21', '081325659071', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', 'L', 'Sejarah', 2, '2024-07-31 23:17:43', '2024-07-31 23:17:43');
 
 -- --------------------------------------------------------
 
@@ -170,7 +177,8 @@ CREATE TABLE `tb_siswa` (
 
 INSERT INTO `tb_siswa` (`id`, `nisn`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `nomor_handphone`, `alamat`, `agama`, `jenis_kelamin`, `asal_sekolah`, `lulusan_tahun`, `nama_wali_murid`, `nomor_wali_murid`, `id_kelas`, `id_jurusan`, `kode_pelanggaran`, `created_at`, `updated_at`) VALUES
 (1, '230820001', 'Alfisal Test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-06-30 16:09:13', '2024-06-30 16:09:13'),
-(3, '2001', 'Alfisal Punjung Kurniawan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-06 17:34:00', '2024-07-06 17:34:00');
+(3, '2001', 'Alfisal Punjung Kurniawan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-06 17:34:00', '2024-07-06 17:34:00'),
+(4, '123', 'qwerty', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-09 04:35:11', '2024-08-09 04:35:11');
 
 -- --------------------------------------------------------
 
@@ -217,7 +225,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nisn`, `username`, `email`, `nama_lengkap`, `password`, `nomor_wa`, `alamat`, `foto`, `role`, `reset_token`, `reset_expiry`, `created_at`, `updated_at`) VALUES
 (12, '2001', 'Alfisal Punjung Kurniawan', 'punjungkurniawan@gmail.com', NULL, '$2y$10$8FyJwMRHiAN/abdkiquSPOdP1W5nmvjEW19fzbzMeiFLCI61HKile', NULL, NULL, NULL, 3, NULL, NULL, '2024-07-07 14:55:40', '2024-07-22 14:37:55'),
-(13, '230820001', 'Kurniawan', 'kurniawan@gmail.com', NULL, '$2y$10$hoQ6JrxTUzXScnUXJ/Khf.NEjfT8Epe7EtN40e4NQgOTW/.lmmCm2', NULL, NULL, NULL, 3, NULL, NULL, '2024-07-16 09:48:47', '2024-07-16 09:48:47');
+(13, '230820001', 'Kurniawan', 'kurniawan@gmail.com', NULL, '$2y$10$hoQ6JrxTUzXScnUXJ/Khf.NEjfT8Epe7EtN40e4NQgOTW/.lmmCm2', NULL, NULL, NULL, 3, NULL, NULL, '2024-07-16 09:48:47', '2024-07-16 09:48:47'),
+(14, '123', 'Qwerty', 'punjung@gmail.com', NULL, '$2y$10$jnBfcIjbO.KFEOPVpAZbg.VfgeafYipQ0Bjxp78.8CQStPCb5Qnn6', NULL, NULL, NULL, 3, NULL, NULL, '2024-08-09 04:36:14', '2024-08-09 04:36:14');
 
 -- --------------------------------------------------------
 
@@ -230,7 +239,7 @@ CREATE TABLE `user_guru` (
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL,
+  `role` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -241,8 +250,10 @@ CREATE TABLE `user_guru` (
 --
 
 INSERT INTO `user_guru` (`id`, `username`, `email`, `password`, `role`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(11, 'admin Alfisal', 'punjungalfisal@gmail.com', '$2y$10$QCII27x7CfKD2dZBS6zMH.eZUYArO9XJmI0eVkxbqK6MmarcTj0n.', '1', '2024-07-09 06:57:56', '2024-07-09 06:57:56', NULL),
-(12, 'guru Punjung', 'alfisalpunjungkurniawan@gmail.com', '$2y$10$g7UVJAdDL/MYf.sdQIiGiOS1ayJPkkQJeErN1DPOxglzCpk6hMpN2', '2', '2024-07-09 06:57:56', '2024-07-09 06:57:56', NULL);
+(3, 'Alfisal', 'punjungalfisal@gmail.com', '$2y$10$T0nCr6F24Do7qJDT9D25zu6/XgBCDunmAXHujjBCEB09oSVnReoyy', 1, NULL, '2024-08-09 11:31:42', NULL),
+(4, 'alfisalpunjung', 'alfisalpunjungkurniawan@gmail.com', '$2y$10$lo04TP2coinV3s7mzh3jm..plzlkEDB9dtvuW/oKkqeqIWpeXKlUW', 1, '2024-08-01 05:48:14', '2024-08-01 05:48:14', NULL),
+(5, 'asnaguru', 'asna@gmail.com', '$2y$10$k6TFgp06pkKnUQ40Z2pPWOaprgfG/VPz3ynrkYJJP4qVmlxHn2yJq', 2, '2024-08-01 05:59:12', '2024-08-01 05:59:12', NULL),
+(6, 'Multimedia Guru', 'multimediasmkbiska@gmail.com', '$2y$10$ApsMELDcE1pATBmFS1LyiOsYIbZrV26kDFsy7IQ81Rt8A.6uY8/RW', 2, '2024-08-01 06:17:43', '2024-08-09 11:33:26', NULL);
 
 --
 -- Indexes for dumped tables
@@ -277,9 +288,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `tb_guru`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `nip` (`nip`);
+  ADD KEY `user_guru_id` (`user_guru_id`);
 
 --
 -- Indeks untuk tabel `tb_siswa`
@@ -298,14 +307,14 @@ ALTER TABLE `tb_suratpanggilan`
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `role_id` (`role`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `user_guru`
 --
 ALTER TABLE `user_guru`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_guru_roles` (`role`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -327,7 +336,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `reset_password_tokens`
 --
 ALTER TABLE `reset_password_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`
@@ -339,13 +348,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT untuk tabel `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_suratpanggilan`
@@ -357,23 +366,29 @@ ALTER TABLE `tb_suratpanggilan`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_guru`
 --
 ALTER TABLE `user_guru`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Ketidakleluasaan untuk tabel `users`
+-- Ketidakleluasaan untuk tabel `tb_guru`
 --
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role`) REFERENCES `roles` (`id`);
+ALTER TABLE `tb_guru`
+  ADD CONSTRAINT `tb_guru_ibfk_1` FOREIGN KEY (`user_guru_id`) REFERENCES `user_guru` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `user_guru`
+--
+ALTER TABLE `user_guru`
+  ADD CONSTRAINT `fk_user_guru_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

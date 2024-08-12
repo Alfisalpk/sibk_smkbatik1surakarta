@@ -6,11 +6,11 @@ use App\Models\RoleModel;
 
 class RoleController extends BaseController
 {
-    public function index()
+    public function role()
     {
         $roleModel = new RoleModel();
         $data['roles'] = $roleModel->getRoles();
 
-        return view('role_view', $data);
+        return view('create_guru', $data);
     }
 }

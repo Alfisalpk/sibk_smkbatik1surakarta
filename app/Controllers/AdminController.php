@@ -1,6 +1,11 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\UserGuruModel;
+use App\Models\GuruModel;
+use App\Models\RoleskuModel;
+use Config\Database;
+
 class AdminController extends BaseController
 {
 
@@ -18,13 +23,27 @@ class AdminController extends BaseController
 
     public function data_guru()
     {
+        // Data lain yang ingin dikirim ke view
         $data = [
-            'title' => 'Data Guru - SIBK  SMK Batik 1 Surakarta',
+            'title' => 'Data Guru - SIBK SMK Batik 1 Surakarta',
             'menu' => 'master_data',
             'submenu' => 'data_guru'
-
         ];
-        return view('admin/create_guru', $data);
+
+        // Menghubungkan ke database
+        $db = Database::connect();
+
+        // Menjalankan query
+        $query = $db->query('SELECT * FROM roles');
+
+        // Mendapatkan hasil query
+        $roles = $query->getResultArray(); // getResultArray untuk mendapatkan array asosiatif
+
+        // Menggabungkan data dengan hasil query
+        $data['roles'] = $roles;
+
+        // Mengirim data ke view
+        return view('admin/data_guru', $data);
     }
     
     public function data_kelas_jurusan()
@@ -105,9 +124,53 @@ class AdminController extends BaseController
 
     //END Tampil Ke Halaman dan V sidebar
 
-    // Start CRUD Bagian Dashboard Guru Login
+    protected $userGuruModel;
+    protected $guruModel;
+    protected $rolesModel;
+   
 
-    // END CRUD Bagian Dashboard Guru Login
+    public function __construct()
+    {
+        $this->userGuruModel = new UserGuruModel();
+        $this->guruModel = new GuruModel();
+        $this->rolesModel = new RoleskuModel();
+    }
+
+   
+
+    public function storeGuru()
+    {
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+            'role' => $this->request->getPost('role')
+        ];
+
+        // Simpan data ke tabel user_guru
+        $this->userGuruModel->save($data);
+        $userGuruId = $this->userGuruModel->insertID();
+
+        // Simpan data ke tabel tb_guru
+        $guruData = [
+            'user_guru_id' => $userGuruId,
+            'full_name' => $this->request->getPost('full_name'),
+            'nip' => $this->request->getPost('nip'),
+            'birth_place' => $this->request->getPost('birth_place'),
+            'birth_date' => $this->request->getPost('birth_date'),
+            'phone' => $this->request->getPost('phone'),
+            'address' => $this->request->getPost('address'),
+            'religion' => $this->request->getPost('religion'),
+            'gender' => $this->request->getPost('gender'),
+            'subject' => $this->request->getPost('subject'),
+            'role' => $this->request->getPost('role')
+        ];
+
+        $this->guruModel->save($guruData);
+
+        return redirect()->to('/admin/dashboard')->with('success', 'Guru berhasil didaftarkan.');
+    }
+    
 }
 
 

@@ -1,20 +1,28 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Categories</title>
+    <style>
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-<h1>Daftarkan Guru Baru</h1>
+    <h1>Categories</h1>
+    <pre>
+        <?php print_r($results); ?>
+    </pre>
 
-<form action="<?= base_url('admin/storeGuru') ?>" method="post">
-    <label for="role">Peran</label>
-    <select id="role" name="role">
-    <?php if (isset($roles) && is_array($roles)): ?>
-            <?php foreach ($roles as $role): ?>
+    <form action="<?= base_url('admin/storeGuru') ?>" method="post">
+          <label for="role">Peran</label>
+          <select id="role" name="role">
+    <?php if (isset($results) && is_array($results)): ?>
+            <?php foreach ($results as $role): ?>
                 <option value="<?= $role['id']; ?>"><?= $role['role']; ?></option>
             <?php endforeach; ?>
         <?php endif; ?>

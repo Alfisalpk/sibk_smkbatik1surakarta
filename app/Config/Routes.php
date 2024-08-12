@@ -57,12 +57,17 @@ $routes->group('admin', ['filter' => 'auth:1'], function($routes) {
     $routes->get('kategori_pelanggaran', 'AdminController::kategori_pelanggaran'); 
     $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa');
     $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile');
+    
+    $routes->get('test', 'TestingControllers::index');
+
+
+    
+
     //END Validasi Halaman V_Sidebar    
     // Start Validasi CRUD
     $routes->get('dashboard', 'AdminController::dashboard');
-    $routes->get('roles', 'RoleController::index');
-    // $routes->get('/admin/create_guru', 'RoleController::role');
-    $routes->post('/admin/store_guru', 'AdminGuruController::storeGuru');
+    // $routes->get('data_guru', 'AdminController::createGuru');
+    $routes->post('storeGuru', 'AdminController::storeGuru');
     // END Validasi CRUD
 
 });

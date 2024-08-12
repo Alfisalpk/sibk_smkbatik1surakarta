@@ -90,6 +90,77 @@
               </a>
             </div>
           </div>
+       <!-- Form Tambah Data Guru -->
+        <div class="container-fluid">
+        <div class="card">
+          
+
+        
+  <h5 class="card-header bold">Daftar Guru</h5>
+  <div class="card-body">
+   
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+        </div>
+       <!-- END Form Tambah Data Guru -->
+
+
+
+
+
+          <form action="<?= base_url('admin/storeGuru') ?>" method="post">
+          <?= csrf_field() ?>
+          <label for="role">Peran</label>
+          <select id="role" name="role">
+    <?php if (isset($roles) && is_array($roles)): ?>
+            <?php foreach ($roles as $role): ?>
+                <option value="<?= $role['id']; ?>"><?= $role['role']; ?></option>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        </select>
+    <label for="username">Username</label>
+    <input type="text" name="username" required>
+    
+    <label for="email">Email</label>
+    <input type="email" name="email" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" required>
+
+    <label for="full_name">Nama Lengkap</label>
+    <input type="text" name="full_name" required>
+    
+    <label for="nip">NIP</label>
+    <input type="text" name="nip">
+    
+    <label for="birth_place">Tempat Lahir</label>
+    <input type="text" name="birth_place">
+
+    <label for="birth_date">Tanggal Lahir</label>
+    <input type="date" name="birth_date">
+
+    <label for="phone">Telepon</label>
+    <input type="text" name="phone">
+
+    <label for="address">Alamat</label>
+    <textarea name="address"></textarea>
+
+    <label for="religion">Agama</label>
+    <input type="text" name="religion">
+
+    <label for="gender">Jenis Kelamin</label>
+    <select name="gender">
+        <option value="L">Laki-laki</option>
+        <option value="P">Perempuan</option>
+    </select>
+
+    <label for="subject">Mata Pelajaran</label>
+    <input type="text" name="subject">
+
+
+    <button type="submit">Daftarkan Guru</button>
+</form>
           <!-- ./col -->
           </section>
         </div>

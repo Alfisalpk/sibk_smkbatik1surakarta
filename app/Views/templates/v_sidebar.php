@@ -122,6 +122,14 @@
             </a>
           </li>
           </li>
+          <li class="nav-header">Testing</li>
+          <li class="nav-item">
+            <a href="<?= base_url('/admin/test') ?>" class="nav-link <?= $menu == 'pengaturan_profile' ? 'active' : '' ?> ">
+              <i class="nav-icon fas fa-regular fa-id-card"></i>
+              <p>Pengaturan Profile</p>
+            </a>
+          </li>
+          </li>
           <?php endif; ?>
   
         <!-- End Sidebar Admin -->
