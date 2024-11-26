@@ -2,9 +2,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?= base_url() ?>/assets/dist/img/" class="img-circle elevation-2" alt="User Image">
+          <!-- <img src="<?= base_url() ?>/assets/dist/img/" class="img-circle elevation-2" alt="User Image"> -->
           <a class="nav-link" href="#">
-                Selamat Datang, <?= session()->get('username') ?>
+                Selamat Datang <br> 
+                <?= session()->get('username') ?>
             </a>
         </div>
         <div class="info">
@@ -44,7 +45,7 @@
               <i class="nav-icon fa-solid fa-chalkboard-user"></i>
               <p>
                 Data Guru
-                <span class="badge badge-info right">2</span>
+                
               </p>
             </a>
             </li>
@@ -53,7 +54,7 @@
             <a href="pages/kanban.html" class="nav-link">
               <i class="nav-icon fa-solid fa-user-group"></i>
               <p>
-                Data Guru Bk
+                Bimbingan Konseling
                 </p>
                 </a>
           </li>
@@ -61,7 +62,7 @@
             <a href="<?= base_url('/admin/data_siswa') ?>" class="nav-link <?= $submenu == 'data_siswa' ? 'active' : '' ?>">
               <i class="nav-icon fa-solid fa-user-graduate"></i>
               <p>
-                Data Siswa
+                Data NISN Siswa
                 </p>
                 </a>
           </li>
@@ -69,18 +70,11 @@
                   <a href="<?= base_url('/admin/data_mapel') ?>" class="nav-link <?= $submenu == 'data_mapel' ? 'active' : '' ?>">
                     <i class="nav-icon fa-solid fa-person-chalkboard"></i>
                     <p>
-                      Data Mata Pelajaran
+                      Pelanggaran Siswa
                     </p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="<?= base_url('/admin/data_kelas_jurusan') ?>" class="nav-link <?= $submenu == 'data_kelas_jurusan' ? 'active' : '' ?>">
-                    <i class="nav-icon fa-solid fa-users-rectangle"></i>
-                    <p>
-                      Data Kelas dan Jurusan
-                    </p>
-                  </a>
-                </li>
+                
                 <li class="nav-item">
                   <a href="<?= base_url('/admin/kategori_pelanggaran') ?>" class="nav-link <?= $submenu == 'kategori_pelanggaran' ? 'active' : '' ?>">
                     <i class="nav-icon fa-solid fa-clipboard-user"></i>

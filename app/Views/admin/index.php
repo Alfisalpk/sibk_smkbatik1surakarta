@@ -9,12 +9,7 @@
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard Admin</li>
-            </ol>
-          </div><!-- /.col -->
+         
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -27,7 +22,7 @@
             <!-- small card -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>5</h3>
 
                 <p>Data Siswa</p>
               </div>
@@ -44,7 +39,7 @@
             <!-- small card -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>1</h3>
 
                 <p>Data Guru</p>
               </div>
@@ -61,12 +56,12 @@
             <!-- small card -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>10</h3>
 
-                <p>Data Kelas</p>
+                <p>Data Kategori Pelanggaran</p>
               </div>
               <div class="icon">
-                <i class="fas fa-solid fa-users-rectangle"></i>
+                <i class="fas fa-solid fa-clipboard-user"></i>
               </div>
               <a href="#" class="small-box-footer">
                 More info <i class="fas fa-arrow-circle-right"></i>
@@ -78,7 +73,7 @@
             <!-- small card -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>4</h3>
 
                 <p>Data Pelanggaran Siswa</p>
               </div>
@@ -97,7 +92,7 @@
           <div class="container-fluid">
             
             <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-danger">
               <h4>
               Pelanggaran Siswa
                 </h4>
@@ -119,21 +114,21 @@
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
-                            <td>27163</td>
+                            <td>2</td>
                             <td>Alfisal Punjung Kurniawan</td>
                             <td>XI TKJ 1</td>
-                            <td>Selasa, 27-06-2024</td>
-                            <td>Terlambat Masuk Sekolah</td>
+                            <td>Senin, 28-11-2024</td>
+                            <td>Tidak Masuk Jam Pelajaran</td>
                             <td><button type="button" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
                             </button></td>
                         </tr>
                         <tr>
                         <th scope="row">2</th>
-                            <td>27163</td>
+                            <td>3</td>
                             <td>Nirina Khoirun Naja Musyafa</td>
                             <td>X DKV 1</td>
-                            <td>Selasa, 27-06-2024</td>
+                            <td>Selasa, 29-11-2024</td>
                             <td>Terlambat Masuk Sekolah</td>
                             <td><button type="button" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -141,22 +136,22 @@
                         </tr>
                         <tr>
                         <th scope="row">3</th>
-                            <td>27163</td>
+                            <td>4</td>
                             <td>Maruf Nur Muhammad</td>
                             <td>XI TKJ 1</td>
-                            <td>Selasa, 27-06-2024</td>
-                            <td>Terlambat Masuk Sekolah</td>
+                            <td>Selasa, 29-11-2024</td>
+                            <td>Memakai Sandal Diluar Ketentuan</td>
                             <td><button type="button" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
                             </button></td>
                         </tr>
                         <tr>
                         <th scope="row">4</th>
-                            <td>27163</td>
-                            <td>Alfisal Punjung Kurniawan</td>
+                            <td>5</td>
+                            <td>Rico Yoga Pradana</td>
                             <td>XI TKJ 1</td>
-                            <td>Selasa, 27-06-2024</td>
-                            <td>Terlambat Masuk Sekolah</td>
+                            <td>Selasa, 29-11-2024</td>
+                            <td>Memakai Kaos Kaki Tidak Sesuai</td>
                             <td><button type="button" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
                             </button></td>
