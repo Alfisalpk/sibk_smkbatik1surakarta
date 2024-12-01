@@ -19,7 +19,7 @@
        <!-- Form Tambah Data Guru -->
         <div class="container-fluid">
         <div class="card">        
-  <h5 class="card-header bold bg-primary">Daftar Guru</h5>
+  <h5 class="card-header bold bg-primary">Tambah Data Guru</h5>
   <form action="<?= base_url('admin/storeGuru') ?>" method="post">
           <?= csrf_field() ?>
   <div class="card-body">
@@ -64,6 +64,18 @@
                 <input type="text" class="form-control form-control-border border-width-2" id="floatingPassword" placeholder="Nama Panggilan" required>
                 <label for="floatingPassword">Nama Panggilan</label>
                 </div>
+                <div class="form-floating mb-2">
+              <select class="form-select form-control-border border-width-2" id="floatingSelect" aria-label="Floating label select example">
+                <option selected disabled>Pilih Jurusan Guru Pengampu</option>
+                <option value="TKJ">TKJ</option>
+                  <option value="Farmasi">Farmasi</option>
+                  <option value="DKV">DKV</option>
+                  <option value="OTKP">OTKP</option>
+                  <option value="BDP">BDP</option>
+                  <option value="AKL">AKL</option>
+              </select>
+              <label for="floatingSelect">Guru Jurusan</label>
+            </div>
                
             </div>
         </div>
@@ -129,68 +141,70 @@
             <div class="card">
             <div class="card-header bg-primary">
               <h4>
-              Pelanggaran Siswa
+              Data Guru
                 </h4>
             </div>
             <div class="card-body">
-              <table class="table table-hover text-nowrap table-bordered table-responsive">
+              <table id="example2" class="table table-hover table-bordered table-responsive">
               <thead>
                         <tr>
-                            <th scope="col" style="width: 1vh;">NO</th>
-                            <th scope="col" style="width: 10vh;">ID</th>
+                            <th scope="col" style="width: 10vh;">NIP</th>
+                            <th scope="col" style="width: 10vh;">Role</th>
                             <th scope="col" style="width: 50vh;">Nama Lengkap</th>
-                            <th scope="col" style="width: 10vh;">Kelas</th>
-                            <th scope="col" style="width: 10vh;">Tanggal</th>
-                            <th scope="col" style="width: 100vh;">Jenis Pelanggaran</th>
-                            <th scope="col" style="width: 10px;">Detail</th>
+                            <th scope="col" style="width: 10vh;">Nama Panggilan</th>
+                            <th scope="col" style="width: 2px;">Guru Jurusan</th>
+                            
+                            <th scope="col" style="width: 100vh;">Tempat Lahir</th>
+                            <th scope="col" style="width: 100vh;">Tanggal Lahir</th>
+                            <th scope="col" style="width: 100vh;">Jenis Kelamin</th>
+                            <th scope="col" style="width: 100vh;">No Telepon</th>
+                            <th scope="col" style="width: 100vh;">Alamat</th>
+                            <th scope="col" style="width: 10px;">Aksi</th>
                             
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>2</td>
+                            <th scope="row">202030217</th>
+                            <td>Admin</td>
                             <td>Alfisal Punjung Kurniawan</td>
-                            <td>XI TKJ 1</td>
-                            <td>Senin, 28-11-2024</td>
-                            <td>Tidak Masuk Jam Pelajaran</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            </button></td>
+                            <td>Punjung</td>
+                            <td>TKJ</td>
+                            <td>Sukoharjo</td>
+                            <td>23/08/2001</td>
+                            <td>Laki-Laki</td>
+                            <td>081325659017</td>
+                            <td>Jl. Apel, Kopen, Ngadirejo, Kartasura, Sukoharjo</td>
+                            <td>
+                              <button type="button" class="btn btn-outline-secondary btn-outline-warning">
+                              <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                              <button type="button" class="btn btn-outline-secondary btn btn-outline-danger">
+                              <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                          </td>
                         </tr>
                         <tr>
-                        <th scope="row">2</th>
-                            <td>3</td>
-                            <td>Nirina Khoirun Naja Musyafa</td>
-                            <td>X DKV 1</td>
-                            <td>Selasa, 29-11-2024</td>
-                            <td>Terlambat Masuk Sekolah</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            </button></td>
+                        <th scope="row">2001</th>
+                            <td>Guru</td>
+                            <td>Alfisal Punjung Kurniawan</td>
+                            <td>Punjung</td>
+                            <td>TKJ</td>
+                            <td>Sukoharjo</td>
+                            <td>23/08/2001</td>
+                            <td>Laki-Laki</td>
+                            <td>081325659017</td>
+                            <td>Jl. Apel, Kopen, Ngadirejo, Kartasura, Sukoharjo</td>
+                            <td>
+                              <button type="button" class="btn btn-outline-secondary btn-outline-warning">
+                              <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                              <button type="button" class="btn btn-outline-secondary btn btn-outline-danger">
+                              <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                          </td>
                         </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                            <td>4</td>
-                            <td>Maruf Nur Muhammad</td>
-                            <td>XI TKJ 1</td>
-                            <td>Selasa, 29-11-2024</td>
-                            <td>Memakai Sandal Diluar Ketentuan</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            </button></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">4</th>
-                            <td>5</td>
-                            <td>Rico Yoga Pradana</td>
-                            <td>XI TKJ 1</td>
-                            <td>Selasa, 29-11-2024</td>
-                            <td>Memakai Kaos Kaki Tidak Sesuai</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            </button></td>
-                        </tr>
+                       
                     </tbody>
                 </table>
               

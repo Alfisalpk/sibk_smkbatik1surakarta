@@ -29,6 +29,17 @@
   <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>/assets/css/styleku.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!--Start Data Tabless -->
+   <!-- Google Font: Source Sans Pro -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!--End Data Tabless -->
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -59,7 +70,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; <?= date('Y') ?> </strong>
-    SMK Batik 1 Surakarta
+    SIBK Skripsi
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0
     </div>
@@ -108,7 +119,47 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= base_url() ?>/assets/dist/js/pages/dashboard.js"></script>
 
+<!--Start Data Tabless -->
+<!-- jQuery -->
+<script src="<?= base_url() ?>/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= base_url() ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="<?= base_url() ?>/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/jszip/jszip.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?= base_url() ?>/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url() ?>/assets/dist/js/adminlte.min.js?v=3.2.0"></script>
+<!-- AdminLTE for demo purposes -->
 
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+<!--End Data Tabless -->
 
   
 

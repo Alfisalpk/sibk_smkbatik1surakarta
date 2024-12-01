@@ -101,8 +101,8 @@
               <table class="table table-hover text-nowrap table-bordered table-responsive">
               <thead>
                         <tr>
-                            <th scope="col" style="width: 1vh;">NO</th>
-                            <th scope="col" style="width: 10vh;">ID</th>
+                            <th scope="col" style="width: 1vh;">ID</th>
+                            <th scope="col" style="width: 10vh;">NISN</th>
                             <th scope="col" style="width: 50vh;">Nama Lengkap</th>
                             <th scope="col" style="width: 10vh;">Kelas</th>
                             <th scope="col" style="width: 10vh;">Tanggal</th>
@@ -114,7 +114,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
-                            <td>2</td>
+                            <td>230801</td>
                             <td>Alfisal Punjung Kurniawan</td>
                             <td>XI TKJ 1</td>
                             <td>Senin, 28-11-2024</td>
@@ -125,7 +125,7 @@
                         </tr>
                         <tr>
                         <th scope="row">2</th>
-                            <td>3</td>
+                            <td>230802</td>
                             <td>Nirina Khoirun Naja Musyafa</td>
                             <td>X DKV 1</td>
                             <td>Selasa, 29-11-2024</td>
@@ -136,7 +136,7 @@
                         </tr>
                         <tr>
                         <th scope="row">3</th>
-                            <td>4</td>
+                            <td>230803</td>
                             <td>Maruf Nur Muhammad</td>
                             <td>XI TKJ 1</td>
                             <td>Selasa, 29-11-2024</td>
@@ -147,7 +147,7 @@
                         </tr>
                         <tr>
                         <th scope="row">4</th>
-                            <td>5</td>
+                            <td>230804</td>
                             <td>Rico Yoga Pradana</td>
                             <td>XI TKJ 1</td>
                             <td>Selasa, 29-11-2024</td>

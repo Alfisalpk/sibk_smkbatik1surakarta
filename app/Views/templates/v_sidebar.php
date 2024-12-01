@@ -67,7 +67,7 @@
                 </a>
           </li>
                 <li class="nav-item">
-                  <a href="<?= base_url('/admin/data_mapel') ?>" class="nav-link <?= $submenu == 'data_mapel' ? 'active' : '' ?>">
+                  <a href="<?= base_url('/admin/pelanggaran_siswa') ?>" class="nav-link <?= $submenu == 'data_mapel' ? 'active' : '' ?>">
                     <i class="nav-icon fa-solid fa-person-chalkboard"></i>
                     <p>
                       Pelanggaran Siswa

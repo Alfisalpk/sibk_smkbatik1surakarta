@@ -50,7 +50,7 @@ $routes->group('admin', ['filter' => 'auth:1'], function($routes) {
     $routes->get('dashboard', 'AdminController::dashboard'); 
     $routes->get('data_guru', 'AdminController::data_guru');
     $routes->get('data_kelas_jurusan', 'AdminController::data_kelas_jurusan');
-    $routes->get('data_mapel', 'AdminController::data_mapel');
+    $routes->get('pelanggaran_siswa', 'AdminController::pelanggaran_siswa');
     $routes->get('data_siswa', 'AdminController::data_siswa');
     $routes->get('data_user_guru', 'AdminController::data_user_guru');
     $routes->get('/', 'AdminController::dashboard');
@@ -59,11 +59,8 @@ $routes->group('admin', ['filter' => 'auth:1'], function($routes) {
     $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile');
     
     $routes->get('test', 'TestingControllers::index');
-
-
-    
-
     //END Validasi Halaman V_Sidebar    
+
     // Start Validasi CRUD
     $routes->get('dashboard', 'AdminController::dashboard');
     // $routes->get('data_guru', 'AdminController::createGuru');

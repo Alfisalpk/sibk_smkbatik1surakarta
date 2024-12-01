@@ -57,7 +57,7 @@ class AdminController extends BaseController
         return view('admin/data_kelas_jurusan', $data);
     }
 
-    public function data_mapel()
+    public function pelanggaran_siswa()
     {
         $data = [
             'title' => 'Data Mapel - SIBK  SMK Batik 1 Surakarta',
@@ -65,7 +65,7 @@ class AdminController extends BaseController
             'submenu' => 'data_mapel'
 
         ];
-        return view('admin/data_mapel', $data);
+        return view('admin/pelanggaran_siswa', $data);
     }
     public function data_siswa()
     {
@@ -168,7 +168,7 @@ class AdminController extends BaseController
 
         $this->guruModel->save($guruData);
 
-        return redirect()->to('/admin/dashboard')->with('success', 'Guru berhasil didaftarkan.');
+        return redirect()->to('/admin/data_guru')->with('success', 'Guru berhasil didaftarkan.');
     }
     
 }

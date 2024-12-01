@@ -171,7 +171,7 @@ class AuthController extends BaseController
             $emailService->setSubject('Reset Password - Bimbingan Konseling SMK Batik 1 Surakarta');
             $emailService->setMessage('Hallo, Klik Link Berikut Untuk Reset Password Pada Sistem Informasi Bimbingan Konseling SMK Batik 1 Surakarta: ' . $resetLink);
             if ($emailService->send()) {
-                return redirect()->back()->with('success', 'Link Reset Password Telah Dikirim Ke Email Anda!.');
+                return redirect()->back()->with('success', 'Link Reset Password Telah Dikirim Ke Email Aktif Anda!.');
             } else {
                 return redirect()->back()->with('error', 'Gagal mengirim email reset password.');
             }
