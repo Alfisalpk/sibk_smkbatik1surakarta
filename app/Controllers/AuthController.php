@@ -22,10 +22,24 @@ class AuthController extends BaseController
         $siswaModel = new SiswaModel();
 
         $nisn = $this->request->getPost('nisn');
+        $nama_lengkap = $this->request->getPost('nama_lengkap');
         $username = $this->request->getPost('username');
+        $nama_orangtua = $this->request->getPost('nama_orangtua');
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $confirmPassword = $this->request->getPost('confirm_password');
+        $kelas = $this->request->getPost('kelas');
+        $jurusan = $this->request->getPost('jurusan');
+        $jenis_kelamin = $this->request->getPost('jenis_kelamin');
+        $agama = $this->request->getPost('agama');
+        $nomor_wa = $this->request->getPost('nomor_wa');
+        $nomor_wa_ortu = $this->request->getPost('nomor_wa_ortu');
+        $tempat_lahir = $this->request->getPost('tempat_lahir');
+        $tgl_lahir = $this->request->getPost('tgl_lahir');
+        $alamat = $this->request->getPost('alamat');
+        $asal_sekolah = $this->request->getPost('asal_sekolah');
+        $lulusan_tahun = $this->request->getPost('lulusan_tahun');
+        $hobby = $this->request->getPost('hobby');
         $role_id = 3; // 3 adalah ID untuk siswa
 
         // Validasi apakah NISN sudah terdaftar
@@ -53,7 +67,22 @@ class AuthController extends BaseController
             'password' => password_hash($password, PASSWORD_BCRYPT),
             'role' => $role_id,
             'nisn' => $nisn,
-            'email' => $email
+            'email' => $email,
+            'nama_lengkap' => $nama_lengkap,
+            'nama_orangtua' => $nama_orangtua,
+            'kelas' => $kelas,
+            'jurusan' => $jurusan,
+            'jenis_kelamin' => $jenis_kelamin,
+            'agama' => $agama,
+            'nomor_wa' => $nomor_wa,
+            'nomor_wa_ortu' => $nomor_wa_ortu,
+            'tempat_lahir' => $tempat_lahir,
+            'tgl_lahir' => $tgl_lahir,
+            'alamat' => $alamat,
+            'asal_sekolah' => $asal_sekolah,
+            'lulusan_tahun' => $lulusan_tahun,
+            'hobby' => $hobby
+
         ];
 
         $userModel->save($userData);

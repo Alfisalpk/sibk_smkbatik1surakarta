@@ -43,12 +43,12 @@
                         </div>
                         
                         <div class="form-group">
-                            <input type="username" class="form-control form-control-user" name="username"
-                                placeholder="Nama Panggilan" value="<?= old('username')?>" required>
+                            <input type="text" class="form-control form-control-user" name="nama_lengkap"
+                                placeholder="Nama Panggilan" value="<?= old('nama_lengkap')?>" required>
                         </div>
                         <div class="form-group">
-                            <input type="username" class="form-control form-control-user" name="nama_lengkap"
-                                placeholder="Nama Lengkap" value="<?= old('nama_lengkap')?>" required>
+                            <input type="text" class="form-control form-control-user" name="username"
+                                placeholder="Nama Lengkap" value="<?= old('username')?>" required>
                         </div>
                         <div class="form-group">
                             <input type="username" class="form-control form-control-user" name="nama_orangtua"
@@ -138,7 +138,7 @@
                             </div> 
                             <div class="col-sm-6">
                                 <input type="date" class="form-control form-control-user"
-                                    name="confirm_password" placeholder="Tanggal Lahir" type="date" autocomplete="off" required>
+                                    name="tgl_lahir" placeholder="Tanggal Lahir" type="date" autocomplete="off" required>
                             </div>
                         </div>
 

@@ -26,7 +26,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 
-                <table id="example2" class="table table-bordered table-striped">
+                <table id="example2" class="table table-bordered table-striped table-hover">
                   
                   <thead>
                   <div class="mb-3">
@@ -74,8 +74,8 @@
                     <td>XI TKJ 1</td>
                     <td>Senin, 28-11-2024</td>
                     <td>Tidak Masuk Jam Pelajaran</td>
-                    <td><button type="button" class="btn btn-outline-secondary">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    <td><button type="button" class="btn btn-outline-secondary btn-outline-danger">
+                    <i class="fa-regular fa-trash-can"></i>
                     </button></td>
                   </tr>
                   <tr>
@@ -85,8 +85,8 @@
                             <td>X DKV 1</td>
                             <td>Selasa, 29-11-2024</td>
                             <td>Terlambat Masuk Sekolah</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            <td><button type="button" class="btn btn-outline-secondary btn-outline-danger">
+                            <i class="fa-regular fa-trash-can"></i>
                             </button></td>
                         </tr>
                         <tr>
@@ -96,8 +96,8 @@
                             <td>XI TKJ 1</td>
                             <td>Selasa, 29-11-2024</td>
                             <td>Memakai Sandal Diluar Ketentuan</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            <td><button type="button" class="btn btn-outline-secondary btn-outline-danger">
+                            <i class="fa-regular fa-trash-can"></i>
                             </button></td>
                         </tr>
                         <tr>
@@ -107,8 +107,8 @@
                             <td>XI TKJ 1</td>
                             <td>Selasa, 29-11-2024</td>
                             <td>Memakai Kaos Kaki Tidak Sesuai</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            <td><button type="button" class="btn btn-outline-secondary btn-outline-danger">
+                            <i class="fa-regular fa-trash-can"></i>
                             </button></td>
                         </tr>
                   
