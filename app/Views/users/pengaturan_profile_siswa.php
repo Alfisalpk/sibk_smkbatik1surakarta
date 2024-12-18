@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Tabel Pelanggaran</h1>
+            <h1 class="m-0">Profile Siswa</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <!-- <ol class="breadcrumb float-sm-right">
@@ -35,154 +35,228 @@
       <div class="col-lg-4">
         <div class="card mb-4 shadow p-3 mb-5 bg-body rounded">
           <div class="card-body text-center">
-          <img src="<?= base_url() ?>/assets/dist/img/" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 300px;">
+            
+            <img  src="<?= base_url(esc($user->foto)) ?>" style="width: 280px;">
+            
             <h5 class="my-3"></h5>
-            <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-            <div class="d-flex justify-content-center mb-2">
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Follow</button>
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">Message</button>
-            </div>
+            <p class="text-muted mb-0"><?= esc($user->username); ?></p>
+            <p class="text-muted mb-0"><?= esc($user->kelas); ?> <?= esc($user->jurusan); ?></p>
           </div>
         </div>
-        <div class="card mb-4 mb-lg-0 shadow p-3 mb-5 bg-body rounded">
-          <div class="card-body p-0">
-            <ul class="list-group list-group-flush rounded-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0">https://mdbootstrap.com</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-github fa-lg text-body"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0">@mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-            </ul>
-          </div>
-        </div>
+        
       </div>
       <div class="col-lg-8">
         <div class="card mb-4 shadow p-3 mb-5 bg-body rounded">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
+                <p class="mb-0">NISN Siswa</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Johnatan Smith</p>
+                <p class="text-muted mb-0"><?= esc($user->nisn); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">Nama Lengkap</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"><?= esc($user->username); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
+                <p class="mb-0">Nama Orangtua</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
+                <p class="text-muted mb-0"><?= esc($user->nama_orangtua); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Mobile</p>
+                <p class="mb-0">Alamat Email</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(098) 765-4321</p>
+                <p class="text-muted mb-0"><?= esc($user->email); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Address</p>
+                <p class="mb-0">Kelas, Jurusan</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                <p class="text-muted mb-0"><?= esc($user->kelas); ?> <?= esc($user->jurusan); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">Jenis Kelamin</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"><?= esc($user->jenis_kelamin); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">Agama</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"><?= esc($user->agama); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">Nomor WA Siswa</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"><?= esc($user->nomor_wa); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">Nomor WA Orangtua</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"><?= esc($user->nomor_wa_ortu); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">Tempat, Tanggal Lahir</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"><?= esc($user->tempat_lahir); ?>, <?= esc($user->tgl_lahir); ?></p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">Alamat</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"><?= esc($user->alamat); ?></p>
               </div>
             </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Lulusan Tahun</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><?= esc($user->lulusan_tahun); ?></p>
+              </div>
+            </div>
+            <hr>
+
           </div>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#updateModal">Edit Data</button>
         </div>
-        
+        <!-- Info Data Siswa -->
       </div>
     </div>
   </div>
   <!-- END Profiles Dashboar Siswa -->
+    <!-- Modal Update -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateModalLabel">Update Profil Siswa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="<?= base_url('/siswa/updateprofile') ?>" method="post" enctype="multipart/form-data">
+                    <?= csrf_field() ?>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="Nama Lengkap">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="username" name="username" required value="<?= esc($user->username); ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="Nama Orangtua">Nama Orangtua</label>
+                                <input type="text" class="form-control" id="username" name="nama_orangtua"  required value="<?= esc($user->nama_orangtua); ?>">
+                            </div>
+                            <label for="Nama Orangtua">Jenis Kelamin</label>
+                            <select class="form-select mb-2" aria-label="Default select example" required name="jenis_kelamin">
+                            <option selected disabled><?= esc($user->jenis_kelamin); ?></option>
+                              <option value="Laki-Laki">Laki-Laki</option>
+                              <option value="Perempuan">Perempuan</option>
+                            </select>
+                            <label for="Agama">Agama</label>
+                            <select class="form-select mb-2" aria-label="Default select example" required name="agama">
+                            <option selected disabled><?= esc($user->agama); ?></option>
+                            <option value="Islam">Islam</option>
+                            <option value="Kristen">Kristen</option>
+                            <option value="Katolik">Katolik</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Budha">Budha</option>
+                            <option value="Konghucu">Konghucu</option>
+                            </select>
+                            <div class="form-group">
+                                <label for="Nomor WA Siswa">Nomor WA Siswa</label>
+                                <input type="number" class="form-control" id="username" name="nomor_wa" required value="<?= esc($user->nomor_wa); ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="Nomor WA Orangtua">Nomor WA Orangtua</label>
+                                <input type="number" class="form-control" id="username" name="nomor_wa_ortu" required value="<?= esc($user->nomor_wa_ortu); ?>">
+                              </div>
+                              <div class="form-group">
+                                  <label for="Tempat Lahir">Tempat Lahir</label>
+                                  <input type="text" class="form-control" id="username" name="tempat_lahir" required value="<?= esc($user->tempat_lahir); ?>">
+                              </div>
+                            <div class="form-group">
+                                <label for="Tanggal Lahir">Tanggal Lahir</label>
+                                <input type="date" class="form-control" id="username" name="tgl_lahir" required value="<?= esc($user->tgl_lahir); ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="Alamat">Alamat</label>
+                                <input type="text" class="form-control" id="username" name="alamat" required value="<?= esc($user->alamat); ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="Lulusan Tahun">Lulusan Tahun</label>
+                                <input type="number" class="form-control" id="username" name="lulusan_tahun" required value="<?= esc($user->lulusan_tahun); ?>">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">Password (Isi jika ingin mengganti)</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="foto">Ganti Foto Profil</label>
+                                <input type="file" class="form-control-file" id="foto" required name="foto">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  
   
 
+
+
+
+
+  <!-- Ada Di Notepad -->
+  <!-- Tampilan Update Data -->
+  <!-- Ada Di Notepad -->
+
+  
 
 </section>
     <!-- /.content -->

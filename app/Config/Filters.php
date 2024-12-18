@@ -25,6 +25,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'auth'          => \App\Filters\AuthenticationMiddleware::class,
+        // 'auth'              => \App\Filters\AuthCheck::class,
         
         // 'login'      => \Myth\Auth\Filters\LoginFilter::class,
         // 'role'       => \Myth\Auth\Filters\RoleFilter::class,

@@ -20,7 +20,7 @@ class AuthController extends BaseController
     {
         $userModel = new UserModel();
         $siswaModel = new SiswaModel();
-
+    
         $nisn = $this->request->getPost('nisn');
         $nama_lengkap = $this->request->getPost('nama_lengkap');
         $username = $this->request->getPost('username');
@@ -40,28 +40,37 @@ class AuthController extends BaseController
         $asal_sekolah = $this->request->getPost('asal_sekolah');
         $lulusan_tahun = $this->request->getPost('lulusan_tahun');
         $hobby = $this->request->getPost('hobby');
-        $role_id = 3; // 3 adalah ID untuk siswa
-
+        $role_id = 3; // Role ID untuk siswa
+    
         // Validasi apakah NISN sudah terdaftar
         if ($userModel->where('nisn', $nisn)->first()) {
             return redirect()->back()->with('terdaftar', 'NISN Sudah Terdaftar, Silahkan Login');
         }
-
+    
         // Validasi apakah email sudah terdaftar
         if ($userModel->where('email', $email)->first()) {
             return redirect()->back()->with('error', 'Email sudah terdaftar, Silahkan Login.');
         }
-
+    
         // Validasi apakah NISN ada di tabel tb_siswa
         if (!$siswaModel->where('nisn', $nisn)->first()) {
             return redirect()->back()->with('error', 'Maaf, Nomor NISN Tidak Terdaftar.');
         }
-
+    
         // Validasi kesesuaian password
         if ($password !== $confirmPassword) {
             return redirect()->back()->with('error', 'Password dan konfirmasi password tidak cocok.');
         }
-
+    
+        // Foto siswa
+        $photo = $this->request->getFile('photo');
+        $photoName = 'default.jpg'; // Set default photo jika tidak ada file diunggah
+    
+        if ($photo && $photo->isValid() && !$photo->hasMoved()) {
+            $photoName = $photo->getRandomName();
+            $photo->move(WRITEPATH . '../public/uploads/siswa', $photoName);
+        }
+    
         $userData = [
             'username' => $username,
             'password' => password_hash($password, PASSWORD_BCRYPT),
@@ -81,12 +90,12 @@ class AuthController extends BaseController
             'alamat' => $alamat,
             'asal_sekolah' => $asal_sekolah,
             'lulusan_tahun' => $lulusan_tahun,
-            'hobby' => $hobby
-
+            'hobby' => $hobby,
+            'photo' => $photoName, // Tambahkan foto siswa
         ];
-
+    
         $userModel->save($userData);
-
+    
         return redirect()->to('/login')->with('success', 'Registrasi berhasil Silahkan Login.');
     }
     // END ARE REGISTER SISWA
@@ -98,10 +107,11 @@ class AuthController extends BaseController
 
     public function processLogin()
     {
+        $idOrUsernameOrEmail = $this->request->getPost('id_or_username_or_email');
         $usernameOrEmail = $this->request->getPost('username_or_email');
         $password = $this->request->getPost('password');
 
-        // Validasi input untuk memastikan tidak berupa array
+        // Validasi tidak array
         if (is_array($usernameOrEmail) || is_array($password)) {
             return redirect()->back()->with('error', 'Input tidak valid.');
         }
@@ -110,23 +120,29 @@ class AuthController extends BaseController
         $userGuruModel = new UserGuruModel();
 
         // Cari di tabel users
-        $user = $userModel->where('username', $usernameOrEmail)
-                          ->orWhere('email', $usernameOrEmail)
-                          ->first();
+        $user = $userModel
+                        ->where('id', $idOrUsernameOrEmail)
+                        ->orwhere('username', $usernameOrEmail)
+                        ->orWhere('email', $usernameOrEmail)
+                        ->first();
 
         //cek tabel user_guru
         if (!$user) {
-            $user = $userGuruModel->where('username', $usernameOrEmail)
-                                  ->orWhere('email', $usernameOrEmail)
-                                  ->first();
+            $user = $userGuruModel
+                                ->where('id', $idOrUsernameOrEmail)
+                                ->orwhere('username', $usernameOrEmail)
+                                ->orWhere('email', $usernameOrEmail)
+                                ->first();
         }
 
         if ($user && password_verify($password, $user['password'])) {
             $session = session();
             $session->set([
+                'id' => $user['id'],
                 'users' => $user['id'],
                 'username' => $user['username'],
                 'role' => $user['role'],
+                'foto' => isset($user['foto']) ? $user['foto'] : 'assets/img/default.jpg', // Simpan foto ke session
                 'is_logged_in' => true,
                 // untuk menampilkan info sesi login tambahkan sesuai yang ada di datahbase
             ]);

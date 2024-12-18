@@ -3,7 +3,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class UserModelProfile extends Model
 {
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -29,10 +29,10 @@ class UserModel extends Model
         'lulusan_tahun',
         'role', 
         'hobby',
-        'foto'
+        'foto'  
         
     ];
-    protected $returnType = 'array'; // Pastikan ini diatur ke 'array'
+    protected $returnType = 'object'; // Pastikan ini diatur ke 'object'
 
     public function updatePassword($id, $password)
     {

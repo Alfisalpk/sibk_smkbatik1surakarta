@@ -88,11 +88,19 @@ $routes->group('siswa', ['filter' => 'auth:3'], function($routes) {
     $routes->get('dashboard', 'SiswaController::dashboard'); 
     $routes->get('/', 'SiswaController::dashboard');
     $routes->get('pelanggaran_siswa', 'SiswaController::pelanggaran_siswa');
-    $routes->get('pengaturan_profile_siswa', 'SiswaController::pengaturan_profile_siswa');
     $routes->get('riwayat_pelanggaran', 'SiswaController::riwayat_pelanggaran');
+    $routes->get('pengaturan_profile_siswa', 'SiswaController::pengaturan_profile_siswa'); // Pastikan user login
+    
+    
+    // Area Siswa CRUD
+    $routes->get('pengaturan_profile_siswa', 'SiswaController::tampilProfile'); // Pastikan user login
+    $routes->post('updateprofile', 'SiswaController::update');
+    
+
 });
 
-$routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) { $routes->get('dashboard', 'GuruBkController::dashboard');
+$routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) { 
+    $routes->get('dashboard', 'GuruBkController::dashboard');
 });
 
 $routes->group('kepala_sekolah', ['filter' => 'auth:5'], function($routes) {
