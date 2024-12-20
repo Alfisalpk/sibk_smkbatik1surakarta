@@ -208,90 +208,94 @@
         </div>
     </div>
 
-    <!-- Modal Edit Guru -->
-    <div class="modal fade" id="editGuruModal" tabindex="-1" role="dialog" aria-labelledby="editGuruModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editGuruModalLabel">Edit Guru</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="editGuruForm">
-                    <div class="modal-body">
-                        <input type="hidden" name="id" id="editId">
-                        <div class="form-group">
-                            <label for="editRole">Role</label>
-                            <input type="text" class="form-control" id="editRole" name="role" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editUsername">Username</label>
-                            <input type="text" class="form-control" id="editUsername" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editEmail">Email</label>
-                            <input type="email" class="form-control" id="editEmail" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editPassword">Password (kosongkan jika tidak diubah)</label>
-                            <input type="password" class="form-control" id="editPassword" name="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="editNip">NIP</label>
-                            <input type="text" class="form-control" id="editNip" name="nip" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editNamaPanggilan">Nama Panggilan</label>
-                            <input type="text" class="form-control" id="editNamaPanggilan" name="nama_panggilan" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editJurusanPengampu">Jurusan Pengampu</label>
-                            <input type="text" class="form-control" id="editJurusanPengampu" name="jurusan_pengampu" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editTempatLahir">Tempat Lahir</label>
-                            <input type="text" class="form-control" id="editTempatLahir" name="tempat_lahir" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editTglLahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="editTglLahir" name="tgl_lahir" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editJenisKelamin">Jenis Kelamin</label>
-                            <select class="form-control" id="editJenisKelamin" name="jenis_kelamin" required>
-                                <option value="Laki-Laki">Laki-Laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="editAgama">Agama</label>
-                            <select class="form-control" id="editAgama" name="agama" required>
-                                <option value="Islam">Islam</option>
-                                <option value="Kristen">Kristen</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Budha">Budha</option>
-                                <option value="Konghucu">Konghucu</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="editNoTelepon">No Telepon</label>
-                            <input type="text" class="form-control" id="editNoTelepon" name="no_telepon" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editAlamat">Alamat</label>
-                            <textarea class="form-control" id="editAlamat" name="alamat" required></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
+   <!-- Modal Edit Guru -->
+<div class="modal fade" id="editGuruModal" tabindex="-1" role="dialog" aria-labelledby="editGuruModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editGuruModalLabel">Edit Guru</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <form id="editGuruForm">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="editId">
+                    <div class="form-group">
+                        <label for="editRole">Role</label>
+                        <select class="form-control" id="editRole" name="role" required>
+                            <?php foreach ($roles as $role): ?>
+                                <option value="<?= $role['id'] ?>"><?= $role['role'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editUsername">Username</label>
+                        <input type="text" class="form-control" id="editUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">Email</label>
+                        <input type="email" class="form-control" id="editEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPassword">Password (kosongkan jika tidak diubah)</label>
+                        <input type="password" class="form-control" id="editPassword" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="editNip">NIP</label>
+                        <input type="text" class="form-control" id="editNip" name="nip" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editNamaPanggilan">Nama Panggilan</label>
+                        <input type="text" class="form-control" id="editNamaPanggilan" name="nama_panggilan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editJurusanPengampu">Jurusan Pengampu</label>
+                        <input type="text" class="form-control" id="editJurusanPengampu" name="jurusan_pengampu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTempatLahir">Tempat Lahir</label>
+                        <input type="text" class="form-control" id="editTempatLahir" name="tempat_lahir" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTglLahir">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="editTglLahir" name="tgl_lahir" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editJenisKelamin">Jenis Kelamin</label>
+                        <select class="form-control" id="editJenisKelamin" name="jenis_kelamin" required>
+                            <option value="Laki-Laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editAgama">Agama</label>
+                        <select class="form-control" id="editAgama" name="agama" required>
+                            <option value="Islam">Islam</option>
+                            <option value="Kristen">Kristen</option>
+                            <option value="Katolik">Katolik</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Budha">Budha</option>
+                            <option value="Konghucu">Konghucu</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editNoTelepon">No Telepon</label>
+                        <input type="text" class="form-control" id="editNoTelepon" name="no_telepon" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editAlamat">Alamat</label>
+                        <textarea class="form-control" id="editAlamat" name="alamat" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
      <!-- Modal Hapus Guru -->
      <div class="modal fade" id="deleteGuruModal" tabindex="-1" role="dialog" aria-labelledby="deleteGuruModalLabel" aria-hidden="true">
