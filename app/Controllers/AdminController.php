@@ -8,7 +8,17 @@ use Config\Database;
 
 class AdminController extends BaseController
 {
+    protected $userGuruModel;
+    protected $guruModel;
+    protected $rolesModel;
+   
 
+    public function __construct()
+    {
+        $this->userGuruModel = new UserGuruModel();
+        $this->guruModel = new GuruModel();
+        $this->rolesModel = new RoleskuModel();
+    }
     // Tampil Ke Halaman dan V sidebar
     public function dashboard()
     {
@@ -21,30 +31,7 @@ class AdminController extends BaseController
         return view('admin/index', $data);
     }
 
-    public function data_guru()
-    {
-        // Data lain yang ingin dikirim ke view
-        $data = [
-            'title' => 'Data Guru - SIBK SMK Batik 1 Surakarta',
-            'menu' => 'master_data',
-            'submenu' => 'data_guru'
-        ];
 
-        // Menghubungkan ke database
-        $db = Database::connect();
-
-        // Menjalankan query
-        $query = $db->query('SELECT * FROM roles');
-
-        // Mendapatkan hasil query
-        $roles = $query->getResultArray(); // getResultArray untuk mendapatkan array asosiatif
-
-        // Menggabungkan data dengan hasil query
-        $data['roles'] = $roles;
-
-        // Mengirim data ke view
-        return view('admin/data_guru', $data);
-    }
     
     public function data_kelas_jurusan()
     {
@@ -124,52 +111,110 @@ class AdminController extends BaseController
 
     //END Tampil Ke Halaman dan V sidebar
 
-    protected $userGuruModel;
-    protected $guruModel;
-    protected $rolesModel;
-   
+    
 
-    public function __construct()
+    public function dataGuru()
     {
-        $this->userGuruModel = new UserGuruModel();
-        $this->guruModel = new GuruModel();
-        $this->rolesModel = new RoleskuModel();
+        // Data lain yang ingin dikirim ke view
+        $data = [
+            'title' => 'Data Guru - SIBK SMK Batik 1 Surakarta',
+            'menu' => 'master_data',
+            'submenu' => 'data_guru'
+        ];
+
+        // Mengambil data guru yang belum dihapus
+        $gurus = $this->userGuruModel->where('deleted_at', null)->findAll();
+        $data['gurus'] = $gurus;
+
+        // Menghubungkan ke database
+        $db = Database::connect();
+
+        // Menjalankan query untuk mengambil data roles
+        $query = $db->query('SELECT * FROM roles');
+
+        // Mendapatkan hasil query
+        $roles = $query->getResultArray(); // getResultArray untuk mendapatkan array asosiatif
+
+        // Menggabungkan data dengan hasil query
+        $data['roles'] = $roles;
+
+        // Mengirim data ke view
+        return view('admin/data_guru', $data);
+    }
+    public function storeGuru()
+{
+    $data = [
+        'role' => $this->request->getPost('role'),
+        'username' => $this->request->getPost('username'),
+        'email' => $this->request->getPost('email'),
+        'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+        'nip' => $this->request->getPost('nip'),
+        'nama_panggilan' => $this->request->getPost('nama_panggilan'),
+        'jurusan_pengampu' => $this->request->getPost('jurusan_pengampu'),
+        'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+        'tgl_lahir' => $this->request->getPost('tgl_lahir'),
+        'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+        'agama' => $this->request->getPost('agama'),
+        'no_telepon' => $this->request->getPost('no_telepon'),
+        'alamat' => $this->request->getPost('alamat')
+    ];
+
+    // Simpan data ke tabel user_guru
+    if ($this->userGuruModel->save($data)) {
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Guru berhasil didaftarkan.']);
+    } else {
+        return $this->response->setJSON(['status' => 'error', 'message' => 'Terjadi kesalahan saat mendaftar guru.']);
+    }
+}
+
+
+    public function editGuru($id)
+    {
+        $guru = $this->userGuruModel->find($id);
+        if (!$guru) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Guru tidak ditemukan.']);
+        }
+        return $this->response->setJSON(['status' => 'success', 'data' => $guru]);
     }
 
-   
-
-    public function storeGuru()
+    public function perbaruiGuru()
     {
+        $id = $this->request->getPost('id');
         $data = [
+            'role' => $this->request->getPost('role'),
             'username' => $this->request->getPost('username'),
             'email' => $this->request->getPost('email'),
-            'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
-            'role' => $this->request->getPost('role')
-        ];
-
-        // Simpan data ke tabel user_guru
-        $this->userGuruModel->save($data);
-        $userGuruId = $this->userGuruModel->insertID();
-
-        // Simpan data ke tabel tb_guru
-        $guruData = [
-            'user_guru_id' => $userGuruId,
-            'full_name' => $this->request->getPost('full_name'),
             'nip' => $this->request->getPost('nip'),
-            'birth_place' => $this->request->getPost('birth_place'),
-            'birth_date' => $this->request->getPost('birth_date'),
-            'phone' => $this->request->getPost('phone'),
-            'address' => $this->request->getPost('address'),
-            'religion' => $this->request->getPost('religion'),
-            'gender' => $this->request->getPost('gender'),
-            'subject' => $this->request->getPost('subject'),
-            'role' => $this->request->getPost('role')
+            'nama_panggilan' => $this->request->getPost('nama_panggilan'),
+            'jurusan_pengampu' => $this->request->getPost('jurusan_pengampu'),
+            'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+            'tgl_lahir' => $this->request->getPost('tgl_lahir'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'agama' => $this->request->getPost('agama'),
+            'no_telepon' => $this->request->getPost('no_telepon'),
+            'alamat' => $this->request->getPost('alamat')
         ];
-
-        $this->guruModel->save($guruData);
-
-        return redirect()->to('/admin/data_guru')->with('success', 'Guru berhasil didaftarkan.');
+    
+        // Periksa apakah password diubah
+        $password = $this->request->getPost('password');
+        if (!empty($password)) {
+            $data['password'] = password_hash($password, PASSWORD_BCRYPT);
+        }
+    
+        // Update data ke tabel user_guru
+        $this->userGuruModel->update($id, $data);
+    
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Guru berhasil diperbarui.']);
     }
+
+    public function hapusGuru()
+{
+    $id = $this->request->getPost('id');
+    // Soft delete
+    $this->userGuruModel->update($id, ['deleted_at' => date('Y-m-d H:i:s')]);
+
+    return $this->response->setJSON(['status' => 'success', 'message' => 'Guru berhasil dihapus.']);
+}
     
 }
 

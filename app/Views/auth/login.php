@@ -73,7 +73,7 @@
 
                                         
                                     <div class="text-center">
-                                        <p><a class="small" href="<?= base_url('register') ?>">Buat Akun SBIK (Siswa)</a></p>
+                                        <p><a class="small" href="<?= base_url('register') ?>">Buat Akun SIBK (Siswa)</a></p>
                                            
                                     </div>
                                 </div>

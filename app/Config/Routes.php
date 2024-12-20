@@ -46,9 +46,15 @@ $routes->get('/logout', 'AuthController::logout');
 //area mengatur sidebar 
 // ADMIN SIDEBAR 1
 $routes->group('admin', ['filter' => 'auth:1'], function($routes) { 
+    $routes->post('storeGuru', 'AdminController::storeGuru');
+    $routes->get('data_guru', 'AdminController::dataGuru');
+    $routes->get('edit_guru/(:num)', 'AdminController::editGuru/$1');
+    $routes->post('perbarui_guru', 'AdminController::perbaruiGuru');
+    $routes->post('hapus_guru', 'AdminController::hapusGuru');
+
+    
     //Validasi Halaman V_Sidebar    
     $routes->get('dashboard', 'AdminController::dashboard'); 
-    $routes->get('data_guru', 'AdminController::data_guru');
     $routes->get('data_kelas_jurusan', 'AdminController::data_kelas_jurusan');
     $routes->get('pelanggaran_siswa', 'AdminController::pelanggaran_siswa');
     $routes->get('data_siswa', 'AdminController::data_siswa');
@@ -58,13 +64,16 @@ $routes->group('admin', ['filter' => 'auth:1'], function($routes) {
     $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa');
     $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile');
     
-    $routes->get('test', 'TestingControllers::index');
-    //END Validasi Halaman V_Sidebar    
+    //END Validasi Halaman V_Sidebar 
+    // Halaman CRUD Admin Data Guru
+    
+    // End CRUD Halaman Admin Data Guru   
 
     // Start Validasi CRUD
-    $routes->get('dashboard', 'AdminController::dashboard');
-    // $routes->get('data_guru', 'AdminController::createGuru');
-    $routes->post('storeGuru', 'AdminController::storeGuru');
+    
+    
+   
+   
     // END Validasi CRUD
 
 });

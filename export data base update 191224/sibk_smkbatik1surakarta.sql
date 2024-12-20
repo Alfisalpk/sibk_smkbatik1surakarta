@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Des 2024 pada 18.47
+-- Waktu pembuatan: 18 Des 2024 pada 21.09
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -114,6 +114,7 @@ CREATE TABLE `tb_guru` (
   `id` int(11) NOT NULL,
   `user_guru_id` int(10) UNSIGNED NOT NULL,
   `full_name` varchar(100) NOT NULL,
+  `nama_panggilan` varchar(50) DEFAULT NULL,
   `nip` varchar(20) DEFAULT NULL,
   `birth_place` varchar(50) DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
@@ -131,11 +132,11 @@ CREATE TABLE `tb_guru` (
 -- Dumping data untuk tabel `tb_guru`
 --
 
-INSERT INTO `tb_guru` (`id`, `user_guru_id`, `full_name`, `nip`, `birth_place`, `birth_date`, `phone`, `address`, `religion`, `gender`, `subject`, `role`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Alfisal Punjung Guru', '200101003', 'Sukoharjo', '2001-08-23', '081325659017', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', '', 'TKJ', 1, '2024-07-31 22:48:14', '2024-07-31 22:48:14'),
-(2, 5, 'Asna Kharismanda Salam', '12345678', 'Surabaya', '2024-08-06', '081332615242', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', '', 'Ipa', 2, '2024-07-31 22:59:12', '2024-07-31 22:59:12'),
-(3, 6, 'Multimedia Batik', '123456', 'Kartasura', '2024-08-21', '081325659071', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', '', 'Sejarah', 2, '2024-07-31 23:17:43', '2024-07-31 23:17:43'),
-(4, 7, 'Punjung BK', '1234', 'Sukoharjo', '2024-11-12', '081325659017', 'Kartasura', 'Islam', '', 'TKJ', 4, '2024-11-04 18:54:54', '2024-11-04 18:54:54');
+INSERT INTO `tb_guru` (`id`, `user_guru_id`, `full_name`, `nama_panggilan`, `nip`, `birth_place`, `birth_date`, `phone`, `address`, `religion`, `gender`, `subject`, `role`, `created_at`, `updated_at`) VALUES
+(1, 4, 'Alfisal Punjung Guru', NULL, '200101003', 'Sukoharjo', '2001-08-23', '081325659017', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', '', 'TKJ', 1, '2024-07-31 22:48:14', '2024-07-31 22:48:14'),
+(2, 5, 'Asna Kharismanda Salam', NULL, '12345678', 'Surabaya', '2024-08-06', '081332615242', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', '', 'Ipa', 2, '2024-07-31 22:59:12', '2024-07-31 22:59:12'),
+(3, 6, 'Multimedia Batik', NULL, '123456', 'Kartasura', '2024-08-21', '081325659071', 'Griya Kratonan 2, Pucangan, Kartasura', 'Islam', '', 'Sejarah', 2, '2024-07-31 23:17:43', '2024-07-31 23:17:43'),
+(4, 7, 'Punjung BK', NULL, '1234', 'Sukoharjo', '2024-11-12', '081325659017', 'Kartasura', 'Islam', '', 'TKJ', 4, '2024-11-04 18:54:54', '2024-11-04 18:54:54');
 
 -- --------------------------------------------------------
 
@@ -188,7 +189,8 @@ INSERT INTO `tb_siswa` (`id`, `nisn`, `nama_lengkap`, `tempat_lahir`, `tanggal_l
 (1, '230820001', 'Alfisal Test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-06-30 16:09:13', '2024-06-30 16:09:13'),
 (3, '2001', 'Alfisal Punjung Kurniawan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-06 17:34:00', '2024-07-06 17:34:00'),
 (4, '123', 'qwerty', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-09 04:35:11', '2024-08-09 04:35:11'),
-(5, '10', 'Wahyu Siswa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-18 05:34:56', '2024-08-18 05:34:56');
+(5, '10', 'Wahyu Siswa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-18 05:34:56', '2024-08-18 05:34:56'),
+(6, '2308', 'Alfisal Testing Baru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-04 19:01:04', '2024-12-04 19:01:04');
 
 -- --------------------------------------------------------
 
@@ -215,14 +217,25 @@ CREATE TABLE `tb_suratpanggilan` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `nisn` varchar(15) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
   `nama_lengkap` varchar(100) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `nama_orangtua` varchar(30) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `kelas` varchar(5) DEFAULT NULL,
+  `jurusan` varchar(25) DEFAULT NULL,
+  `jenis_kelamin` enum('Laki-Laki','Perempuan','','') DEFAULT NULL,
+  `agama` varchar(15) DEFAULT NULL,
   `nomor_wa` varchar(20) DEFAULT NULL,
+  `nomor_wa_ortu` varchar(15) DEFAULT NULL,
+  `tempat_lahir` varchar(15) DEFAULT NULL,
+  `tgl_lahir` date DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL,
+  `asal_sekolah` varchar(50) DEFAULT NULL,
+  `lulusan_tahun` varchar(8) DEFAULT NULL,
+  `hobby` varchar(255) DEFAULT NULL,
   `role` int(11) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT '''default.jpg''',
   `reset_token` varchar(255) DEFAULT NULL,
   `reset_expiry` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -233,11 +246,12 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `nisn`, `username`, `email`, `nama_lengkap`, `password`, `nomor_wa`, `alamat`, `foto`, `role`, `reset_token`, `reset_expiry`, `created_at`, `updated_at`) VALUES
-(12, '2001', 'Alfisal Punjung Siswa', 'punjungkurniawan@gmail.com', NULL, '$2y$10$DBUhvuXk/WwFS3mvWpRIJONiwVU9YXwadsGnOpRkovbudnSOBzD1i', NULL, NULL, NULL, 3, NULL, NULL, '2024-07-07 14:55:40', '2024-11-21 15:26:03'),
-(13, '230820001', 'Kurniawan', 'kurniawan@gmail.com', NULL, '$2y$10$hoQ6JrxTUzXScnUXJ/Khf.NEjfT8Epe7EtN40e4NQgOTW/.lmmCm2', NULL, NULL, NULL, 3, NULL, NULL, '2024-07-16 09:48:47', '2024-07-16 09:48:47'),
-(14, '123', 'Qwerty', 'punjung@gmail.com', NULL, '$2y$10$jnBfcIjbO.KFEOPVpAZbg.VfgeafYipQ0Bjxp78.8CQStPCb5Qnn6', NULL, NULL, NULL, 3, NULL, NULL, '2024-08-09 04:36:14', '2024-08-09 04:36:14'),
-(15, '10', 'Wahyu Siswa', 'wahyu@gmail.com', NULL, '$2y$10$5LjdtdO35tXx/7FLfNBhV.dfddjvaWk.J2pZmt7tfIsuifPbfpCXG', NULL, NULL, NULL, 3, NULL, NULL, '2024-08-18 05:37:11', '2024-08-18 05:37:11');
+INSERT INTO `users` (`id`, `nisn`, `nama_lengkap`, `username`, `nama_orangtua`, `email`, `password`, `kelas`, `jurusan`, `jenis_kelamin`, `agama`, `nomor_wa`, `nomor_wa_ortu`, `tempat_lahir`, `tgl_lahir`, `alamat`, `asal_sekolah`, `lulusan_tahun`, `hobby`, `role`, `foto`, `reset_token`, `reset_expiry`, `created_at`, `updated_at`) VALUES
+(12, '2001', NULL, 'Alfisal Punjung Siswa', '', 'punjungkurniawan@gmail.com', '$2y$10$DBUhvuXk/WwFS3mvWpRIJONiwVU9YXwadsGnOpRkovbudnSOBzD1i', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 3, 'default.jpg', NULL, NULL, '2024-07-07 14:55:40', '2024-11-21 15:26:03'),
+(13, '230820001', NULL, 'Kurniawan', '', 'kurniawan@gmail.com', '$2y$10$hoQ6JrxTUzXScnUXJ/Khf.NEjfT8Epe7EtN40e4NQgOTW/.lmmCm2', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 3, 'default.jpg', NULL, NULL, '2024-07-16 09:48:47', '2024-07-16 09:48:47'),
+(14, '123', NULL, 'Qwerty', '', 'punjung@gmail.com', '$2y$10$jnBfcIjbO.KFEOPVpAZbg.VfgeafYipQ0Bjxp78.8CQStPCb5Qnn6', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 3, 'default.jpg', NULL, NULL, '2024-08-09 04:36:14', '2024-08-09 04:36:14'),
+(15, '10', NULL, 'Wahyu Siswa', '', 'wahyu@gmail.com', '$2y$10$5LjdtdO35tXx/7FLfNBhV.dfddjvaWk.J2pZmt7tfIsuifPbfpCXG', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 3, 'default.jpg', NULL, NULL, '2024-08-18 05:37:11', '2024-08-18 05:37:11'),
+(16, '2308', 'Punjung', 'Alfisal Punjung Kurniawan', 'Alfianing Nur Batinah', 'bonnie@gmail.com', '$2y$10$vXbtPdx3oqeMWOKB.6Ibee8soWOdAbTTcjbyAvOqs5up8hLaor0gq', 'X', 'TKJ 1', 'Laki-Laki', 'Islam', '081325659017', '081332615242', 'Sukoharjo', '2001-08-23', 'Kopen, Ngadirejo, Kartasura, Sukoharjo', 'SMPN 3 Kartasura', '2017', 'Muncak', 3, 'uploads/siswa/1734544648_cb3a45291e7a498d67cf.jpg', NULL, NULL, '2024-12-04 19:03:50', '2024-12-18 17:57:28');
 
 -- --------------------------------------------------------
 
@@ -251,6 +265,16 @@ CREATE TABLE `user_guru` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` int(11) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `nip` int(20) DEFAULT NULL,
+  `nama_panggilan` varchar(50) DEFAULT NULL,
+  `jurusan_pengampu` varchar(25) DEFAULT NULL,
+  `tempat_lahir` varchar(50) DEFAULT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `agama` enum('Islam','Kristen','Katolik','Hindu','Budha','Konghucu') DEFAULT NULL,
+  `jenis_kelamin` enum('Laki-Laki','Perempuan') DEFAULT NULL,
+  `no_telepon` varchar(15) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -260,12 +284,13 @@ CREATE TABLE `user_guru` (
 -- Dumping data untuk tabel `user_guru`
 --
 
-INSERT INTO `user_guru` (`id`, `username`, `email`, `password`, `role`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(3, 'Alfisal Punjung Kurniawan', 'punjungalfisal@gmail.com', '$2y$10$fad0tv.YSgFOnhwOm8mTZ.JUnfnvPS4F0SYaE0wAjpYKtFim9Apfa', 1, NULL, '2024-10-07 21:40:29', NULL),
-(4, 'alfisalpunjung', 'alfisalpunjungkurniawan@gmail.com', '$2y$10$lo04TP2coinV3s7mzh3jm..plzlkEDB9dtvuW/oKkqeqIWpeXKlUW', 1, '2024-08-01 05:48:14', '2024-08-01 05:48:14', NULL),
-(5, 'asnaguru', 'asna@gmail.com', '$2y$10$k6TFgp06pkKnUQ40Z2pPWOaprgfG/VPz3ynrkYJJP4qVmlxHn2yJq', 2, '2024-08-01 05:59:12', '2024-08-01 05:59:12', NULL),
-(6, 'Multimedia Guru', 'multimediasmkbiska@gmail.com', '$2y$10$ApsMELDcE1pATBmFS1LyiOsYIbZrV26kDFsy7IQ81Rt8A.6uY8/RW', 2, '2024-08-01 06:17:43', '2024-08-09 11:33:26', NULL),
-(7, 'Punjung bk', 'punjungbk@gmail.com', '$2y$10$MISZ5pxkdJdpSkKNLvQ4K.trvLwG7aeHlqXNWcUCyxSu3XCYc7k46', 4, '2024-11-05 01:54:54', '2024-11-05 01:54:54', NULL);
+INSERT INTO `user_guru` (`id`, `username`, `email`, `password`, `role`, `foto`, `nip`, `nama_panggilan`, `jurusan_pengampu`, `tempat_lahir`, `tgl_lahir`, `agama`, `jenis_kelamin`, `no_telepon`, `alamat`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 'Alfisal Punjung Kurniawan', 'punjungalfisal@gmail.com', '$2y$10$fad0tv.YSgFOnhwOm8mTZ.JUnfnvPS4F0SYaE0wAjpYKtFim9Apfa', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-10-07 21:40:29', NULL),
+(4, 'alfisalpunjung', 'alfisalpunjungkurniawan@gmail.com', '$2y$10$lo04TP2coinV3s7mzh3jm..plzlkEDB9dtvuW/oKkqeqIWpeXKlUW', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-01 05:48:14', '2024-08-01 05:48:14', NULL),
+(5, 'asnaguru', 'asna@gmail.com', '$2y$10$k6TFgp06pkKnUQ40Z2pPWOaprgfG/VPz3ynrkYJJP4qVmlxHn2yJq', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-01 05:59:12', '2024-08-01 05:59:12', NULL),
+(6, 'Multimedia Guru', 'multimediasmkbiska@gmail.com', '$2y$10$ApsMELDcE1pATBmFS1LyiOsYIbZrV26kDFsy7IQ81Rt8A.6uY8/RW', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-01 06:17:43', '2024-08-09 11:33:26', NULL),
+(7, 'Punjung bk', 'punjungbk@gmail.com', '$2y$10$MISZ5pxkdJdpSkKNLvQ4K.trvLwG7aeHlqXNWcUCyxSu3XCYc7k46', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-05 01:54:54', '2024-11-05 01:54:54', NULL),
+(8, 'Alfisal Punjung Tambah Guru', 'punjungkurniawan@gmail.com', '$2y$10$gsZc7hqerNqyeSOD2YJw2.Otd9rQ/H43IjlHzA9kQLEBxic32Ppp.', 2, NULL, 2005, 'Punjung', 'TKJ', 'Sukoharjo', '2010-08-23', 'Islam', 'Laki-Laki', '081325659017', 'Griya Kratonan 2, Pucangan, Kartasura', '2024-12-19 03:06:07', '2024-12-19 03:06:07', NULL);
 
 --
 -- Indexes for dumped tables
@@ -299,8 +324,7 @@ ALTER TABLE `roles`
 -- Indeks untuk tabel `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_guru_id` (`user_guru_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `tb_siswa`
@@ -366,7 +390,7 @@ ALTER TABLE `tb_guru`
 -- AUTO_INCREMENT untuk tabel `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_suratpanggilan`
@@ -378,23 +402,17 @@ ALTER TABLE `tb_suratpanggilan`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_guru`
 --
 ALTER TABLE `user_guru`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
-
---
--- Ketidakleluasaan untuk tabel `tb_guru`
---
-ALTER TABLE `tb_guru`
-  ADD CONSTRAINT `tb_guru_ibfk_1` FOREIGN KEY (`user_guru_id`) REFERENCES `user_guru` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `user_guru`

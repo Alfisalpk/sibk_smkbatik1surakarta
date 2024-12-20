@@ -28,7 +28,10 @@
   <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>/assets/css/styleku.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  
+  <!-- SweetAlert -->
+   <!-- SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+
   <!--Start Data Tabless -->
   <!-- DataTables -->
   <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -127,6 +130,10 @@
 <script src="<?= base_url() ?>/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?= base_url() ?>/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?= base_url() ?>/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Sweet Alert -->
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+
 <!--End Data Tabless -->
 
 <!-- Page specific script -->
@@ -148,5 +155,173 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
+
+
+<script>
+  
+
+    $(document).ready(function() {
+        // Submit Form Tambah Guru
+        $('#tambahGuruForm').on('submit', function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '<?= base_url('admin/storeGuru') ?>',
+                method: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: response.message
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan',
+                        text: 'Terjadi kesalahan saat menambahkan guru.'
+                    });
+                }
+            });
+        });
+
+        // Edit Guru
+        $('#editGuruModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+
+            $.ajax({
+                url: '<?= base_url('admin/edit_guru/') ?>' + id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        var guru = response.data;
+                        $('#editId').val(guru.id);
+                        $('#editRole').val(guru.role); // Memilih nilai yang sesuai dari dropdown
+                        $('#editUsername').val(guru.username);
+                        $('#editEmail').val(guru.email);
+                        $('#editNip').val(guru.nip);
+                        $('#editNamaPanggilan').val(guru.nama_panggilan);
+                        $('#editJurusanPengampu').val(guru.jurusan_pengampu);
+                        $('#editTempatLahir').val(guru.tempat_lahir);
+                        $('#editTglLahir').val(guru.tgl_lahir);
+                        $('#editJenisKelamin').val(guru.jenis_kelamin);
+                        $('#editAgama').val(guru.agama);
+                        $('#editNoTelepon').val(guru.no_telepon);
+                        $('#editAlamat').val(guru.alamat);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan',
+                        text: 'Terjadi kesalahan saat mengambil data guru.'
+                    });
+                }
+            });
+        });
+
+        // Hapus Guru
+        $('#deleteGuruModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            $('#deleteId').val(id);
+        });
+
+        // Submit Form Edit Guru
+        $('#editGuruForm').on('submit', function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '<?= base_url('admin/perbarui_guru') ?>',
+                method: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: response.message
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan',
+                        text: 'Terjadi kesalahan saat memperbarui data guru.'
+                    });
+                }
+            });
+        });
+
+        // Submit Form Hapus Guru
+        $('#deleteGuruForm').on('submit', function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '<?= base_url('admin/hapus_guru') ?>',
+                method: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: response.message
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan',
+                        text: 'Terjadi kesalahan saat menghapus data guru.'
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
+
 </body>
 </html>
