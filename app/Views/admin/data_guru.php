@@ -157,7 +157,7 @@
                             <th scope="col" style="width: 15vh;">No Telepon</th>
                             <th scope="col" style="width: 25vh;">Email</th>
                             <th scope="col" style="width: 50vh;">Alamat</th>
-                            <th scope="col" style="width: 20px;">Aksi</th>
+                            <th scope="col" style="width: 15vh;">Aksi</th>
                         </tr>
 
                     </thead>
@@ -299,7 +299,7 @@
 
      <!-- Modal Hapus Guru -->
      <div class="modal fade" id="deleteGuruModal" tabindex="-1" role="dialog" aria-labelledby="deleteGuruModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteGuruModalLabel">Hapus Guru</h5>

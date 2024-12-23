@@ -4,20 +4,24 @@ namespace App\Controllers;
 use App\Models\UserGuruModel;
 use App\Models\GuruModel;
 use App\Models\RoleskuModel;
+use App\Models\NisnSiswa;
 use Config\Database;
+use CodeIgniter\API\ResponseTrait;
 
 class AdminController extends BaseController
 {
     protected $userGuruModel;
     protected $guruModel;
     protected $rolesModel;
-   
+    protected $nisnSiswaModel;
+    use ResponseTrait;
 
     public function __construct()
     {
         $this->userGuruModel = new UserGuruModel();
         $this->guruModel = new GuruModel();
         $this->rolesModel = new RoleskuModel();
+        $this->nisnSiswaModel = new NisnSiswa();
     }
     // Tampil Ke Halaman dan V sidebar
     public function dashboard()
@@ -28,52 +32,112 @@ class AdminController extends BaseController
             'submenu' => ''
 
         ];
+         // Mengambil data guru yang belum dihapus
+    $gurus = $this->userGuruModel->where('deleted_at', null)->find();
+    $data['gurus'] = $gurus;
+
+    // Menghitung jumlah guru yang belum dihapus
+    $data['jumlah_guru'] = $this->userGuruModel->where('deleted_at', null)->countAll();
+
         return view('admin/index', $data);
     }
 
-
-    
-    public function data_kelas_jurusan()
+    // START Fungsi Di Halaman data_nisn
+    public function data_nisn()
     {
+        // Data lain yang ingin dikirim ke view
         $data = [
-            'title' => 'Data Guru - SIBK  SMK Batik 1 Surakarta',
+            'title' => 'Data Siswa - SIBK SMK Batik 1 Surakarta',
             'menu' => 'master_data',
-            'submenu' => 'data_kelas_jurusan'
-
+            'submenu' => 'data_nisn'
         ];
-        return view('admin/data_kelas_jurusan', $data);
+
+        // Mengambil data siswa yang belum dihapus
+        $siswa = $this->nisnSiswaModel->where('deleted_at', null)->findAll();
+        $data['siswa'] = $siswa;
+
+        // Mengirim data ke view
+        return view('admin/data_nisn', $data);
     }
 
+    public function storeSiswa()
+    {
+        $data = [
+            'nisn' => $this->request->getPost('nisn'),
+            'nama_lengkap' => $this->request->getPost('nama_lengkap')
+        ];
+
+        // Simpan data ke tabel tb_siswa
+        if ($this->nisnSiswaModel->save($data)) {
+            return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil didaftarkan.']);
+        } else {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Terjadi kesalahan saat mendaftar siswa.']);
+        }
+    }
+
+    public function editSiswa($id)
+    {
+        $siswa = $this->nisnSiswaModel->find($id);
+        if (!$siswa) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Siswa tidak ditemukan.']);
+        }
+        return $this->response->setJSON(['status' => 'success', 'data' => $siswa]);
+    }
+
+    public function perbaruiSiswa()
+    {
+        $id = $this->request->getPost('id');
+        $data = [
+            'nisn' => $this->request->getPost('nisn'),
+            'nama_lengkap' => $this->request->getPost('nama_lengkap')
+        ];
+
+        // Update data ke tabel tb_siswa
+        $this->nisnSiswaModel->update($id, $data);
+
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil diperbarui.']);
+    }
+
+    public function hapusSiswa()
+    {
+        $id = $this->request->getPost('id');
+        // Soft delete
+        $this->nisnSiswaModel->update($id, ['deleted_at' => date('Y-m-d H:i:s')]);
+
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil dihapus.']);
+    }
+    // END Fungsi Di Halaman data_nisn
+    
     public function pelanggaran_siswa()
     {
         $data = [
             'title' => 'Data Mapel - SIBK  SMK Batik 1 Surakarta',
             'menu' => 'master_data',
-            'submenu' => 'data_mapel'
+            'submenu' => 'pelanggaran_siswa'
 
         ];
         return view('admin/pelanggaran_siswa', $data);
     }
-    public function data_siswa()
+    public function bimbingan_konseling()
     {
         $data = [
             'title' => 'Data Siswa - SIBK  SMK Batik 1 Surakarta',
             'menu' => 'master_data',
-            'submenu' => 'data_siswa'
+            'submenu' => 'bimbingan_konseling'
 
         ];
-        return view('admin/data_siswa', $data);
+        return view('admin/bimbingan_konseling', $data);
     }
     
-    public function data_user_guru()
+    public function daftar_siswa()
     {
         $data = [
             'title' => 'Data User Guru - SIBK  SMK Batik 1 Surakarta',
             'menu' => 'master_data',
-            'submenu' => 'data_user_guru'
+            'submenu' => 'daftar_siswa'
 
         ];
-        return view('admin/data_user', $data);
+        return view('admin/daftar_siswa', $data);
     }
 
     public function kategori_pelanggaran()
@@ -91,8 +155,8 @@ class AdminController extends BaseController
     {
         $data = [
             'title' => 'Laporan Pelanggaran - SIBK  SMK Batik 1 Surakarta',
-            'menu' => 'laporan_pelanggaran',
-            'submenu' => ''
+            'menu' => '',
+            'submenu' => 'lap_pelanggaran_siswa'
 
         ];
         return view('admin/lap_pelanggaran_siswa', $data);
@@ -102,8 +166,8 @@ class AdminController extends BaseController
     {
         $data = [
             'title' => 'Pengaturan Profil - SIBK  SMK Batik 1 Surakarta',
-            'menu' => 'pengaturan_profile',
-            'submenu' => ''
+            'menu' => 'master_data',
+            'submenu' => 'pengaturan_profile'
 
         ];
         return view('admin/pengaturan_profile', $data);

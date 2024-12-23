@@ -39,14 +39,14 @@
             <!-- small card -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>1</h3>
+                <h3><?= $jumlah_guru ?></h3>
 
                 <p>Data Guru</p>
               </div>
               <div class="icon">
                 <i class="fas fa-solid fa-chalkboard-user"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="<?= base_url('admin/data_guru') ?>" class="small-box-footer">
                 More info <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>

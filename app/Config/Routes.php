@@ -46,23 +46,37 @@ $routes->get('/logout', 'AuthController::logout');
 //area mengatur sidebar 
 // ADMIN SIDEBAR 1
 $routes->group('admin', ['filter' => 'auth:1'], function($routes) { 
+// START Routes CRUD Data Guru   
     $routes->post('storeGuru', 'AdminController::storeGuru');
     $routes->get('data_guru', 'AdminController::dataGuru');
     $routes->get('edit_guru/(:num)', 'AdminController::editGuru/$1');
     $routes->post('perbarui_guru', 'AdminController::perbaruiGuru');
     $routes->post('hapus_guru', 'AdminController::hapusGuru');
+// END Routes CRUD Data Guru   
+
+// START Routes CRUD NISN Siswa  
+$routes->get('data_nisn', 'AdminController::data_nisn');
+$routes->post('storeSiswa', 'AdminController::storeSiswa');
+$routes->get('editSiswa/(:num)', 'AdminController::editSiswa/$1');
+$routes->post('perbaruiSiswa', 'AdminController::perbaruiSiswa');
+$routes->post('hapusSiswa', 'AdminController::hapusSiswa');
+
+
+// END Routes CRUD NISN Siswa
+
 
     
     //Validasi Halaman V_Sidebar    
     $routes->get('dashboard', 'AdminController::dashboard'); 
     $routes->get('data_kelas_jurusan', 'AdminController::data_kelas_jurusan');
-    $routes->get('pelanggaran_siswa', 'AdminController::pelanggaran_siswa');
-    $routes->get('data_siswa', 'AdminController::data_siswa');
-    $routes->get('data_user_guru', 'AdminController::data_user_guru');
     $routes->get('/', 'AdminController::dashboard');
-    $routes->get('kategori_pelanggaran', 'AdminController::kategori_pelanggaran'); 
-    $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa');
     $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile');
+    $routes->get('bimbingan_konseling', 'AdminController::bimbingan_konseling');
+    $routes->get('data_nisn', 'AdminController::data_nisn');
+    $routes->get('pelanggaran_siswa', 'AdminController::pelanggaran_siswa');
+    $routes->get('daftar_siswa', 'AdminController::daftar_siswa'); 
+    $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa');
+    $routes->get('kategori_pelanggaran', 'AdminController::kategori_pelanggaran');
     
     //END Validasi Halaman V_Sidebar 
     // Halaman CRUD Admin Data Guru

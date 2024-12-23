@@ -25,7 +25,8 @@ class UserGuruModel extends Model
         'updated_at', 
         'deleted_at'
     ];
-    protected $useSoftDeletes = true;
+    // protected $useSoftDeletes = true;
+    protected $deletedField = 'deleted_at'; // Kolom untuk soft delete
     protected $useTimestamps = true;
     protected $returnType = 'array'; // Pastikan ini diatur ke 'array'
 

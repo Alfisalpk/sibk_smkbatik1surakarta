@@ -2,7 +2,7 @@
   <!-- Sidebar user panel (optional) -->
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-      <img src="<?= base_url() ?>/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+      <!-- <img src="<?= base_url() ?>/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
       <a class="nav-link" href="#">
        
       Selamat Datang, <br>
@@ -49,7 +49,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/kanban.html" class="nav-link">
+              <a href="<?= base_url('/admin/bimbingan_konseling') ?>" class="nav-link <?= $submenu == 'bimbingan_konseling' ? 'active' : '' ?>">
                 <i class="nav-icon fa-solid fa-user-group"></i>
                 <p>
                   Bimbingan Konseling
@@ -57,7 +57,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('/admin/data_siswa') ?>" class="nav-link <?= $submenu == 'data_siswa' ? 'active' : '' ?>">
+              <a href="<?= base_url('/admin/data_nisn') ?>" class="nav-link <?= $submenu == 'data_nisn' ? 'active' : '' ?>">
                 <i class="nav-icon fa-solid fa-user-graduate"></i>
                 <p>
                   Data NISN Siswa
@@ -65,7 +65,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('/admin/pelanggaran_siswa') ?>" class="nav-link <?= $submenu == 'data_mapel' ? 'active' : '' ?>">
+              <a href="<?= base_url('/admin/pelanggaran_siswa') ?>" class="nav-link <?= $submenu == 'pelanggaran_siswa' ? 'active' : '' ?>">
                 <i class="nav-icon fa-solid fa-person-chalkboard"></i>
                 <p>
                   Pelanggaran Siswa
@@ -81,10 +81,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('/admin/data_user_guru') ?>" class="nav-link <?= $submenu == 'data_user_guru' ? 'active' : '' ?>">
+              <a href="<?= base_url('/admin/daftar_siswa') ?>" class="nav-link <?= $submenu == 'daftar_siswa' ? 'active' : '' ?>">
                 <i class="nav-icon fa-solid fa-users"></i>
                 <p>
-                  Data User
+                  Daftar Siswa
                 </p>
               </a>
             </li>
@@ -93,19 +93,19 @@
 
         <li class="nav-header">Data Laporan</li>
         <li class="nav-item">
-          <a href="<?= base_url('/admin/lap_pelanggaran_siswa') ?>" class="nav-link <?= $menu == 'lap_pelanggaran_siswa' ? 'active' : '' ?>">
+          <a href="<?= base_url('/admin/lap_pelanggaran_siswa') ?>" class="nav-link <?= $submenu == 'lap_pelanggaran_siswa' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-file"></i>
-            <p>Pelanggaran Siswa</p>
+            <p>Laporan Pelanggaran</p>
           </a>
         </li>
 
-        <li class="nav-header">Testing</li>
+        <!-- <li class="nav-header">Pengaturan Profile</li>
         <li class="nav-item">
           <a href="<?= base_url('/admin/test') ?>" class="nav-link <?= $menu == 'pengaturan_profile' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-regular fa-id-card"></i>
             <p>Pengaturan Profile</p>
           </a>
-        </li>
+        </li> -->
       <?php endif; ?>
       
       <!-- End Sidebar Admin -->

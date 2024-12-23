@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!--End Data Tabless -->
+ 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -69,7 +70,7 @@
     <strong>Copyright &copy; <?= date('Y') ?> </strong>
     SIBK Skripsi
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
+      <b>Version</b> 1.0.0
     </div>
   </footer>
 
@@ -321,6 +322,311 @@
     });
 </script>
 
+<!-- START AJAX Untuk Halaman Data_Guru -->
+<script>
+        $(document).ready(function() {
+            // Tambah Siswa
+            $('#addSiswaBtn').click(function() {
+                var formData = $('#addSiswaForm').serialize();
+                $.ajax({
+                    url: '<?= base_url('admin/storeSiswa') ?>',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil',
+                                text: response.message
+                            });
+                            $('#addSiswaModal').modal('hide');
+                            location.reload();
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal',
+                                text: response.message
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Terjadi kesalahan saat menambahkan data.'
+                        });
+                    }
+                });
+            });
+
+            // Edit Siswa
+            $('#siswaTable').on('click', '.edit-btn', function() {
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '<?= base_url('admin/editSiswa') ?>/' + id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            var siswa = response.data;
+                            $('#edit_id').val(siswa.id);
+                            $('#edit_nisn').val(siswa.nisn);
+                            $('#edit_nama_lengkap').val(siswa.nama_lengkap);
+                            $('#editSiswaModal').modal('show');
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal',
+                                text: response.message
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Terjadi kesalahan saat mengambil data.'
+                        });
+                    }
+                });
+            });
+
+            // Proses untuk memperbarui data siswa
+            $('#editSiswaBtn').click(function() {
+                var id = $('#edit_id').val();
+                var formData = $('#editSiswaForm').serialize();
+                $.ajax({
+                    url: '<?= base_url('admin/perbaruiSiswa') ?>',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil',
+                                text: response.message
+                            });
+                            $('#editSiswaModal').modal('hide');
+                            location.reload();
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal',
+                                text: response.message
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Terjadi kesalahan saat memperbarui data.'
+                        });
+                    }
+                });
+            });
+
+            // Hapus Siswa
+            $('#siswaTable').on('click', '.delete-btn', function() {
+                var id = $(this).data('id');
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '<?= base_url('admin/hapusSiswa') ?>',
+                            type: 'POST',
+                            data: { id: id },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Berhasil',
+                                        text: response.message
+                                    });
+                                    location.reload();
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Gagal',
+                                        text: response.message
+                                    });
+                                }
+                            },
+                            error: function(xhr) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal',
+                                    text: 'Terjadi kesalahan saat menghapus data.'
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+<!-- END AJAX Untuk Halaman Data_Guru -->
+
+<!-- START AJAX Untuk Halaman Data_NISN -->
+<script>
+    $(document).ready(function() {
+        // Tambah Siswa
+        $('#addSiswaBtnNISN').click(function() {
+            var formData = $('#addSiswaForm').serialize();
+            $.ajax({
+                url: '<?= base_url('admin/storeSiswa') ?>',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: response.message
+                        }).then(() => {
+                            location.reload(); // Reload halaman setelah menekan OK
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Terjadi kesalahan saat menambahkan data.'
+                    });
+                }
+            });
+        });
+
+        // Edit Siswa
+        $('#example2').on('click', '.edit-btn', function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '<?= base_url('admin/editSiswa') ?>/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        var siswa = response.data;
+                        $('#edit_id').val(siswa.id);
+                        $('#edit_nisn').val(siswa.nisn);
+                        $('#edit_nama_lengkap').val(siswa.nama_lengkap);
+                        $('#editSiswaModal').modal('show');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Terjadi kesalahan saat mengambil data.'
+                    });
+                }
+            });
+        });
+
+        // Proses untuk memperbarui data siswa
+        $('#editSiswaBtnNISN').click(function() {
+            var id = $('#edit_id').val();
+            var formData = $('#editSiswaForm').serialize();
+            $.ajax({
+                url: '<?= base_url('admin/perbaruiSiswa') ?>',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: response.message
+                        }).then(() => {
+                            location.reload(); // Reload halaman setelah menekan OK
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Terjadi kesalahan saat memperbarui data.'
+                    });
+                }
+            });
+        });
+
+        // Hapus Siswa
+        $('#example2').on('click', '.delete-btn', function() {
+            var id = $(this).data('id');
+            $('#delete_id').val(id);
+            $('#deleteSiswaModal').modal('show');
+        });
+
+        $('#deleteSiswaBtnNISN').click(function() {
+            var id = $('#delete_id').val();
+            $.ajax({
+                url: '<?= base_url('admin/hapusSiswa') ?>',
+                type: 'POST',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: response.message
+                        }).then(() => {
+                            location.reload(); // Reload halaman setelah menekan OK
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Terjadi kesalahan saat menghapus data.'
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<!-- END AJAX Untuk Halaman Data_NISN -->
 
 
 </body>
