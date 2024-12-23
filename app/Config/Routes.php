@@ -57,6 +57,7 @@ $routes->group('admin', ['filter' => 'auth:1'], function($routes) {
 // START Routes CRUD NISN Siswa  
 $routes->get('data_nisn', 'AdminController::data_nisn');
 $routes->post('storeSiswa', 'AdminController::storeSiswa');
+$routes->post('uploadExcel', 'AdminController::uploadExcel');
 $routes->get('editSiswa/(:num)', 'AdminController::editSiswa/$1');
 $routes->post('perbaruiSiswa', 'AdminController::perbaruiSiswa');
 $routes->post('hapusSiswa', 'AdminController::hapusSiswa');

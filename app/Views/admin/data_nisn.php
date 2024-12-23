@@ -7,13 +7,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Data Siswa</h1>
+            <h1 class="m-0">Data NISN</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard Admin</li>
-            </ol>
+            
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -25,7 +22,7 @@
   <div class="container-fluid">
         <div class="card">
             <div class="card-header bg-primary">
-                <h4 class="text-center">Data NISN</h4>
+                <h4 class="text-center">Daftar NISN</h4>
             </div>
             <div class="card-body">
                 <?php if (session()->has('success')): ?>
@@ -39,6 +36,7 @@
                     </div>
                 <?php endif; ?>
                 <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button>
+                <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#uploadExcelModal">Upload Excel</button>
                 <table id="example2" class="table table-hover table-bordered table-responsive">
                     <thead>
                         <tr>
@@ -104,9 +102,37 @@
         </div>
     </div>
 
+    <!-- Modal Upload Excel -->
+    <div class="modal fade" id="uploadExcelModal" tabindex="-1" role="dialog" aria-labelledby="uploadExcelModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadExcelModalLabel">Upload Excel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="uploadExcelForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="excel_file">Upload File Excel</label>
+                            <input type="file" class="form-control" id="excel_file" name="excel_file" accept=".xls,.xlsx" required>
+                            <small class="form-text text-muted">Format file: .xls atau .xlsx</small>
+                           
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" id="uploadExcelBtn">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Edit Siswa -->
     <div class="modal fade" id="editSiswaModal" tabindex="-1" role="dialog" aria-labelledby="editSiswaModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editSiswaModalLabel">Edit Siswa</h5>
@@ -122,8 +148,8 @@
                             <input type="text" class="form-control" id="edit_nisn" name="nisn" required>
                         </div>
                         <div class="form-group">
-                            <label required for="edit_nama_lengkap">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="edit_nama_lengkap" name="nama_lengkap">
+                            <label for="edit_nama_lengkap">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="edit_nama_lengkap" name="nama_lengkap" required>
                         </div>
                     </form>
                 </div>
@@ -137,7 +163,7 @@
 
     <!-- Modal Hapus Siswa -->
     <div class="modal fade" id="deleteSiswaModal" tabindex="-1" role="dialog" aria-labelledby="deleteSiswaModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteSiswaModalLabel">Hapus Siswa</h5>
@@ -156,6 +182,7 @@
             </div>
         </div>
     </div>
+
 
 
 

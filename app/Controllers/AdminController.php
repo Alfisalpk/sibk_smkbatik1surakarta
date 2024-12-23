@@ -7,6 +7,7 @@ use App\Models\RoleskuModel;
 use App\Models\NisnSiswa;
 use Config\Database;
 use CodeIgniter\API\ResponseTrait;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class AdminController extends BaseController
 {
@@ -69,9 +70,43 @@ class AdminController extends BaseController
 
         // Simpan data ke tabel tb_siswa
         if ($this->nisnSiswaModel->save($data)) {
-            return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil didaftarkan.']);
+            return $this->response->setJSON(['status' => 'success', 'message' => 'NISN Siswa Berhasil Didaftarkan.']);
         } else {
             return $this->response->setJSON(['status' => 'error', 'message' => 'Terjadi kesalahan saat mendaftar siswa.']);
+        }
+    }
+
+    public function uploadExcel()
+    {
+        // Cek apakah ada file yang diupload
+        if ($this->request->getFile('excel_file')) {
+            $file = $this->request->getFile('excel_file');
+
+            // Validasi file
+            if ($file->isValid() && !$file->hasMoved()) {
+                $spreadsheet = IOFactory::load($file->getTempName());
+                $sheetData = $spreadsheet->getActiveSheet()->toArray();
+
+                // Skip header row
+                array_shift($sheetData);
+
+                foreach ($sheetData as $row) {
+                    // Asumsikan kolom pertama adalah NISN dan kolom kedua adalah Nama Lengkap
+                    $data = [
+                        'nisn' => $row[0],
+                        'nama_lengkap' => $row[1],
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ];
+                    $this->nisnSiswaModel->insert($data);
+                }
+
+                return $this->response->setJSON(['status' => 'success', 'message' => 'Data NISN Siswa Berhasil Diunggah.']);
+            } else {
+                return $this->response->setJSON(['status' => 'error', 'message' => 'File tidak valid.']);
+            }
+        } else {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Tidak ada file yang diunggah.']);
         }
     }
 
@@ -95,7 +130,7 @@ class AdminController extends BaseController
         // Update data ke tabel tb_siswa
         $this->nisnSiswaModel->update($id, $data);
 
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil diperbarui.']);
+        return $this->response->setJSON(['status' => 'success', 'message' => 'NISN Siswa berhasil diperbarui.']);
     }
 
     public function hapusSiswa()
@@ -104,7 +139,7 @@ class AdminController extends BaseController
         // Soft delete
         $this->nisnSiswaModel->update($id, ['deleted_at' => date('Y-m-d H:i:s')]);
 
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil dihapus.']);
+        return $this->response->setJSON(['status' => 'success', 'message' => 'NISN Siswa berhasil dihapus.']);
     }
     // END Fungsi Di Halaman data_nisn
     
