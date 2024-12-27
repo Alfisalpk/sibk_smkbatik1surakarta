@@ -5,6 +5,7 @@ use App\Models\UserGuruModel;
 use App\Models\GuruModel;
 use App\Models\RoleskuModel;
 use App\Models\NisnSiswa;
+use App\Models\DaftarSiswaModel;
 use Config\Database;
 use CodeIgniter\API\ResponseTrait;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -15,6 +16,7 @@ class AdminController extends BaseController
     protected $guruModel;
     protected $rolesModel;
     protected $nisnSiswaModel;
+    protected $daftarSiswaModel;
     use ResponseTrait;
 
     public function __construct()
@@ -23,6 +25,7 @@ class AdminController extends BaseController
         $this->guruModel = new GuruModel();
         $this->rolesModel = new RoleskuModel();
         $this->nisnSiswaModel = new NisnSiswa();
+        $this->daftarSiswaModel = new DaftarSiswaModel();
     }
     // Tampil Ke Halaman dan V sidebar
     public function dashboard()
@@ -39,6 +42,14 @@ class AdminController extends BaseController
 
     // Menghitung jumlah guru yang belum dihapus
     $data['jumlah_guru'] = $this->userGuruModel->where('deleted_at', null)->countAll();
+
+    
+    
+    $dashboardaftarsiswa = $this->daftarSiswaModel->where('deleted_at', null)->findAll();
+    $data['siswadashboard'] = $dashboardaftarsiswa;
+
+    return view('admin/index', $data);
+
 
         return view('admin/index', $data);
     }
@@ -70,7 +81,7 @@ class AdminController extends BaseController
 
         // Simpan data ke tabel tb_siswa
         if ($this->nisnSiswaModel->save($data)) {
-            return $this->response->setJSON(['status' => 'success', 'message' => 'NISN Siswa Berhasil Didaftarkan.']);
+            return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil didaftarkan.']);
         } else {
             return $this->response->setJSON(['status' => 'error', 'message' => 'Terjadi kesalahan saat mendaftar siswa.']);
         }
@@ -101,7 +112,7 @@ class AdminController extends BaseController
                     $this->nisnSiswaModel->insert($data);
                 }
 
-                return $this->response->setJSON(['status' => 'success', 'message' => 'Data NISN Siswa Berhasil Diunggah.']);
+                return $this->response->setJSON(['status' => 'success', 'message' => 'Data siswa berhasil diunggah.']);
             } else {
                 return $this->response->setJSON(['status' => 'error', 'message' => 'File tidak valid.']);
             }
@@ -130,7 +141,7 @@ class AdminController extends BaseController
         // Update data ke tabel tb_siswa
         $this->nisnSiswaModel->update($id, $data);
 
-        return $this->response->setJSON(['status' => 'success', 'message' => 'NISN Siswa berhasil diperbarui.']);
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil diperbarui.']);
     }
 
     public function hapusSiswa()
@@ -139,7 +150,7 @@ class AdminController extends BaseController
         // Soft delete
         $this->nisnSiswaModel->update($id, ['deleted_at' => date('Y-m-d H:i:s')]);
 
-        return $this->response->setJSON(['status' => 'success', 'message' => 'NISN Siswa berhasil dihapus.']);
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil dihapus.']);
     }
     // END Fungsi Di Halaman data_nisn
     
@@ -164,16 +175,84 @@ class AdminController extends BaseController
         return view('admin/bimbingan_konseling', $data);
     }
     
-    public function daftar_siswa()
-    {
-        $data = [
-            'title' => 'Data User Guru - SIBK  SMK Batik 1 Surakarta',
-            'menu' => 'master_data',
-            'submenu' => 'daftar_siswa'
 
+
+
+    // START Menampilkan view daftar siswa
+    public function daftarSiswaView()
+    {
+        $daftarSiswaModel = new DaftarSiswaModel();
+        $data = [
+            'title' => 'Data Siswa - SIBK SMK Batik 1 Surakarta',
+            'menu' => 'master_data',
+            'submenu' => 'daftar_siswa',
+            'siswa' => $daftarSiswaModel->findAll()
         ];
+        
         return view('admin/daftar_siswa', $data);
     }
+
+    public function tambah_siswa()
+    {
+        $daftarSiswaModel = new DaftarSiswaModel();
+        $data = [
+            'nisn' => $this->request->getPost('nisn'),
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'nama_orangtua' => $this->request->getPost('nama_orangtua'),
+            'kelas' => $this->request->getPost('kelas'),
+            'jurusan' => $this->request->getPost('jurusan'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'agama' => $this->request->getPost('agama'),
+            'nomor_wa' => $this->request->getPost('nomor_wa'),
+            'nomor_wa_ortu' => $this->request->getPost('nomor_wa_ortu'),
+            'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+            'tgl_lahir' => $this->request->getPost('tgl_lahir'),
+            'alamat' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
+            // tambahkan field lain sesuai kebutuhan
+        ];
+        $daftarSiswaModel->insert($data);
+        return $this->response->setJSON(['status' => 'success']);
+    }
+
+    public function edit_siswa()
+    {
+        $daftarSiswaModel = new DaftarSiswaModel();
+        $id = $this->request->getPost('id');
+        $data = [
+            'nisn' => $this->request->getPost('nisn'),
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'nama_orangtua' => $this->request->getPost('nama_orangtua'),
+            'kelas' => $this->request->getPost('kelas'),
+            'jurusan' => $this->request->getPost('jurusan'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'agama' => $this->request->getPost('agama'),
+            'nomor_wa' => $this->request->getPost('nomor_wa'),
+            'nomor_wa_ortu' => $this->request->getPost('nomor_wa_ortu'),
+            'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+            'tgl_lahir' => $this->request->getPost('tgl_lahir'),
+            'alamat' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
+            // tambahkan field lain sesuai kebutuhan
+        ];
+        $daftarSiswaModel->update($id, $data);
+        return $this->response->setJSON(['status' => 'success']);
+    }
+
+    public function hapus_siswa()
+    {
+        $daftarSiswaModel = new DaftarSiswaModel();
+        $id = $this->request->getPost('id');
+        $daftarSiswaModel->delete($id);
+        return $this->response->setJSON(['status' => 'success']);
+    }
+    // END Tampilan Daftar Siswa
+
+
+
+
+
+
 
     public function kategori_pelanggaran()
     {
@@ -211,7 +290,7 @@ class AdminController extends BaseController
     //END Tampil Ke Halaman dan V sidebar
 
     
-
+    // START FUngsi DataGuru
     public function dataGuru()
     {
         // Data lain yang ingin dikirim ke view
@@ -314,6 +393,7 @@ class AdminController extends BaseController
 
     return $this->response->setJSON(['status' => 'success', 'message' => 'Guru berhasil dihapus.']);
 }
+    // END FUngsi DataGuru
     
 }
 

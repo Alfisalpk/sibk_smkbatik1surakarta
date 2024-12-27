@@ -167,117 +167,62 @@
 
 
 <!-- Testing Table -->
-
-
-
-
-          <!-- Area Grafik Dashboard Admin -->
-          <!-- <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              Featured
+<body>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h4>Data Siswa</h4>
+                <!-- Tombol untuk melihat daftar siswa -->
+              
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-
-          </div> -->
-
-
-          <!-- /.card-body -->
-          <!-- <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Responsive Hover Table</h3>
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 200px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              /.card-header
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th class="col-100">ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
-                      <th>Reason</th>
-                      <th>Reason</th>
-                      <th>Testing</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Testing 2</td>
-                      <td>Testing 3</td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                  </tbody>
+                <!-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button> -->
+                <a href="<?= base_url('/admin/daftar_siswa'); ?>" class="btn btn-primary mb-3">Kelola Daftar Siswa</a>
+                <table id="example2" class="table table-hover table-bordered table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 10vh;">NISN</th>
+                            <th scope="col" style="width: 70vh;">Nama Lengkap</th>
+                            <th scope="col" style="width: 70vh;">Nama Orang Tua</th>
+                            <th scope="col" style="width: 10vh;">Kelas</th>
+                            <th scope="col" style="width: 10vh;">Jenis Kelamin</th>
+                            <th scope="col" style="width: 10vh;">Agama</th>
+                            <th scope="col" style="width: 10vh;">Nomor WA Siswa</th>
+                            <th scope="col" style="width: 10vh;">Nomor WA Orang Tua</th>
+                            <th scope="col" style="width: 100vh;">Tempat Tanggal Lahir</th>
+                            <th scope="col" style="width: 100vh;">Alamat</th>
+                            <th scope="col" style="width: vh;">Email</th>
+                            <th scope="col" style="width: 10vh;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($siswadashboard as $s): ?>
+                        <tr>
+                            <th scope="row"><?= $s['nisn'] ?></th>
+                            <td><?= $s['username'] ?></td>
+                            <td><?= $s['nama_orangtua'] ?></td>
+                            <td><?= $s['kelas'] ?> <?= $s['jurusan'] ?></td>
+                            <td><?= $s['jenis_kelamin'] ?></td>
+                            <td><?= $s['agama'] ?></td>
+                            <td><?= $s['nomor_wa'] ?></td>
+                            <td><?= $s['nomor_wa_ortu'] ?></td>
+                            <td><?= $s['tempat_lahir'] ?>, <?= $s['tgl_lahir'] ?></td>
+                            <td><?= $s['alamat'] ?></td>
+                            <td><?= $s['email'] ?></td>
+                            <td>
+                            <button type="button" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-magnifying-glass-plus" ></i>
+                            </button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
-              </div>
-              /.card-body
             </div>
-            /.card
-          </div> -->
         </div>
-                </div>
+    </div>
 
-               </div>
-          </div>
-          
-      </div>
-      
-      <!-- /.col -->
-        </div>
-        <!-- /.row -->
-        <!-- /.row -->  
-         
+
   <!-- End Dashboard End -->  
     
 

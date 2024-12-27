@@ -22,81 +22,160 @@
   <!-- Dasboard Admin Start -->
   <section class="content">
   <!-- Small Box (Stat card) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
+  <body>
+    <div class="container mt-5">
+        <h2>Kategori Pelanggaran</h2>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addKategoriModal">Tambah Kategori</button>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kategori</th>
+                    <th>Nama Pelanggaran</th>
+                    <th>Klasifikasi</th>
+                    <th>Petugas Penanganan</th>
+                    <th>Sanksi</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($pelanggaran as $p): ?>
+                    <tr>
+                        <td><?= $p['id_pelanggaran'] ?></td>
+                        <td><?= $p['nama_kategori'] ?></td>
+                        <td><?= $p['nama_pelanggaran'] ?></td>
+                        <td><?= $p['klasifikasi'] ?></td>
+                        <td><?= $p['petugas_penanganan'] ?></td>
+                        <td><?= $p['sanksi'] ?></td>
+                        <td>
+                            <button type="button" class="btn btn-warning editBtn" data-id="<?= $p['id_pelanggaran'] ?>" data-kategori_id="<?= $p['kategori_id'] ?>" data-nama_pelanggaran="<?= $p['nama_pelanggaran'] ?>" data-klasifikasi="<?= $p['klasifikasi'] ?>" data-petugas_penanganan="<?= $p['petugas_penanganan'] ?>" data-sanksi="<?= $p['sanksi'] ?>" data-toggle="modal" data-target="#editModal">Edit</button>
+                            <a href="#" class="btn btn-danger deleteBtn" data-id="<?= $p['id_pelanggaran'] ?>">Delete</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 
-                <p>Data Siswa</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-solid fa-user-graduate"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
+    <!-- Modal Tambah Kategori -->
+    <div class="modal fade" id="addKategoriModal" tabindex="-1" role="dialog" aria-labelledby="addKategoriModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addKategoriModalLabel">Tambah Kategori</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addKategoriForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nama_kategori">Nama Kategori</label>
+                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Data Guru</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-solid fa-chalkboard-user"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>44</h3>
-
-                <p>Data Kelas</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-solid fa-users-rectangle"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Data Pelanggaran Siswa</p>
-              </div>
-              <div class="icon">
-                <i class="fas fas fa-file"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <!-- ./col -->
-          </section>
         </div>
-        <!-- /.row -->
+    </div>
 
-  <!-- End Dashboard End -->
+    <!-- Modal Tambah Pelanggaran -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Tambah Pelanggaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addPelanggaranForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="kategori_id">Kategori</label>
+                            <select class="form-control" id="kategori_id" name="kategori_id">
+                                <?php foreach ($kategori as $k): ?>
+                                    <option value="<?= $k['id'] ?>"><?= $k['nama_kategori'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama_pelanggaran">Nama Pelanggaran</label>
+                            <input type="text" class="form-control" id="nama_pelanggaran" name="nama_pelanggaran" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="klasifikasi">Klasifikasi</label>
+                            <input type="text" class="form-control" id="klasifikasi" name="klasifikasi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="petugas_penanganan">Petugas Penanganan</label>
+                            <input type="text" class="form-control" id="petugas_penanganan" name="petugas_penanganan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sanksi">Sanksi</label>
+                            <input type="text" class="form-control" id="sanksi" name="sanksi" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal Edit -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Pelanggaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editPelanggaranForm">
+                    <input type="hidden" id="id_pelanggaran" name="id_pelanggaran">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="edit_kategori_id">Kategori</label>
+                            <select class="form-control" id="edit_kategori_id" name="kategori_id">
+                                <?php foreach ($kategori as $k): ?>
+                                    <option value="<?= $k['id'] ?>"><?= $k['nama_kategori'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_nama_pelanggaran">Nama Pelanggaran</label>
+                            <input type="text" class="form-control" id="edit_nama_pelanggaran" name="nama_pelanggaran" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_klasifikasi">Klasifikasi</label>
+                            <input type="text" class="form-control" id="edit_klasifikasi" name="klasifikasi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_petugas_penanganan">Petugas Penanganan</label>
+                            <input type="text" class="form-control" id="edit_petugas_penanganan" name="petugas_penanganan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_sanksi">Sanksi</label>
+                            <input type="text" class="form-control" id="edit_sanksi" name="sanksi" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
   </div>
 </section>

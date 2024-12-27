@@ -61,10 +61,27 @@ $routes->post('uploadExcel', 'AdminController::uploadExcel');
 $routes->get('editSiswa/(:num)', 'AdminController::editSiswa/$1');
 $routes->post('perbaruiSiswa', 'AdminController::perbaruiSiswa');
 $routes->post('hapusSiswa', 'AdminController::hapusSiswa');
-
-
 // END Routes CRUD NISN Siswa
 
+
+// START Router CRUD Daftar Siswa
+$routes->get('daftar_siswa', 'AdminController::daftarSiswaView');
+$routes->post('tambah_siswa', 'AdminController::tambah_siswa');
+$routes->post('edit_siswa', 'AdminController::edit_siswa');
+$routes->post('hapus_siswa', 'AdminController::hapus_siswa');
+// END Router CRUD Daftar Siswa
+
+// START Router CRUD Kategori Pelanggaran
+$routes->get('kategori_pelanggaran', 'PelanggaranController::kategori_pelanggaran');
+$routes->post('pelanggaran/store', 'PelanggaranController::store');
+$routes->post('pelanggaran/update', 'PelanggaranController::update');
+$routes->get('pelanggaran/delete/(:num)', 'PelanggaranController::delete/$1');
+$routes->post('kategori/store', 'PelanggaranController::storeKategori');
+// END Router CRUD Kategori Pelanggaran
+
+
+
+// END Router CRUD Daftar Siswa
 
     
     //Validasi Halaman V_Sidebar    

@@ -40,7 +40,7 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" value="<?= old('identity')?>"
                                                 name="username_or_email" aria-describedby="emailHelp"
-                                                placeholder="Username / Email">
+                                                placeholder="Email atau Username">
                                                 <div class="invalid-feedback">
 							                    </div>
                                         </div>

@@ -19,10 +19,11 @@
   <!-- Dasboard Admin Start -->
   <section class="content">
   <!-- Small Box (Stat card) -->
-  <div class="container-fluid">
+  <body>
+    <div class="container-fluid">
         <div class="card">
             <div class="card-header bg-primary">
-                <h4 class="text-center">Daftar NISN</h4>
+                <h4 class="text-center">Data Siswa</h4>
             </div>
             <div class="card-body">
                 <?php if (session()->has('success')): ?>
@@ -42,7 +43,7 @@
                         <tr>
                             <th scope="col" style="width: 100vh;">NISN</th>
                             <th scope="col" style="width: 100vh;">Nama Lengkap</th>
-                            <th scope="col" style="width: 10vh;">Aksi</th>
+                            <th scope="col" style="width: 10 vh;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,9 +53,9 @@
                                     <th scope="row"><?= $s['nisn'] ?></th>
                                     <td><?= $s['nama_lengkap'] ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-warning edit-btn" data-id="<?= $s['id'] ?>">
+                                        <!-- <button type="button" class="btn btn-outline-warning edit-btn" data-id="<?= $s['id'] ?>">
                                             <i class="fa-regular fa-pen-to-square"></i>
-                                        </button>
+                                        </button> -->
                                         <button type="button" class="btn btn-outline-danger delete-btn" data-id="<?= $s['id'] ?>">
                                             <i class="fa-regular fa-trash-can"></i>
                                         </button>
@@ -118,7 +119,7 @@
                             <label for="excel_file">Upload File Excel</label>
                             <input type="file" class="form-control" id="excel_file" name="excel_file" accept=".xls,.xlsx" required>
                             <small class="form-text text-muted">Format file: .xls atau .xlsx</small>
-                           
+                            <a href="<?= base_url('public/template/template_siswa.xlsx') ?>" download="template_siswa.xlsx" class="btn btn-link">Unduh Template</a>
                         </div>
                     </form>
                 </div>
@@ -132,7 +133,7 @@
 
     <!-- Modal Edit Siswa -->
     <div class="modal fade" id="editSiswaModal" tabindex="-1" role="dialog" aria-labelledby="editSiswaModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editSiswaModalLabel">Edit Siswa</h5>
