@@ -23,7 +23,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header bg-primary">
-                <h4 class="text-center">Data Siswa</h4>
+                <h4 class="text-center">Data NISN Siswa</h4>
             </div>
             <div class="card-body">
                 <?php if (session()->has('success')): ?>
@@ -87,7 +87,7 @@
                     <form id="addSiswaForm">
                         <div class="form-group">
                             <label for="nisn">NISN</label>
-                            <input type="text" class="form-control" id="nisn" name="nisn" required>
+                            <input type="number" class="form-control" id="nisn" name="nisn" required>
                         </div>
                         <div class="form-group">
                             <label for="nama_lengkap">Nama Lengkap</label>

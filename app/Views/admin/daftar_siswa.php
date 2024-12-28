@@ -89,7 +89,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nisn">NISN</label>
-                            <input type="text" class="form-control" id="nisn" name="nisn" disabled required>
+                            <input type="number" class="form-control" id="nisn" name="nisn" disabled required>
                         </div>
                         <div class="form-group">
                             <label for="nama_lengkap">Nama Lengkap</label>
@@ -100,8 +100,27 @@
                             <input type="text" class="form-control" id="nama_orangtua" name="nama_orangtua" required>
                         </div>
                         <div class="form-group">
-                            <label for="kelas">Kelas</label>
-                            <input type="text" class="form-control" id="kelas" name="kelas" required>
+                        <select style="font-size: 13px" class="form-select form-select-sm form-control" aria-label="Small select example" id="kelas" name="kelas" required>
+                                    <option value="" disabled selected>Jurusan</option>
+                                        <option value="TKJ 1">TKJ 1</option>
+                                        <option value="TKJ 2">TKJ 2</option>
+                                        <option value="TKJ 3">TKJ 3</option>
+                                        <option value="TKJ 4">TKJ 4</option>
+                                        <option value="Farmasi">Farmasi</option>
+                                        <option value="DKV 1">DKV 1</option>
+                                        <option value="DKV 2">DKV 2</option>
+                                        <option value="DKV 3">DKV 3</option>
+                                        <option value="OTKP 1">OTKP 1</option>
+                                        <option value="OTKP 2">OTKP 2</option>
+                                        <option value="OTKP 3">OTKP 3</option>
+                                        <option value="BDP 1">BDP 1</option>
+                                        <option value="BDP 2">BDP 2</option>
+                                        <option value="BDP 3">BDP 3</option>
+                                        <option value="AKL 1">AKL 1</option>
+                                        <option value="AKL 2">AKL 2</option>
+                                        <option value="AKL 3">AKL 3</option>
+                                        
+                                </select>
                         </div>
                         <div class="form-group">
                             <label for="jurusan">Jurusan</label>
@@ -167,7 +186,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="edit_nisn">NISN</label>
-                            <input type="text" class="form-control" id="edit_nisn" name="nisn" required>
+                            <input type="number" class="form-control" id="edit_nisn" name="nisn" required>
                         </div>
                         <div class="form-group">
                             <label for="edit_nama_lengkap">Nama Lengkap</label>
@@ -178,12 +197,34 @@
                             <input type="text" class="form-control" id="edit_nama_orangtua" name="nama_orangtua" required>
                         </div>
                         <div class="form-group">
-                            <label for="edit_kelas">Kelas</label>
-                            <input type="text" class="form-control" id="edit_kelas" name="kelas" required>
+                        <label for="edit_kelas">Jenis Kelamin</label>
+                            <select class="form-control" id="edit_kelas" name="kelas" required>
+                                <option value="X">X</option>
+                                <option value="XI">XI</option>
+                                <option value="XII">XII</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="edit_jurusan">Jurusan</label>
-                            <input type="text" class="form-control" id="edit_jurusan" name="jurusan" required>
+                            <select class="form-control" id="edit_jurusan" name="jurusan" required>
+                                <option value="TKJ 1">TKJ 1</option>
+                                <option value="TKJ 2">TKJ 2</option>
+                                <option value="TKJ 3">TKJ 3</option>
+                                <option value="TKJ 4">TKJ 4</option>
+                                <option value="Farmasi">Farmasi</option>
+                                <option value="DKV 1">DKV 1</option>
+                                <option value="DKV 2">DKV 2</option>
+                                <option value="DKV 3">DKV 3</option>
+                                <option value="OTKP 1">OTKP 1</option>
+                                <option value="OTKP 2">OTKP 2</option>
+                                <option value="OTKP 3">OTKP 3</option>
+                                <option value="BDP 1">BDP 1</option>
+                                <option value="BDP 2">BDP 2</option>
+                                <option value="BDP 3">BDP 3</option>
+                                <option value="AKL 1">AKL 1</option>
+                                <option value="AKL 2">AKL 2</option>
+                                <option value="AKL 3">AKL 3</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="edit_jenis_kelamin">Jenis Kelamin</label>
@@ -194,15 +235,22 @@
                         </div>
                         <div class="form-group">
                             <label for="edit_agama">Agama</label>
-                            <input type="text" class="form-control" id="edit_agama" name="agama" required>
+                            <select class="form-control" id="edit_agama" name="agama" required>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Kristen">Kristen</option>
+                                    <option value="Katolik">Katolik</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Budha">Budha</option>
+                                    <option value="Konghucu">Konghucu</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="edit_nomor_wa">Nomor WA Siswa</label>
-                            <input type="text" class="form-control" id="edit_nomor_wa" name="nomor_wa" required>
+                            <input type="number" class="form-control" id="edit_nomor_wa" name="nomor_wa" required>
                         </div>
                         <div class="form-group">
                             <label for="edit_nomor_wa_ortu">Nomor WA Orang Tua</label>
-                            <input type="text" class="form-control" id="edit_nomor_wa_ortu" name="nomor_wa_ortu" required>
+                            <input type="number" class="form-control" id="edit_nomor_wa_ortu" name="nomor_wa_ortu" required>
                         </div>
                         <div class="form-group">
                             <label for="edit_tempat_lahir">Tempat Lahir</label>
