@@ -38,12 +38,13 @@
                 <?php endif; ?>
                 <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button>
                 <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#uploadExcelModal">Upload Excel</button>
-                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <div class="table-responsiveku">
+                <table id="example2" class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 100vh;">NISN</th>
                             <th scope="col" style="width: 100vh;">Nama Lengkap</th>
-                            <th scope="col" style="width: 10 vh;">Aksi</th>
+                            <th scope="col" style="width: 10vh;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,6 +70,7 @@
                         <?php endif; ?>
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>

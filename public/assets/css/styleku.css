@@ -1,4 +1,4 @@
-/* File: public/css/styleku.css */
-/* .dashmin-table {
-   width: 12;
-} */
+.table-responsiveku {
+  max-height: 700px; /* Set your desired height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}

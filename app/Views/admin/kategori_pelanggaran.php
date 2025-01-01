@@ -7,12 +7,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Data Kategori Pelanggaran</h1>
+            <h1 class="m-0">Kategori Pelanggaran</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard Admin</li>
+              
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,27 +22,29 @@
   <section class="content">
   <!-- Small Box (Stat card) -->
   <body>
-  <div class="container-fluid">
-        <div class="card">
-            <div class="card-header bg-primary">
+    <div class="container-fluid">
+     <div class="card">
+     <div class="card-header bg-primary">
                 <h4 class="text-center">Data Kategori Pelanggaran</h4>
             </div>
             <div class="card-body">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addKategoriModal">Tambah Kategori</button>
-                <table id="example2" class="table table-hover table-bordered table-responsive">
-                    <thead>
-                    <tr>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addKategoriModal">Tambah Kategori</button>
+        <div class="table-responsiveku">
+        <table id="example2" class="table table-hover table-bordered">
+            <thead>
+            <tr>
                     <th style="width: 5vh;">ID</th>
                     <th style="width: 15vh;">Kategori</th>
                     <th style="width: 100vh;">Nama Pelanggaran</th>
                     <th style="width: 20vh;">Klasifikasi</th>
                     <th style="width: 25vh;">Petugas Penanganan</th>
                     <th style="width: 25vh;">Sanksi</th>
-                    <th style="width: 20vh;">Aksi</th>
+                    <th style="width: 10vh;">Aksi</th>
                 </tr>
-                    </thead>
-                    <?php foreach ($pelanggaran as $p): ?>
+            </thead>
+            <tbody>
+                <?php foreach ($pelanggaran as $p): ?>
                     <tr>
                         <td><?= $p['id_pelanggaran'] ?></td>
                         <td><?= $p['nama_kategori'] ?></td>
@@ -53,22 +54,25 @@
                         <td><?= $p['sanksi'] ?></td>
                         <td>
                             <button type="button" class="btn btn-outline-warning editBtn" data-id="<?= $p['id_pelanggaran'] ?>" data-kategori_id="<?= $p['kategori_id'] ?>" data-nama_pelanggaran="<?= $p['nama_pelanggaran'] ?>" data-klasifikasi="<?= $p['klasifikasi'] ?>" data-petugas_penanganan="<?= $p['petugas_penanganan'] ?>" data-sanksi="<?= $p['sanksi'] ?>" data-toggle="modal" data-target="#editModal">
-                                <i class="fa-regular fa-pen-to-square"></i>
+                            <i class="fa-regular fa-pen-to-square"></i>
                             </button>
-                            <a href="#" class="btn btn-outline-danger deleteBtn" data-id="<?= $p['id_pelanggaran'] ?>">
+                            <button href="#" class="btn btn-outline-danger deleteBtn" data-id="<?= $p['id_pelanggaran'] ?>">
                             <i class="fa-regular fa-trash-can"></i>
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
-                </table>
-            </div>
-        </div>
+            </tbody>
+        </table>
+     </div>  
+     </div>  
+     </div>  
+     </div>  
     </div>
 
     <!-- Modal Tambah Kategori -->
     <div class="modal fade" id="addKategoriModal" tabindex="-1" role="dialog" aria-labelledby="addKategoriModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog modal-dialog-centered-centered" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addKategoriModalLabel">Tambah Kategori</h5>
@@ -94,7 +98,7 @@
 
     <!-- Modal Tambah Pelanggaran -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addModalLabel">Tambah Pelanggaran</h5>
@@ -140,7 +144,7 @@
 
     <!-- Modal Edit -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Edit Pelanggaran</h5>
@@ -184,6 +188,7 @@
             </div>
         </div>
     </div>
+
 
   </div>
 </section>

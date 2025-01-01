@@ -144,6 +144,7 @@
                         <?= session('error') ?>
                     </div>
                 <?php endif; ?>
+                <div class="table-responsiveku">
                 <table id="example2" class="table table-hover table-bordered table-responsive">
                     <thead>
                     <tr>
@@ -157,7 +158,7 @@
                             <th scope="col" style="width: 15vh;">No Telepon</th>
                             <th scope="col" style="width: 25vh;">Email</th>
                             <th scope="col" style="width: 50vh;">Alamat</th>
-                            <th scope="col" style="width: vh;">Aksi</th>
+                            <th scope="col" style="width: 15vh;">Aksi</th>
                         </tr>
 
                     </thead>
@@ -204,6 +205,7 @@
                         <?php endif; ?>
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>

@@ -192,7 +192,7 @@
                             <th scope="col" style="width: 100vh;">Tempat Tanggal Lahir</th>
                             <th scope="col" style="width: 100vh;">Alamat</th>
                             <th scope="col" style="width: vh;">Email</th>
-                            <th scope="col" style="width: 10vh;">Aksi</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -209,11 +209,7 @@
                             <td><?= $s['tempat_lahir'] ?>, <?= $s['tgl_lahir'] ?></td>
                             <td><?= $s['alamat'] ?></td>
                             <td><?= $s['email'] ?></td>
-                            <td>
-                            <button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus" ></i>
-                            </button>
-                            </td>
+                            
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

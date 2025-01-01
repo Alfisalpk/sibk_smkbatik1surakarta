@@ -71,13 +71,26 @@ $routes->post('edit_siswa', 'AdminController::edit_siswa');
 $routes->post('hapus_siswa', 'AdminController::hapus_siswa');
 // END Router CRUD Daftar Siswa
 
-// START Router CRUD Kategori Pelanggaran
-$routes->get('kategori_pelanggaran', 'PelanggaranController::kategori_pelanggaran');
-$routes->post('pelanggaran/store', 'PelanggaranController::store');
-$routes->post('pelanggaran/update', 'PelanggaranController::update');
-$routes->get('pelanggaran/delete/(:num)', 'PelanggaranController::delete/$1');
-$routes->post('kategori/store', 'PelanggaranController::storeKategori');
-// END Router CRUD Kategori Pelanggaran
+ // START Router CRUD Kategori Pelanggaran
+ $routes->get('kategori_pelanggaran', 'PelanggaranController::kategori_pelanggaran');
+ $routes->post('pelanggaran/store', 'PelanggaranController::store');
+ $routes->post('pelanggaran/update', 'PelanggaranController::update');
+ $routes->get('pelanggaran/delete/(:num)', 'PelanggaranController::delete/$1');
+ $routes->post('kategori/store', 'PelanggaranController::storeKategori');
+ // END Router CRUD Kategori Pelanggaran
+
+
+// START Routes CRUD Pelanggaran Siswa
+$routes->get('pelanggaran_siswa', 'PelanggaranSiswaController::pelanggaran_siswa');
+$routes->post('pelanggaran_siswa/store', 'PelanggaranSiswaController::store_pelanggaran_siswa');
+$routes->post('pelanggaran_siswa/update/(:num)', 'PelanggaranSiswaController::update_pelanggaran_siswa/$1'); // Pastikan rute ini ada
+$routes->get('pelanggaran_siswa/delete/(:num)', 'PelanggaranSiswaController::delete_pelanggaran_siswa/$1');
+$routes->post('pelanggaran_siswa/getPelanggaranByKategori', 'PelanggaranSiswaController::getPelanggaranByKategori');
+$routes->post('pelanggaran_siswa/getUserById', 'PelanggaranSiswaController::getUserById');
+// END Routes CRUD Pelanggaran Siswa
+
+
+
 
 
 
@@ -91,7 +104,7 @@ $routes->post('kategori/store', 'PelanggaranController::storeKategori');
     $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile');
     $routes->get('bimbingan_konseling', 'AdminController::bimbingan_konseling');
     $routes->get('data_nisn', 'AdminController::data_nisn');
-    $routes->get('pelanggaran_siswa', 'AdminController::pelanggaran_siswa');
+    // $routes->get('pelanggaran_siswa', 'AdminController::pelanggaran_siswa');
     $routes->get('daftar_siswa', 'AdminController::daftar_siswa'); 
     $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa');
     $routes->get('kategori_pelanggaran', 'AdminController::kategori_pelanggaran');

@@ -38,7 +38,8 @@
   <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!--End Data Tabless -->
- 
+  <!-- Link to Select2 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -134,6 +135,8 @@
 <!-- Sweet Alert -->
 <!-- SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+<!-- Link to Select2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <!--End Data Tabless -->
 
@@ -142,16 +145,18 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["csv", "excel", "pdf"]
+      "buttons": true ["csv", "excel", "pdf"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
+       $('#example2').DataTable({
+      "paging": false,
       "lengthChange": true,
       "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": false,
       "responsive": true,
+    //   "scrollY": "300px", // Atur tinggi scroll vertikal
+    //   "scrollX": true, // Aktifkan scroll horizontal
       "buttons": ["csv", "excel", "pdf"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
@@ -159,8 +164,6 @@
 
 
 <script>
-  
-
     $(document).ready(function() {
         // Submit Form Tambah Guru
         $('#tambahGuruForm').on('submit', function(event) {
@@ -813,13 +816,13 @@
                 e.preventDefault();
                 var id = $(this).data('id');
                 Swal.fire({
-                    title: 'Apa Kamu Yakin Hapus Data Ini?',
-                    text: "Data Ini Tidak Bisa Dikembalikan Lagi!",
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Hapus Data!'
+                    confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -972,8 +975,362 @@
             });
         });
     </script>
-</body>
 <!-- END AJAX Untuk Halaman Kategori Pelanggaran -->
+
+
+
+<!-- START AJAX Untuk Halaman Pelanggaran Siswa -->
+<script>
+    $(document).ready(function() {
+        // Menampilkan notifikasi SweetAlert berdasarkan session flash data
+        <?php if (session()->getFlashdata('success')): ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '<?= session()->getFlashdata('success') ?>',
+                showConfirmButton: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '<?= session()->getFlashdata('error') ?>',
+                showConfirmButton: true
+            });
+        <?php endif; ?>
+
+        $('#kategori_id').change(function() {
+            var kategori_id = $(this).val();
+            $.ajax({
+                url: '/admin/pelanggaran_siswa/getPelanggaranByKategori',
+                type: 'POST',
+                data: { kategori_id: kategori_id },
+                dataType: 'json', // Menentukan tipe data yang diharapkan
+                success: function(response) {
+                    console.log('Response:', response);
+                    var options = '<option value="">Pilih Pelanggaran</option>';
+                    $.each(response, function(index, value) {
+                        options += '<option value="' + value.id_pelanggaran + '">' + value.nama_pelanggaran + '</option>';
+                    });
+                    $('#pelanggaran_id').html(options);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching pelanggaran:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                }
+            });
+        });
+
+        $('#kategori_id_edit').change(function() {
+            var kategori_id = $(this).val();
+            $.ajax({
+                url: '/admin/pelanggaran_siswa/getPelanggaranByKategori',
+                type: 'POST',
+                data: { kategori_id: kategori_id },
+                dataType: 'json', // Menentukan tipe data yang diharapkan
+                success: function(response) {
+                    console.log('Response:', response);
+                    var options = '<option value="">Pilih Pelanggaran</option>';
+                    $.each(response, function(index, value) {
+                        options += '<option value="' + value.id_pelanggaran + '">' + value.nama_pelanggaran + '</option>';
+                    });
+                    $('#pelanggaran_id_edit').html(options);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching pelanggaran:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                }
+            });
+        });
+
+        $('#editModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var siswa_id = button.data('siswa_id');
+            var kategori_id = button.data('kategori_id');
+            var pelanggaran_id = button.data('pelanggaran_id');
+            var tanggal = button.data('tanggal');
+            var deskripsi = button.data('deskripsi');
+
+            var modal = $(this);
+            modal.find('#id').val(id);
+            modal.find('#siswa_id_edit').val(siswa_id);
+            modal.find('#kategori_id_edit').val(kategori_id);
+            modal.find('#pelanggaran_id_edit').val(pelanggaran_id);
+            modal.find('#tanggal_edit').val(tanggal);
+            modal.find('#deskripsi_edit').val(deskripsi);
+
+            // Set action URL form dengan ID yang sesuai
+            modal.find('#editForm').attr('action', '/admin/pelanggaran_siswa/update/' + id);
+
+            // Load pelanggaran berdasarkan kategori saat modal ditampilkan
+            $.ajax({
+                url: '/admin/pelanggaran_siswa/getPelanggaranByKategori',
+                type: 'POST',
+                data: { kategori_id: kategori_id },
+                dataType: 'json', // Menentukan tipe data yang diharapkan
+                success: function(response) {
+                    console.log('Response:', response);
+                    var options = '<option value="">Pilih Pelanggaran</option>';
+                    $.each(response, function(index, value) {
+                        options += '<option value="' + value.id_pelanggaran + '">' + value.nama_pelanggaran + '</option>';
+                    });
+                    modal.find('#pelanggaran_id_edit').html(options);
+                    modal.find('#pelanggaran_id_edit').val(pelanggaran_id);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching pelanggaran:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                }
+            });
+        });
+
+        // Konfirmasi tambah data
+        $('#addSubmitBtn').click(function() {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data akan ditambahkan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, tambah!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#addForm').submit();
+                }
+            });
+        });
+
+        // Konfirmasi edit data
+        $('#editSubmitBtn').click(function() {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data akan diperbarui!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, perbarui!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#editForm').submit();
+                }
+            });
+        });
+
+        // Konfirmasi hapus data
+        $('.delete-btnpelanggaransiswa').click(function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data akan dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/pelanggaran_siswa/delete/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    text: response.message,
+                                    showConfirmButton: true
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal',
+                                    text: response.message,
+                                    showConfirmButton: true
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error deleting data:', error);
+                            console.error('Status:', status);
+                            console.error('Response Text:', xhr.responseText);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal',
+                                text: 'Terjadi kesalahan saat menghapus data.',
+                                showConfirmButton: true
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+        // Menangani submit form tambah dengan SweetAlert
+        $('#addForm').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: response.message,
+                            showConfirmButton: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error submitting form:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Terjadi kesalahan saat menambahkan data.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        });
+
+        // Menangani submit form edit dengan SweetAlert
+        $('#editForm').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: response.message,
+                            showConfirmButton: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error submitting form:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Terjadi kesalahan saat memperbarui data.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        });
+
+        // Menangani klik tombol Detail
+        $('.detail-btn').click(function(e) {
+            e.preventDefault();
+            var siswa_id = $(this).data('id');
+
+            $.ajax({
+                url: '/admin/pelanggaran_siswa/getUserById',
+                type: 'POST',
+                data: { id: siswa_id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#detailNamaLengkap').val(response.user.nama_lengkap);
+                        $('#detailEmail').val(response.user.email);
+                        $('#detailNis').val(response.user.nisn);
+                        // Menggabungkan Kelas dan Jurusan
+                        var kelasJurusan = response.user.kelas + ' ' + response.user.jurusan;
+                        $('#detailKelasJurusan').val(kelasJurusan);
+                        $('#detailJenis_Kelamin').val(response.user.jenis_kelamin);
+                        $('#detailAgama').val(response.user.agama);
+                        $('#detailNomor_Wa').val(response.user.nomor_wa);
+                        $('#detailNomor_WA_Ortu').val(response.user.nomor_wa_ortu);
+                        $('#detailAlamat').val(response.user.alamat);
+                          // Menampilkan gambar siswa
+                          var fotoUrl = '/' + response.user.foto;
+                        $('#detailFoto').attr('src', fotoUrl);
+                        // Tambahkan field lainnya sesuai kebutuhan
+
+                        $('#detailModal').modal('show');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching user data:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Terjadi kesalahan saat mengambil data siswa.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+
+<!-- END AJAX Untuk Halaman Pelanggaran Siswa -->
+
+
+
 
 
 

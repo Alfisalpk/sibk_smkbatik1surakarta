@@ -86,4 +86,19 @@ class PelanggaranController extends Controller
             return json_encode(['success' => false, 'message' => 'Gagal menambahkan kategori.']);
         }
     }
+
+
+    // Untuk Melempat Data Ke Pelanggaran_Siswa
+    public function getPelanggaranByKategori()
+    {
+        $kategori_id = $this->request->getPost('kategori_id');
+        $pelanggaran = $this->pelanggaranModel->where('kategori_id', $kategori_id)->findAll();
+    
+        // // Log data pelanggaran
+        // log_message('info', 'Pelanggaran by kategori ' . $kategori_id . ': ' . json_encode($pelanggaran));
+    
+        return $this->response->setJSON($pelanggaran);
+    }
+
+   
 }

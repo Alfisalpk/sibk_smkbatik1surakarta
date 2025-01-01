@@ -31,18 +31,18 @@
                 <table id="example2" class="table table-hover table-bordered table-responsive">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 100vh;">NISN</th>
+                            <th scope="col" style="width: 50vh;">NISN</th>
                             <th scope="col" style="width: 100vh;">Nama Lengkap</th>
                             <th scope="col" style="width: 100vh;">Nama Orang Tua</th>
                             <th scope="col" style="width: 100vh;">Kelas</th>
-                            <th scope="col" style="width: 100vh;">Jenis Kelamin</th>
+                            <th scope="col" style="width: 10vh;">Jenis Kelamin</th>
                             <th scope="col" style="width: 100vh;">Agama</th>
                             <th scope="col" style="width: 100vh;">Nomor WA Siswa</th>
                             <th scope="col" style="width: 100vh;">Nomor WA Orang Tua</th>
                             <th scope="col" style="width: 100vh;">Tempat Tanggal Lahir</th>
                             <th scope="col" style="width: 100vh;">Alamat</th>
                             <th scope="col" style="width: 100vh;">Email</th>
-                            <th scope="col" style="width: 100vh;">Aksi</th>
+                            <th scope="col" style="width: 15vh;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

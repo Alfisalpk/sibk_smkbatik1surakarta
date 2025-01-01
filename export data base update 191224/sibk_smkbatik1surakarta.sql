@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Des 2024 pada 08.36
+-- Waktu pembuatan: 28 Des 2024 pada 19.58
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -24,16 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `level_pelanggaran`
+-- Struktur dari tabel `kategori_pelanggaran`
 --
 
-CREATE TABLE `level_pelanggaran` (
-  `id_level_pelanggaran` int(11) NOT NULL,
-  `jenis_pelanggaran` varchar(255) NOT NULL,
-  `peraturan` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+CREATE TABLE `kategori_pelanggaran` (
+  `id` int(11) NOT NULL,
+  `nama_kategori` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `kategori_pelanggaran`
+--
+
+INSERT INTO `kategori_pelanggaran` (`id`, `nama_kategori`) VALUES
+(4, 'Keterlambatan'),
+(5, 'Kehadiran'),
+(7, 'Kerapian atau Pakaian'),
+(8, 'Ketertipan'),
+(9, 'Merokok'),
+(10, 'Berkelahi'),
+(11, 'Lain-Lain');
 
 -- --------------------------------------------------------
 
@@ -58,6 +68,44 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
 (10, '2024-07-06-143803', 'App\\Database\\Migrations\\CreateUserGuruTable', 'default', 'App', 1720277043, 1),
 (11, '2024-07-06-145909', 'App\\Database\\Migrations\\CreateResetPasswordTokensTable', 'default', 'App', 1720278006, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pelanggaran`
+--
+
+CREATE TABLE `pelanggaran` (
+  `id_pelanggaran` int(11) NOT NULL,
+  `kategori_id` int(11) DEFAULT NULL,
+  `nama_pelanggaran` varchar(255) NOT NULL,
+  `klasifikasi` varchar(50) NOT NULL,
+  `petugas_penanganan` varchar(255) NOT NULL,
+  `sanksi` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pelanggaran`
+--
+
+INSERT INTO `pelanggaran` (`id_pelanggaran`, `kategori_id`, `nama_pelanggaran`, `klasifikasi`, `petugas_penanganan`, `sanksi`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(9, 4, 'Terlambat Masuk Sekolah Lebih Dari 1 Menit', 'Ringan', 'Guru BK dan Kesiswaan', 'Dicatat Sistem', '2024-12-28 17:37:20', '2024-12-28 17:37:20', NULL),
+(10, 5, 'Tidak Masuk Karena Sakit', 'Ringan', 'Wali Kelas', 'Klarifikasi Teguran', '2024-12-28 17:52:36', '2024-12-28 17:52:36', NULL),
+(11, 5, 'Tidak Masuk Dengan Membuat Keterangan Palsu', 'Sedang', 'Wali Kelas dan BK', 'Bimbingan Wali Kelas', '2024-12-28 17:58:35', '2024-12-28 17:58:35', NULL),
+(12, 5, 'Tidak Mengikuti Kegiatan Pembelajaran Life Skill, dan Piket di Unit Produksi B-One', 'Sedang', 'Wali Kelas, BK, dan Kesiswaan', 'Teguran, Bimbingan, Surat Perjanjian', '2024-12-28 18:08:30', '2024-12-28 18:08:45', '2024-12-28 18:08:45'),
+(13, 5, 'Tidak Mengikuti Kegiatan Pembelajaran Life Skill, dan Piket di Unit Produksi B-One', 'Sedang', 'Wali Kelas, BK, dan Kesiswaan', 'Teguran, Bimbingan, Surat Perjanjian', '2024-12-28 18:08:30', '2024-12-28 18:08:49', '2024-12-28 18:08:49'),
+(14, 5, 'Tidak Mengikuti Kegiatan Pembelajaran Life Skill, dan Piket di Unit Produksi B-One', 'Sedang', 'Wali Kelas, BK, dan Kesiswaan', 'Teguran, Bimbingan, Surat Perjanjian', '2024-12-28 18:08:32', '2024-12-28 18:08:32', NULL),
+(15, 5, 'Tidak Masuk Tanpa Keterangan Lebih Dari 2 Hari', 'Sedang', 'Wali Kelas dan BK', 'Klarifikasi Ke Orang Tua', '2024-12-28 18:13:30', '2024-12-28 18:13:30', NULL),
+(16, 7, 'Tidak Mengenakan Ikat Pinggang', 'Ringan', 'Guru, Wali Kelas', 'Teguran', '2024-12-28 18:14:40', '2024-12-28 18:14:40', NULL),
+(17, 7, 'Berhias Berlebihan Bagi Putri', 'Ringan', 'Guru, Wali Kelas', 'Teguran', '2024-12-28 18:15:41', '2024-12-28 18:15:41', NULL),
+(18, 7, 'Membawa Alat Make Up (Kecuali Dipakai Kegiatan Life Skill)', 'Ringan', 'Guru, Wali Kelas', 'Disita dan Tidak DIkembalikan', '2024-12-28 18:17:31', '2024-12-28 18:19:40', NULL),
+(19, 7, 'Memakai Gelang, Kalung, Bagi Siswa Putra', 'Ringan', 'Guru, Wali Kelas', 'Disita dan Tidak Dikembalikan', '2024-12-28 18:19:20', '2024-12-28 18:19:20', NULL),
+(20, 8, 'Makan dan Minum di Kelas Saat KBM', 'Ringan', 'Guru Mapel', 'Teguran', '2024-12-28 18:21:28', '2024-12-28 18:21:28', NULL),
+(21, 8, 'Membuang Sampah Didalam Kelas', 'Ringan', 'Guru Mapel dan Wali Kelas', 'Teguran dan Membersihakan Kelas', '2024-12-28 18:22:26', '2024-12-28 18:22:26', NULL),
+(22, 8, 'Membuat Kegaduhan Didalam Kelas Pada Saat KBM', 'Sedang', 'Guru Mapel dan Wali Kelas', 'Teguran, Tugas Tambahan dari Guru Mapel, dan Pembinaan Wali Kelas', '2024-12-28 18:25:00', '2024-12-28 18:25:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -143,22 +191,6 @@ INSERT INTO `tb_guru` (`id`, `user_guru_id`, `full_name`, `nama_panggilan`, `nip
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pelanggaran_siswa`
---
-
-CREATE TABLE `tb_pelanggaran_siswa` (
-  `kode_pelanggaran` int(11) NOT NULL,
-  `keterangan_pelanggaran` varchar(255) NOT NULL,
-  `evaluasi_pelanggaran` varchar(255) NOT NULL,
-  `id_level_pelanggaran` int(11) NOT NULL,
-  `tanggal` date NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `tb_siswa`
 --
 
@@ -189,9 +221,11 @@ CREATE TABLE `tb_siswa` (
 --
 
 INSERT INTO `tb_siswa` (`id`, `nisn`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `nomor_handphone`, `alamat`, `agama`, `jenis_kelamin`, `asal_sekolah`, `lulusan_tahun`, `nama_wali_murid`, `nomor_wali_murid`, `id_kelas`, `id_jurusan`, `kode_pelanggaran`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(53, '20010823', 'Alfisal Punjung Kurniawan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-24 06:31:14', '2024-12-24 06:31:14', NULL),
+(53, '20010823', 'Alfisal Punjung Kurniawan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-24 06:31:14', '2024-12-27 22:22:48', '2024-12-27 22:22:48'),
 (120, '654354', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-26 06:34:47', '2024-12-26 06:34:57', '2024-12-26 06:34:57'),
-(121, '23082001', 'Alfisal Punjung Baru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-27 02:50:25', '2024-12-27 02:50:25', NULL);
+(121, '23082001', 'Alfisal Punjung Baru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-27 02:50:25', '2024-12-27 02:50:25', NULL),
+(122, '2001', 'Alfisal Punjung', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-27 22:23:02', '2024-12-27 22:23:02', NULL),
+(123, '10', 'Punjung', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-28 17:17:14', '2024-12-28 17:17:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -249,8 +283,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nisn`, `nama_lengkap`, `username`, `nama_orangtua`, `email`, `password`, `kelas`, `jurusan`, `jenis_kelamin`, `agama`, `nomor_wa`, `nomor_wa_ortu`, `tempat_lahir`, `tgl_lahir`, `alamat`, `asal_sekolah`, `lulusan_tahun`, `hobby`, `role`, `foto`, `reset_token`, `reset_expiry`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(17, '275441869', 'Joko', 'Joko Anwar', 'Anwar ', 'joko@gmail.com', '$2y$10$att66kRKD0sjxpwIUPACDeVtIlKTQVlhAxmnpdjhKCWQS3e.P.t2m', 'X', 'AKL 2', 'Laki-Laki', 'Islam', '081325659017', '081332615242', 'Jakarta', '2024-12-05', 'Griya Kratonan 2, Pucangan, Kartasura', 'SMPN 3 Kartasura', '2017', 'Motoran', 3, 'uploads/siswa/1735151752_378b48fdf9d9b6d806dc.jpg', NULL, NULL, '2024-12-23 18:34:29', '2024-12-25 19:26:34', NULL),
-(18, '23082001', 'Alfisal Punjung', 'Alfisal Punjung Kurniawan', 'Alfianing Nur Batinah', 'kiki@gmail.com', '$2y$10$LlklRLJojJ72k2a2zNOCMeGZoLyDusPLZALcyaOmQkn2bQNsT87pm', 'X', 'TKJ 3', 'Laki-Laki', 'Islam', '081325659017', '081332615242', 'Kartasura', '2024-12-26', 'Griya Kratonan 2, Pucangan, Kartasura', 'SMPN 3 Kartasura', '2010', 'Muncak', 3, '\'default.jpg\'', NULL, NULL, '2024-12-23 21:09:15', '2024-12-23 21:09:15', NULL);
+(18, '23082001', 'Alfisal Punjung ', 'Alfisal Punjung Kurniawan', 'Nur Salam', 'kiki@gmail.com', '$2y$10$LlklRLJojJ72k2a2zNOCMeGZoLyDusPLZALcyaOmQkn2bQNsT87pm', 'XI', 'BDP 3', 'Perempuan', 'Islam', '081325659017', '081332615242', 'Sukoharjo', '2024-12-26', 'Griya Kratonan 2, Pucangan, Kartasura', 'SMPN 3 Kartasura', '2010', 'Muncak', 3, '\'default.jpg\'', NULL, NULL, '2024-12-23 21:09:15', '2024-12-28 17:16:32', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,7 +318,6 @@ CREATE TABLE `user_guru` (
 
 INSERT INTO `user_guru` (`id`, `username`, `email`, `password`, `role`, `foto`, `nip`, `nama_panggilan`, `jurusan_pengampu`, `tempat_lahir`, `tgl_lahir`, `agama`, `jenis_kelamin`, `no_telepon`, `alamat`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (10, 'Alfisal Punjung', 'punjungalfisal@gmail.com', '$2y$10$8AbPzz1iMmN.fuyu6DjysuSpFXCVP2hSDLFbPhs8Lrw1WT35TTqi2', 1, NULL, 202030217, 'Punjung', 'TKJ', 'Sukoharjo', '2001-08-23', 'Islam', 'Laki-Laki', '081325659017', 'Jl, Apel, Kopen, Ngadirejo, Kartasura, Sukoharjo', NULL, '2024-12-19 04:05:29', NULL),
-(19, 'Punjung Kurniawan', 'punjung@gmail.com', '$2y$10$ySqTSAyzz8QmITeqTrqnW.fK4.qE4qY1uvxmp7m85Qkehav3BhwmG', 4, NULL, 1234, 'Punjung', 'Farmasi', 'Surabaya', '2024-12-04', 'Islam', 'Laki-Laki', '081556289777445', 'Ediiiititttttt', '2024-12-23 22:40:33', '2024-12-26 02:39:07', '2024-12-26 02:39:07'),
 (20, 'Asna Guru BK', 'fifa@gmail.com', '$2y$10$fJwkC8E4E5ZMWVbaBN8yB.ULDglAB6wEZF.iP4IkLgEa/.zMnK1u6', 4, NULL, 12345678, 'Asna', 'Farmasi', 'Sukoharjo', '2024-12-02', 'Islam', 'Perempuan', '081556289777445', 'Griya Kratonan 2, Pucangan, Kartasura', '2024-12-24 05:16:42', '2024-12-24 05:16:42', NULL),
 (21, 'Kurniawan Punjung', 'kurniawan@gmail.com', '$2y$10$h23WcNNzDQ4gnidFomAyl.KupMU4ytT8wbtdTLKDKt0hQKjR6DWYe', 2, NULL, 12345678, 'Kurniawan', 'DKV', 'Sukoharjo', '2024-12-10', 'Islam', 'Laki-Laki', '081325659017', 'Griya Kratonan 2, Pucangan, Kartasura', '2024-12-26 02:40:36', '2024-12-26 02:40:36', NULL);
 
@@ -294,16 +326,23 @@ INSERT INTO `user_guru` (`id`, `username`, `email`, `password`, `role`, `foto`, 
 --
 
 --
--- Indeks untuk tabel `level_pelanggaran`
+-- Indeks untuk tabel `kategori_pelanggaran`
 --
-ALTER TABLE `level_pelanggaran`
-  ADD PRIMARY KEY (`id_level_pelanggaran`);
+ALTER TABLE `kategori_pelanggaran`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `pelanggaran`
+--
+ALTER TABLE `pelanggaran`
+  ADD PRIMARY KEY (`id_pelanggaran`),
+  ADD KEY `kategori_id` (`kategori_id`);
 
 --
 -- Indeks untuk tabel `reset_password_tokens`
@@ -354,16 +393,22 @@ ALTER TABLE `user_guru`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `level_pelanggaran`
+-- AUTO_INCREMENT untuk tabel `kategori_pelanggaran`
 --
-ALTER TABLE `level_pelanggaran`
-  MODIFY `id_level_pelanggaran` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `kategori_pelanggaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT untuk tabel `pelanggaran`
+--
+ALTER TABLE `pelanggaran`
+  MODIFY `id_pelanggaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `reset_password_tokens`
@@ -387,7 +432,7 @@ ALTER TABLE `tb_guru`
 -- AUTO_INCREMENT untuk tabel `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_suratpanggilan`
@@ -410,6 +455,12 @@ ALTER TABLE `user_guru`
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `pelanggaran`
+--
+ALTER TABLE `pelanggaran`
+  ADD CONSTRAINT `pelanggaran_ibfk_1` FOREIGN KEY (`kategori_id`) REFERENCES `kategori_pelanggaran` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `user_guru`
