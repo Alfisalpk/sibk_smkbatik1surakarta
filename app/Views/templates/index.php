@@ -145,7 +145,7 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": true ["csv", "excel", "pdf"]
+      
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
        $('#example2').DataTable({
       "paging": false,
@@ -155,9 +155,10 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     //   "scrollY": "300px", // Atur tinggi scroll vertikal
     //   "scrollX": true, // Aktifkan scroll horizontal
-      "buttons": ["csv", "excel", "pdf"]
+   
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
@@ -1284,7 +1285,7 @@
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        $('#detailNamaLengkap').val(response.user.nama_lengkap);
+                        $('#detailNamaLengkap').val(response.user.username);
                         $('#detailEmail').val(response.user.email);
                         $('#detailNis').val(response.user.nisn);
                         // Menggabungkan Kelas dan Jurusan
@@ -1328,6 +1329,160 @@
 </script>
 
 <!-- END AJAX Untuk Halaman Pelanggaran Siswa -->
+
+
+
+
+<!-- START AJAX Untuk Halaman Bimbingan Konseling -->
+<script>
+        $(document).ready(function() {
+            $('#editModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var id_bimbingankonseling = button.data('id');
+                var user_id = button.data('user-id');
+                var tanggal = button.data('tanggal');
+                var pertemuan_ke = button.data('pertemuan-ke');
+                var waktu = button.data('waktu');
+                var tempat = button.data('tempat');
+                var permasalahan = button.data('permasalahan');
+                var hasil = button.data('hasil');
+
+                var modal = $(this);
+                modal.find('.modal-body #id_bimbingankonseling').val(id_bimbingankonseling);
+                modal.find('.modal-body #edit_user_id').val(user_id);
+                modal.find('.modal-body #edit_tanggal').val(tanggal);
+                modal.find('.modal-body #edit_pertemuan_ke').val(pertemuan_ke);
+                modal.find('.modal-body #edit_waktu').val(waktu);
+                modal.find('.modal-body #edit_tempat').val(tempat);
+                modal.find('.modal-body #edit_permasalahan').val(permasalahan);
+                modal.find('.modal-body #edit_hasil').val(hasil);
+            });
+
+            $('#addBimbinganBtn').on('click', function() {
+                $.ajax({
+                    url: '/admin/bimbingan_konseling/store',
+                    type: 'POST',
+                    data: $('#addForm').serialize(),
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat menambahkan data.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+
+            $('#editBimbinganBtn').on('click', function() {
+                $.ajax({
+                    url: '/admin/bimbingan_konseling/update',
+                    type: 'POST',
+                    data: $('#editForm').serialize(),
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat memperbarui data.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+
+        function deleteBimbinganKonseling(id_bimbingankonseling) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/bimbingan_konseling/delete/' + id_bimbingankonseling,
+                        type: 'GET',
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire({
+                                    title: 'Sukses',
+                                    text: response.message,
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: response.message,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat menghapus data.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+<!-- END AJAX Untuk Halaman Bimbingan Konseling -->
 
 
 

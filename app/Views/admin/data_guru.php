@@ -19,7 +19,7 @@
        <!-- Form Tambah Data Guru -->
        <div class="container-fluid">
     <div class="card">        
-        <h5 class="card-header bold bg-primary">Tambah Data Guru</h5>
+        <h5 class="card-header bold bg-primary text-center">Tambah Data Guru</h5>
         <form id="tambahGuruForm">
             <?= csrf_field() ?>
             <div class="card-body">
@@ -130,7 +130,7 @@
        <body>
     <div class="container-fluid">
         <div class="card">
-            <div class="card-header bg-primary">
+            <div class="card-header bg-primary text-center">
                 <h4>Data Guru</h4>
             </div>
             <div class="card-body">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Des 2024 pada 19.58
+-- Waktu pembuatan: 03 Jan 2025 pada 15.57
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -43,7 +43,10 @@ INSERT INTO `kategori_pelanggaran` (`id`, `nama_kategori`) VALUES
 (8, 'Ketertipan'),
 (9, 'Merokok'),
 (10, 'Berkelahi'),
-(11, 'Lain-Lain');
+(11, 'Lain-Lain'),
+(12, 'Testing Benerin Bug'),
+(13, 'Testing BUG'),
+(14, 'Testing Sitem');
 
 -- --------------------------------------------------------
 
@@ -103,9 +106,51 @@ INSERT INTO `pelanggaran` (`id_pelanggaran`, `kategori_id`, `nama_pelanggaran`, 
 (17, 7, 'Berhias Berlebihan Bagi Putri', 'Ringan', 'Guru, Wali Kelas', 'Teguran', '2024-12-28 18:15:41', '2024-12-28 18:15:41', NULL),
 (18, 7, 'Membawa Alat Make Up (Kecuali Dipakai Kegiatan Life Skill)', 'Ringan', 'Guru, Wali Kelas', 'Disita dan Tidak DIkembalikan', '2024-12-28 18:17:31', '2024-12-28 18:19:40', NULL),
 (19, 7, 'Memakai Gelang, Kalung, Bagi Siswa Putra', 'Ringan', 'Guru, Wali Kelas', 'Disita dan Tidak Dikembalikan', '2024-12-28 18:19:20', '2024-12-28 18:19:20', NULL),
-(20, 8, 'Makan dan Minum di Kelas Saat KBM', 'Ringan', 'Guru Mapel', 'Teguran', '2024-12-28 18:21:28', '2024-12-28 18:21:28', NULL),
+(20, 8, 'Makan dan Minum di Kelas Saat KBM', 'Ringan', 'Guru Mapel', 'Serangga', '2024-12-28 18:21:28', '2024-12-29 20:23:58', '2024-12-29 20:23:58'),
 (21, 8, 'Membuang Sampah Didalam Kelas', 'Ringan', 'Guru Mapel dan Wali Kelas', 'Teguran dan Membersihakan Kelas', '2024-12-28 18:22:26', '2024-12-28 18:22:26', NULL),
-(22, 8, 'Membuat Kegaduhan Didalam Kelas Pada Saat KBM', 'Sedang', 'Guru Mapel dan Wali Kelas', 'Teguran, Tugas Tambahan dari Guru Mapel, dan Pembinaan Wali Kelas', '2024-12-28 18:25:00', '2024-12-28 18:25:00', NULL);
+(22, 8, 'Membuat Kegaduhan Didalam Kelas Pada Saat KBM', 'Sedang', 'Guru Mapel dan Wali Kelas', 'Teguran, Tugas Tambahan dari Guru Mapel, dan Pembinaan Wali Kelas', '2024-12-28 18:25:00', '2024-12-28 18:25:00', NULL),
+(23, 11, 'Testing', 'Tesing', 'Testing', 'Testing', '2024-12-28 20:20:24', '2024-12-29 19:43:33', '2024-12-29 19:43:33'),
+(24, 13, 'BUG', 'BUG', 'BUG', 'BUG', '2024-12-29 19:44:02', '2024-12-29 19:44:41', '2024-12-29 19:44:41'),
+(25, 13, 'BUG', 'BUG 2', 'BUG 3', 'Serangga', '2024-12-29 19:49:25', '2024-12-29 19:49:41', '2024-12-29 19:49:41'),
+(26, 13, 'Bug', 'Bug', 'BUG', 'sERANGGA', '2024-12-29 20:04:32', '2025-01-01 20:36:22', '2025-01-01 20:36:22'),
+(27, 8, 'Nyoba Edit', 'aDA bug', 'BUG', 'serangga', '2024-12-29 20:27:05', '2025-01-01 20:36:17', '2025-01-01 20:36:17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pelanggaran_siswa`
+--
+
+CREATE TABLE `pelanggaran_siswa` (
+  `id_pelanggaran_siswa` int(11) NOT NULL,
+  `siswa_id` int(11) NOT NULL,
+  `kategori_id` int(11) NOT NULL,
+  `pelanggaran_id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pelanggaran_siswa`
+--
+
+INSERT INTO `pelanggaran_siswa` (`id_pelanggaran_siswa`, `siswa_id`, `kategori_id`, `pelanggaran_id`, `tanggal`, `deskripsi`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(20, 18, 4, 9, '2024-12-20', 'sddgdgh', '2024-12-29 17:58:58', '2024-12-29 18:58:06', '2024-12-29 18:58:06'),
+(21, 18, 8, 22, '2024-12-18', 'dg', '2024-12-29 18:47:08', '2024-12-31 12:19:20', '2024-12-31 12:19:20'),
+(22, 18, 5, 10, '2024-12-11', 'df', '2024-12-31 11:58:07', '2024-12-31 11:59:22', '2024-12-31 11:59:22'),
+(23, 18, 5, 10, '2024-12-19', 'xsxcbb', '2024-12-31 12:04:41', '2025-01-01 14:43:55', '2025-01-01 14:43:55'),
+(24, 18, 8, 21, '2024-12-20', 'afdgsdfg', '2024-12-31 12:20:31', '2024-12-31 12:23:43', '2024-12-31 12:23:43'),
+(25, 18, 5, 14, '2024-12-13', 'z', '2024-12-31 12:24:55', '2025-01-01 14:36:46', '2025-01-01 14:36:46'),
+(26, 18, 5, 11, '2025-01-15', 'cghjfcjcv', '2025-01-01 14:41:02', '2025-01-01 14:41:16', '2025-01-01 14:41:16'),
+(27, 18, 8, 22, '2025-01-23', 'xcvxvcbxcbv', '2025-01-01 14:44:34', '2025-01-01 14:47:30', '2025-01-01 14:47:30'),
+(28, 18, 7, 18, '2025-01-16', 'azdxvxfv', '2025-01-01 14:49:04', '2025-01-01 14:49:09', '2025-01-01 14:49:09'),
+(29, 18, 7, 19, '2025-01-23', 'sdf', '2025-01-01 14:58:18', '2025-01-01 14:58:28', '2025-01-01 14:58:28'),
+(30, 18, 5, 14, '2025-01-17', 'Kabur', '2025-01-01 15:11:49', '2025-01-01 20:16:00', NULL),
+(31, 20, 5, 15, '2025-01-01', 'Tidak Masuk Lebih Dari 2 Hari  yaitu 3', '2025-01-01 18:18:25', '2025-01-01 18:18:25', NULL),
+(32, 20, 7, 17, '2025-01-16', 'sfasdasfd', '2025-01-01 20:10:20', '2025-01-01 20:11:31', '2025-01-01 20:11:31');
 
 -- --------------------------------------------------------
 
@@ -221,11 +266,25 @@ CREATE TABLE `tb_siswa` (
 --
 
 INSERT INTO `tb_siswa` (`id`, `nisn`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `nomor_handphone`, `alamat`, `agama`, `jenis_kelamin`, `asal_sekolah`, `lulusan_tahun`, `nama_wali_murid`, `nomor_wali_murid`, `id_kelas`, `id_jurusan`, `kode_pelanggaran`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(53, '20010823', 'Alfisal Punjung Kurniawan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-24 06:31:14', '2024-12-27 22:22:48', '2024-12-27 22:22:48'),
-(120, '654354', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-26 06:34:47', '2024-12-26 06:34:57', '2024-12-26 06:34:57'),
-(121, '23082001', 'Alfisal Punjung Baru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-27 02:50:25', '2024-12-27 02:50:25', NULL),
-(122, '2001', 'Alfisal Punjung', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-27 22:23:02', '2024-12-27 22:23:02', NULL),
-(123, '10', 'Punjung', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-28 17:17:14', '2024-12-28 17:17:14', NULL);
+(208, '23082001', 'Alfisal Punjung Kurniawan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:09:38', '2025-01-01 20:09:38', NULL),
+(209, '28112003', 'Nirina Khoirun Naja Musyafa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:09:53', '2025-01-01 20:09:53', NULL),
+(227, '593777637', 'Citra', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(228, '324637670', 'Dewi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(229, '521913796', 'Ika', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(230, '791740971', 'Budi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(231, '977302052', 'Gita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(232, '623705572', 'Siti', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(233, '773436837', 'Gita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(234, '275441869', 'Joko', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(235, '831815554', 'Ahmad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(236, '657551321', 'Gita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(237, '548412734', 'Maya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(238, '369057942', 'Lina', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(239, '730701848', 'Siti', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(240, '656784878', 'Omar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(241, '618853548', 'Gita', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(242, '781082276', 'Siti', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL),
+(243, '552791595', 'Joko', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-01-01 20:17:22', '2025-01-01 20:17:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -283,7 +342,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nisn`, `nama_lengkap`, `username`, `nama_orangtua`, `email`, `password`, `kelas`, `jurusan`, `jenis_kelamin`, `agama`, `nomor_wa`, `nomor_wa_ortu`, `tempat_lahir`, `tgl_lahir`, `alamat`, `asal_sekolah`, `lulusan_tahun`, `hobby`, `role`, `foto`, `reset_token`, `reset_expiry`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(18, '23082001', 'Alfisal Punjung ', 'Alfisal Punjung Kurniawan', 'Nur Salam', 'kiki@gmail.com', '$2y$10$LlklRLJojJ72k2a2zNOCMeGZoLyDusPLZALcyaOmQkn2bQNsT87pm', 'XI', 'BDP 3', 'Perempuan', 'Islam', '081325659017', '081332615242', 'Sukoharjo', '2024-12-26', 'Griya Kratonan 2, Pucangan, Kartasura', 'SMPN 3 Kartasura', '2010', 'Muncak', 3, '\'default.jpg\'', NULL, NULL, '2024-12-23 21:09:15', '2024-12-28 17:16:32', NULL);
+(18, '23082001', 'Alfisal Punjung ', 'Alfisal Punjung Kurniawan', 'Nur Salam', 'kiki@gmail.com', '$2y$10$LlklRLJojJ72k2a2zNOCMeGZoLyDusPLZALcyaOmQkn2bQNsT87pm', 'XI', 'BDP 3', 'Laki-Laki', 'Islam', '081325659017', '081332615242', 'Sukoharjo', '2001-08-23', 'Griya Kratonan 2, Pucangan, Kartasura', 'SMPN 3 Kartasura', '2017', 'Muncak', 3, 'uploads/siswa/1735915939_68af7e6da317e0431def.jpg', NULL, NULL, '2024-12-23 21:09:15', '2025-01-03 14:52:19', NULL),
+(20, '28112003', 'Naja', 'Nirina Khoirun Naja Musyafa', 'Musayafa', 'ninaaakawaii13@gmail.com', '$2y$10$VtOGMtV.gKrMv3qDbxywm.3Xu6HI6C7H/x9btwrgvGouxYPXl7tgG', 'XII', 'DKV 1', 'Laki-Laki', 'Islam', '0813326154242', '081325659017', 'Kartasura', '2025-01-23', 'Banjarsari, Surakarta, Jawa Tengah', 'Home Schooling', '2018', 'Fotografi', 3, 'uploads/siswa/1735755307_bea1a1a21745d4e6960a.jpg', NULL, NULL, '2025-01-01 18:13:13', '2025-01-01 18:15:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -318,8 +378,9 @@ CREATE TABLE `user_guru` (
 
 INSERT INTO `user_guru` (`id`, `username`, `email`, `password`, `role`, `foto`, `nip`, `nama_panggilan`, `jurusan_pengampu`, `tempat_lahir`, `tgl_lahir`, `agama`, `jenis_kelamin`, `no_telepon`, `alamat`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (10, 'Alfisal Punjung', 'punjungalfisal@gmail.com', '$2y$10$8AbPzz1iMmN.fuyu6DjysuSpFXCVP2hSDLFbPhs8Lrw1WT35TTqi2', 1, NULL, 202030217, 'Punjung', 'TKJ', 'Sukoharjo', '2001-08-23', 'Islam', 'Laki-Laki', '081325659017', 'Jl, Apel, Kopen, Ngadirejo, Kartasura, Sukoharjo', NULL, '2024-12-19 04:05:29', NULL),
-(20, 'Asna Guru BK', 'fifa@gmail.com', '$2y$10$fJwkC8E4E5ZMWVbaBN8yB.ULDglAB6wEZF.iP4IkLgEa/.zMnK1u6', 4, NULL, 12345678, 'Asna', 'Farmasi', 'Sukoharjo', '2024-12-02', 'Islam', 'Perempuan', '081556289777445', 'Griya Kratonan 2, Pucangan, Kartasura', '2024-12-24 05:16:42', '2024-12-24 05:16:42', NULL),
-(21, 'Kurniawan Punjung', 'kurniawan@gmail.com', '$2y$10$h23WcNNzDQ4gnidFomAyl.KupMU4ytT8wbtdTLKDKt0hQKjR6DWYe', 2, NULL, 12345678, 'Kurniawan', 'DKV', 'Sukoharjo', '2024-12-10', 'Islam', 'Laki-Laki', '081325659017', 'Griya Kratonan 2, Pucangan, Kartasura', '2024-12-26 02:40:36', '2024-12-26 02:40:36', NULL);
+(20, 'ASSNA', 'fifa@gmail.com', '$2y$10$fJwkC8E4E5ZMWVbaBN8yB.ULDglAB6wEZF.iP4IkLgEa/.zMnK1u6', 4, NULL, 12345678, 'Asna', 'Farmasi', 'Sukoharjo', '2024-12-02', 'Islam', 'Perempuan', '081556289777445', 'Griya Kratonan 2, Pucangan, Kartasura', '2024-12-24 05:16:42', '2025-01-02 03:26:07', NULL),
+(21, 'Kurniawan Punjung', 'kurniawan@gmail.com', '$2y$10$h23WcNNzDQ4gnidFomAyl.KupMU4ytT8wbtdTLKDKt0hQKjR6DWYe', 2, NULL, 12345678, 'Kurniawan', 'DKV', 'Sukoharjo', '2024-12-10', 'Islam', 'Laki-Laki', '081325659017', 'Griya Kratonan 2, Pucangan, Kartasura', '2024-12-26 02:40:36', '2024-12-26 02:40:36', NULL),
+(22, 'asna', 'asna@gmail.com', '$2y$10$EhzID4zxlgAYtvqdmrv4oOEyCziPvclFgBZ1qr8KquRao9S3vYrva', 1, NULL, 321321, 'Kurniawan', 'TKJ', 'Sukoharjo', '2025-01-16', 'Islam', 'Laki-Laki', '081332615242', 'Griya Kratonan 2, Pucangan, Kartasura', '2025-01-01 23:37:56', '2025-01-02 00:50:26', '2025-01-02 00:50:26');
 
 --
 -- Indexes for dumped tables
@@ -343,6 +404,15 @@ ALTER TABLE `migrations`
 ALTER TABLE `pelanggaran`
   ADD PRIMARY KEY (`id_pelanggaran`),
   ADD KEY `kategori_id` (`kategori_id`);
+
+--
+-- Indeks untuk tabel `pelanggaran_siswa`
+--
+ALTER TABLE `pelanggaran_siswa`
+  ADD PRIMARY KEY (`id_pelanggaran_siswa`),
+  ADD KEY `siswa_id` (`siswa_id`),
+  ADD KEY `pelanggaran_id` (`pelanggaran_id`),
+  ADD KEY `pelanggaran_siswa_ibfk_3` (`kategori_id`);
 
 --
 -- Indeks untuk tabel `reset_password_tokens`
@@ -396,7 +466,7 @@ ALTER TABLE `user_guru`
 -- AUTO_INCREMENT untuk tabel `kategori_pelanggaran`
 --
 ALTER TABLE `kategori_pelanggaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -408,7 +478,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `pelanggaran`
 --
 ALTER TABLE `pelanggaran`
-  MODIFY `id_pelanggaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_pelanggaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT untuk tabel `pelanggaran_siswa`
+--
+ALTER TABLE `pelanggaran_siswa`
+  MODIFY `id_pelanggaran_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `reset_password_tokens`
@@ -432,7 +508,7 @@ ALTER TABLE `tb_guru`
 -- AUTO_INCREMENT untuk tabel `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_suratpanggilan`
@@ -444,13 +520,13 @@ ALTER TABLE `tb_suratpanggilan`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_guru`
 --
 ALTER TABLE `user_guru`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -461,6 +537,14 @@ ALTER TABLE `user_guru`
 --
 ALTER TABLE `pelanggaran`
   ADD CONSTRAINT `pelanggaran_ibfk_1` FOREIGN KEY (`kategori_id`) REFERENCES `kategori_pelanggaran` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `pelanggaran_siswa`
+--
+ALTER TABLE `pelanggaran_siswa`
+  ADD CONSTRAINT `pelanggaran_siswa_ibfk_1` FOREIGN KEY (`siswa_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pelanggaran_siswa_ibfk_2` FOREIGN KEY (`pelanggaran_id`) REFERENCES `pelanggaran` (`id_pelanggaran`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pelanggaran_siswa_ibfk_3` FOREIGN KEY (`kategori_id`) REFERENCES `kategori_pelanggaran` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `user_guru`

@@ -22,15 +22,15 @@
             <!-- small card -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>5</h3>
+                <h3><?= $jumlah_siswa ?></h3>
 
                 <p>Data Siswa</p>
               </div>
               <div class="icon">
                 <i class="fas fa-solid fa-user-graduate"></i>
               </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+              <a href="<?= base_url('/admin/daftar_siswa') ?>" class="small-box-footer">
+                Lihat Data <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
           </div>
@@ -46,8 +46,8 @@
               <div class="icon">
                 <i class="fas fa-solid fa-chalkboard-user"></i>
               </div>
-              <a href="<?= base_url('admin/data_guru') ?>" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+              <a href="<?= base_url('/admin/data_guru') ?>" class="small-box-footer">
+                Lihat Data <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
           </div>
@@ -56,15 +56,15 @@
             <!-- small card -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>10</h3>
+                <h3> <?= $jumlah_kategori_pelanggaran ?> </h3>
 
                 <p>Data Kategori Pelanggaran</p>
               </div>
               <div class="icon">
                 <i class="fas fa-solid fa-clipboard-user"></i>
               </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+              <a href="<?= base_url('/admin/kategori_pelanggaran') ?>" class="small-box-footer">
+                Lihat Data <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
           </div>
@@ -73,15 +73,15 @@
             <!-- small card -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>4</h3>
+                <h3><?= $jumlah_pelanggaran_siswa_model ?></h3>
 
                 <p>Data Pelanggaran Siswa</p>
               </div>
               <div class="icon">
                 <i class="fas fas fa-file"></i>
               </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+              <a href="<?= base_url('/admin/pelanggaran_siswa') ?>" class="small-box-footer">
+                Lihat Data <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
           </div>
@@ -89,81 +89,43 @@
           </section>
 
           <!-- testing tables -->
-          <div class="container-fluid">
-            
-            <div class="card">
+          <body>
+  <div class="container-fluid">
+        <div class="card">
             <div class="card-header bg-danger">
-              <h4>
-              Pelanggaran Siswa
-                </h4>
+                <h4>Data Pelanggaran Siswa</h4>
             </div>
             <div class="card-body">
-              <table class="table table-hover text-nowrap table-bordered table-responsive">
-              <thead>
-                        <tr>
-                            <th scope="col" style="width: 1vh;">ID</th>
-                            <th scope="col" style="width: 10vh;">NISN</th>
-                            <th scope="col" style="width: 50vh;">Nama Lengkap</th>
-                            <th scope="col" style="width: 10vh;">Kelas</th>
-                            <th scope="col" style="width: 10vh;">Tanggal</th>
-                            <th scope="col" style="width: 100vh;">Jenis Pelanggaran</th>
-                            <th scope="col" style="width: 10px;">Detail</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>230801</td>
-                            <td>Alfisal Punjung Kurniawan</td>
-                            <td>XI TKJ 1</td>
-                            <td>Senin, 28-11-2024</td>
-                            <td>Tidak Masuk Jam Pelajaran</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            </button></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                            <td>230802</td>
-                            <td>Nirina Khoirun Naja Musyafa</td>
-                            <td>X DKV 1</td>
-                            <td>Selasa, 29-11-2024</td>
-                            <td>Terlambat Masuk Sekolah</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            </button></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                            <td>230803</td>
-                            <td>Maruf Nur Muhammad</td>
-                            <td>XI TKJ 1</td>
-                            <td>Selasa, 29-11-2024</td>
-                            <td>Memakai Sandal Diluar Ketentuan</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            </button></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">4</th>
-                            <td>230804</td>
-                            <td>Rico Yoga Pradana</td>
-                            <td>XI TKJ 1</td>
-                            <td>Selasa, 29-11-2024</td>
-                            <td>Memakai Kaos Kaki Tidak Sesuai</td>
-                            <td><button type="button" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            </button></td>
-                        </tr>
-                    </tbody>
-                </table>
-              
-              
-            </div>
-          </div>
-          </div>
+            <a href="<?= base_url('/admin/pelanggaran_siswa') ?>" class="btn btn-danger mb-3">Kelola Data Pelanggaran</a>
+            <div class="table-responsivekudashboard">
+                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th  style="width: 5vh;">ID</th>
+                        <th  style="width: 30vh;">Nama Siswa</th>
+                        <th  style="width: 15vh;">Kategori</th>
+                        <th  style="width: 80vh;">Pelanggaran</th>
+                        <th  style="width: 15vh;">Tanggal</th>
+                        <th  style="width: 100vh;">Deskripsi</th>
+                       
+                    </tr>
+                </thead>
+                <?php foreach ($pelanggaran_siswa as $ps): ?>
+            <tr>
+                <td><?= $ps['id_pelanggaran_siswa'] ?></td> <!-- Ubah menjadi id_pelanggaran_siswa -->
+                <td><?= $ps['username_siswa'] ?></td>
+                <td><?= $ps['nama_kategori'] ?></td>
+                <td><?= $ps['nama_pelanggaran'] ?></td>
+                <td><?= $ps['tanggal'] ?></td>
+                <td><?= $ps['deskripsi'] ?></td>
+            </tr>
+        <?php endforeach; ?>
 
+                </table>
+        </div>
+            </div>
+        </div>
+    </div>
 
 
 <!-- Testing Table -->
@@ -178,7 +140,8 @@
             <div class="card-body">
                 <!-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button> -->
                 <a href="<?= base_url('/admin/daftar_siswa'); ?>" class="btn btn-primary mb-3">Kelola Daftar Siswa</a>
-                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <div class="table-responsivekudashboard">
+                <table id="example2" class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10vh;">NISN</th>
@@ -214,6 +177,7 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>

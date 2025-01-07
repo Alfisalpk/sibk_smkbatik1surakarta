@@ -7,6 +7,7 @@ use App\Models\PelanggaranModel;
 use App\Models\KategoriPelanggaranModel;
 use App\Models\UserModel;
 
+
 class PelanggaranSiswaController extends BaseController
 {
     protected $pelanggaranSiswaModel;
@@ -33,6 +34,7 @@ class PelanggaranSiswaController extends BaseController
             'kategori_pelanggaran' => $this->kategoriPelanggaranModel->findAll(),
             'users' => $this->userModel->findAll()
         ];
+      
 
         return view('admin/pelanggaran_siswa', $data);
     }

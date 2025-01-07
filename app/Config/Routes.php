@@ -89,6 +89,14 @@ $routes->post('pelanggaran_siswa/getPelanggaranByKategori', 'PelanggaranSiswaCon
 $routes->post('pelanggaran_siswa/getUserById', 'PelanggaranSiswaController::getUserById');
 // END Routes CRUD Pelanggaran Siswa
 
+// START Routes CRUD Bimbingan Siswa
+$routes->get('bimbingan_konseling', 'BimbinganKonselingController::index');
+$routes->post('bimbingan_konseling/store', 'BimbinganKonselingController::store_bimbingankonseling');
+$routes->post('bimbingan_konseling/update', 'BimbinganKonselingController::update_bimbingankonseling');
+$routes->get('bimbingan_konseling/delete/(:num)', 'BimbinganKonselingController::delete/$1');
+// END Routes CRUD Bimbingan Siswa
+
+
 
 
 
@@ -102,7 +110,7 @@ $routes->post('pelanggaran_siswa/getUserById', 'PelanggaranSiswaController::getU
     $routes->get('data_kelas_jurusan', 'AdminController::data_kelas_jurusan');
     $routes->get('/', 'AdminController::dashboard');
     $routes->get('pengaturan_profile', 'AdminController::pengaturan_profile');
-    $routes->get('bimbingan_konseling', 'AdminController::bimbingan_konseling');
+    // $routes->get('bimbingan_konseling', 'AdminController::bimbingan_konseling');
     $routes->get('data_nisn', 'AdminController::data_nisn');
     // $routes->get('pelanggaran_siswa', 'AdminController::pelanggaran_siswa');
     $routes->get('daftar_siswa', 'AdminController::daftar_siswa'); 

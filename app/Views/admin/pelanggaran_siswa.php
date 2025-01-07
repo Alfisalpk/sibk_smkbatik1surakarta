@@ -23,12 +23,12 @@
   <body>
   <div class="container-fluid">
         <div class="card">
-            <div class="card-header bg-primary">
+            <div class="card-header bg-danger">
                 <h4 class="text-center">Data Pelanggaran Siswa</h4>
             </div>
             <div class="card-body">
-            <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</a>
-            <div class="table-responsive">
+            <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</a>
+            <div class="table-responsiveku">
                 <table id="example2" class="table table-hover table-bordered table-responsive">
                 <thead>
                     <tr>
@@ -92,7 +92,8 @@
                     <div class="form-group">
                         <label for="kategori_id">Kategori Pelanggaran</label>
                         <select class="form-control" id="kategori_id" name="kategori_id">
-                            <?php foreach ($kategori_pelanggaran as $kategori): ?>
+                        <option disabled selected>Pilih Kategori Pelanggaran</option>    
+                        <?php foreach ($kategori_pelanggaran as $kategori): ?>
                                 <option value="<?= $kategori['id'] ?>"><?= $kategori['nama_kategori'] ?></option>
                             <?php endforeach; ?>
                         </select>
