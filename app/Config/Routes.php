@@ -97,6 +97,13 @@ $routes->get('bimbingan_konseling/delete/(:num)', 'BimbinganKonselingController:
 // END Routes CRUD Bimbingan Siswa
 
 
+// START Routes Laporan  
+$routes->get('laporan_bimbingan_siswa', 'LaporanAdminController::index');  
+$routes->get('laporan/bimbingan/pdf', 'LaporanAdminController::generatePDF');
+// END Routes Laporan 
+
+
+
 
 
 
@@ -114,7 +121,7 @@ $routes->get('bimbingan_konseling/delete/(:num)', 'BimbinganKonselingController:
     $routes->get('data_nisn', 'AdminController::data_nisn');
     // $routes->get('pelanggaran_siswa', 'AdminController::pelanggaran_siswa');
     $routes->get('daftar_siswa', 'AdminController::daftar_siswa'); 
-    $routes->get('lap_pelanggaran_siswa', 'AdminController::lap_pelanggaran_siswa');
+    
     $routes->get('kategori_pelanggaran', 'AdminController::kategori_pelanggaran');
     
     //END Validasi Halaman V_Sidebar 

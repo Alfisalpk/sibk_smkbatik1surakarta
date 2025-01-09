@@ -54,7 +54,7 @@
                     <th style="width: 5vh;">Pertemuan Ke</th>
                     <th style="width: 20vh;">Permasalahan</th>
                     <th style="width: 50vh;">Hasil</th>
-                    <th style="width: 5vh;">Aksi</th>
+                    <th style="width: 10vh;">Aksi</th>
                 </tr>
             </thead>
 

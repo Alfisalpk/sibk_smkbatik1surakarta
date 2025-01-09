@@ -93,9 +93,9 @@
 
         <li class="nav-header">Data Laporan</li>
         <li class="nav-item">
-          <a href="<?= base_url('/admin/lap_pelanggaran_siswa') ?>" class="nav-link <?= $submenu == 'lap_pelanggaran_siswa' ? 'active' : '' ?>">
+          <a href="<?= base_url('/admin/laporan_bimbingan_siswa') ?>" class="nav-link <?= $submenu == 'lap_bimbingan_konseling' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-file"></i>
-            <p>Laporan Pelanggaran</p>
+            <p>Laporan Bimbingan Konseling</p>
           </a>
         </li>
 
