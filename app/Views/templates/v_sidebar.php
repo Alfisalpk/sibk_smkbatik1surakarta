@@ -121,8 +121,14 @@
        
         <li class="nav-item">
           <a href="<?= base_url('/siswa/pelanggaran_siswa') ?>" class="nav-link <?= $menu == 'pelanggaran_siswa' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-solid fa-file-pen"></i>
-            <p>Pelanggaran Siswa</p>
+          <i class="nav-icon fa-solid fa-person-chalkboard"></i>
+            <p>Riwayat Pelanggaran</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('/siswa/riwayat_bimbingan_konseling') ?>" class="nav-link <?= $menu == 'riwayat_bimbingan' ? 'active' : '' ?>">
+          <i class="nav-icon fa-solid fa-user-group"></i>
+            <p>Riwayat Bimbingan Konseling</p>
           </a>
         </li>
 
@@ -132,16 +138,12 @@
             <p>Pengaturan Profile</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="<?= base_url('/siswa/dashboardtesting') ?>" class="nav-link <?= $menu == 'pengaturan_admin' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-solid fa-sliders"></i>
-            <p>Dashboard testing</p>
-          </a>
-        </li>
       <?php endif; ?>
         <!-- END Area Sidebar Siswa -->
-
-
+        
+        
+        
+        <!-- START Area Sidebar Guru BK -->
       <?php if (in_groups([4])): // Guru BK ?>
         <li class="nav-item">
           <a href="<?= base_url('/guru_bk/dashboard') ?>" class="nav-link <?= $menu == 'dashboard' ? 'active' : '' ?>">
@@ -187,6 +189,7 @@
           </a>
         </li>
       <?php endif; ?>
+      <!-- END Area Sidebar Guru BK -->
 
       <!-- Semua ROLE ADA -->
       <li class="nav-item">

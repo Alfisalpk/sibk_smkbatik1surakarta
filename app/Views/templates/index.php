@@ -144,7 +144,8 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true, "lengthChange": false, "autoWidth": false, "paging": false,
+      
       
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
        $('#example2').DataTable({
@@ -155,7 +156,7 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    //   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     //   "scrollY": "300px", // Atur tinggi scroll vertikal
     //   "scrollX": true, // Aktifkan scroll horizontal
    

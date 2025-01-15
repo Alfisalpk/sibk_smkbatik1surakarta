@@ -141,7 +141,7 @@
                 <!-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button> -->
                 <a href="<?= base_url('/admin/daftar_siswa'); ?>" class="btn btn-primary mb-3">Kelola Daftar Siswa</a>
                 <div class="table-responsivekudashboard">
-                <table id="example2" class="table table-hover table-bordered">
+                <table id="example1" class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10vh;">NISN</th>

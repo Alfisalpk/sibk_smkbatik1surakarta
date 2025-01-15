@@ -7,12 +7,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Data Siswa</h1>
+            <h1 class="m-0">Riwayat Bimbingan Konseling</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard Admin</li>
+              
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -21,79 +20,54 @@
     <!-- /.content-header -->
   <!-- Dasboard Admin Start -->
   <section class="content">
-  <!-- Small Box (Stat card) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
-
-                <p>Data Siswa</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-solid fa-user-graduate"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
+  <body>
+  <div class="container-fluid">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h4 class="text-center">Data Riwayat Pelanggaran</h4>
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+            <div class="card-body">
+            <div class="table-responsiveku">
+                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <thead>  
+                <tr>  
+                    <th style="width: 25vh;">Nama Siswa</th>  
+                    <th style="width: 10vh;">Kelas</th>  
+                    <th style="width: 10vh;">Jurusan</th>  
+                    <th style="width: 10vh;">Tanggal</th>  
+                    <th style="width: 10vh;">Waktu</th>  
+                    <th style="width: 10vh;">Pertemuan Ke</th>  
+                    <th style="width: 50vh;">Permasalahan</th>  
+                    <th style="width: 50vh;">Hasil</th>  
+                </tr>  
+            </thead> 
+            <tbody>  
+                <?php if (empty($riwayat_bimbingan)): ?>  
+                    <tr>  
+                        <td colspan="8">Tidak ada data bimbingan konseling</td>  
+                    </tr>  
+                <?php else: ?>  
+                    <?php foreach ($riwayat_bimbingan as $bimbingan): ?>  
+                        <tr>  
+                            <td><?= esc($bimbingan['username']) ?></td>  
+                            <td><?= esc($bimbingan['kelas']) ?></td>  
+                            <td><?= esc($bimbingan['jurusan']) ?></td>  
+                            <td><?= esc($bimbingan['tanggal']) ?></td>  
+                            <td><?= esc($bimbingan['waktu']) ?></td>  
+                            <td><?= esc($bimbingan['pertemuan_ke']) ?></td>  
+                            <td><?= esc($bimbingan['permasalahan']) ?></td>  
+                            <td><?= esc($bimbingan['hasil']) ?></td>  
+                        </tr>  
+                    <?php endforeach; ?>  
+                <?php endif; ?>  
+            </tbody>  
 
-                <p>Data Guru</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-solid fa-chalkboard-user"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>44</h3>
 
-                <p>Data Kelas</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-solid fa-users-rectangle"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Data Pelanggaran Siswa</p>
-              </div>
-              <div class="icon">
-                <i class="fas fas fa-file"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>
-          <!-- ./col -->
-          </section>
+                </table>
         </div>
-        <!-- /.row -->
+            </div>
+        </div>
+        </div>
 
   <!-- End Dashboard End -->
 

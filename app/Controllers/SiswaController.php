@@ -3,14 +3,22 @@ namespace App\Controllers;
 
 use App\Models\UserModel; // Import the UserModel class
 use App\Models\UserModelProfile;
+use App\Models\UsersPelanggaranModel; 
+use App\Models\Model; 
+use App\Models\UsersBimbinganKonselingModel; 
+
 
 class SiswaController extends BaseController
 {
     protected $UserModelProfile;
+    protected $UsersPelanggaranModelDashboard;
+    
 
     public function __construct()
     {
         $this->UserModelProfile = new UserModelProfile();
+        $this->UsersPelanggaranModelDashboard = new UsersPelanggaranModel();
+        
     }
 
     public function pengaturan_profile_siswa()
@@ -85,15 +93,45 @@ class SiswaController extends BaseController
 }
 
 
+
+
     public function dashboard()
     {
+        $riwayat_bimbingan_konseling = new UsersBimbinganKonselingModel();  
+        $model = new UsersPelanggaranModel();  
+        $siswa_id = session()->get('id'); // Mengambil ID dari session  
+        $user_id = session()->get('id'); // Mengambil ID dari session 
         $data = [
             'title' => 'Siswa - SIBK SMK Batik 1 Surakarta',
             'menu' => 'dashboard',
             'submenu' => ''
         ];
+
+        $data['riwayat_pelanggaran'] = $model ->getRiwayatPelanggaran($siswa_id);  
+        $data['jumlah_riwayat'] = $model ->getJumlahRiwayatPelanggaran($siswa_id); 
+        $data['riwayat_bimbingan'] = $riwayat_bimbingan_konseling->getRiwayatBimbinganKonseling($user_id);  
+        $data['jumlah_riwayat_bimbingan'] = $riwayat_bimbingan_konseling->getJumlahRiwayatBimbinganKonseling($user_id);  
         return view('users/index', $data);
     }
+
+    public function siswa_pelanggaranaa1()
+    {
+        $data = [
+            'title' => 'Siswa - SIBK SMK Batik 1 Surakarta',
+            'menu' => 'pelanggaran_siswa',
+            'submenu' => ''
+        ];
+        return view('users/pelanggaran_siswa', $data);
+    }
+    // public function siswa_bimbingan_konseling()
+    // {
+    //     $data = [
+    //         'title' => 'Siswa - SIBK SMK Batik 1 Surakarta',
+    //         'menu' => 'riwayat_bimbingan',
+    //         'submenu' => ''
+    //     ];
+    //     return view('users/riwayat_bimbingan', $data);
+    // }
    
 }
 ?>
