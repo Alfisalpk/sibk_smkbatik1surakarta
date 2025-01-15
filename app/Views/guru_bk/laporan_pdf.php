@@ -156,7 +156,7 @@
             <h4 class="text-center mt-4">LAPORAN PELAKSANAAN LAYANAN KONSELING INDIVIDU</h4>  
             <h4 class="text-center">TAHUN PELAJARAN 2025 / 2026</h4>  
   
-            <table class="table table-bordered mt-4 table-striped">  
+            <table class="table table-bordered mt-4">  
                 <tbody>  
                     <tr>  
                         <td>1. Nama Konseli</td>  
@@ -186,12 +186,9 @@
                         <td>7. Permasalahan</td>  
                         <td><?= esc($row['permasalahan']) ?></td>  
                     </tr>  
-                    <tr>    
-                    <tr>    
-                        <td>8. Hasil Yang Dicapai</td>    
-                        <td style="writing-mode: vertical-rl; text-orientation: mixed;">  
-                            <?= esc($row['hasil']) ?>  
-                        </td>    
+                    <tr>  
+                        <td>8. Hasil Yang Dicapai</td>  
+                        <td><?= esc($row['hasil']) ?></td>  
                     </tr>  
                 </tbody>  
             </table>  

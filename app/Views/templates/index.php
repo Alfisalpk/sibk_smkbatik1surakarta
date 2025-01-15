@@ -164,6 +164,8 @@
 </script>
 
 
+
+
 <script>
     $(document).ready(function() {
         // Submit Form Tambah Guru
@@ -678,7 +680,7 @@
             var button = $(event.relatedTarget);
             var id = button.data('daftarnisnsiswa-id');
             var nisn = button.data('daftarnisnsiswa-nisn');
-            var nama_lengkap = button.data('daftarnisnsiswa-nama_lengkap');
+            var username = button.data('daftarnisnsiswa-username');
             var nama_orangtua = button.data('daftarnisnsiswa-nama_orangtua');
             var kelas = button.data('daftarnisnsiswa-kelas');
             var jurusan = button.data('daftarnisnsiswa-jurusan');
@@ -694,7 +696,7 @@
             var modal = $(this);
             modal.find('#edit_id').val(id);
             modal.find('#edit_nisn').val(nisn);
-            modal.find('#edit_nama_lengkap').val(nama_lengkap);
+            modal.find('#edit_nama_lengkap').val(username);
             modal.find('#edit_nama_orangtua').val(nama_orangtua);
             modal.find('#edit_kelas').val(kelas);
             modal.find('#edit_jurusan').val(jurusan);
@@ -1222,7 +1224,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal',
-                        text: 'Terjadi kesalahan saat menambahkan data.',
+                        text: 'Admin - Terjadi kesalahan saat menambahkan data.',
                         showConfirmButton: true
                     });
                 }
@@ -1266,7 +1268,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal',
-                        text: 'Terjadi kesalahan saat memperbarui data.',
+                        text: 'Admin - Terjadi kesalahan saat memperbarui data.',
                         showConfirmButton: true
                     });
                 }
@@ -1318,7 +1320,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal',
-                        text: 'Terjadi kesalahan saat mengambil data siswa.',
+                        text: 'Admin - Terjadi kesalahan saat mengambil data siswa.',
                         showConfirmButton: true
                     });
                 }
@@ -1327,9 +1329,7 @@
     });
 
 </script>
-
 <!-- END AJAX Untuk Halaman Pelanggaran Siswa -->
-
 
 
 
@@ -1485,6 +1485,877 @@
 <!-- END AJAX Untuk Halaman Bimbingan Konseling -->
 
 
+
+<!-- ------------------------Area Guru BK---------------------------------------------- -->
+<!-- START AJAX Untuk Halaman Pelanggaran Siswa - GURU BK -->  
+
+<script>
+    $(document).ready(function() {
+        // Menampilkan notifikasi SweetAlert berdasarkan session flash data
+        <?php if (session()->getFlashdata('success')): ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '<?= session()->getFlashdata('success') ?>',
+                showConfirmButton: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '<?= session()->getFlashdata('error') ?>',
+                showConfirmButton: true
+            });
+        <?php endif; ?>
+
+        $('#kategori_id').change(function() {
+            var kategori_id = $(this).val();
+            $.ajax({
+                url: '/guru_bk/pelanggaran_siswa/getPelanggaranByKategori',
+                type: 'POST',
+                data: { kategori_id: kategori_id },
+                dataType: 'json', // Menentukan tipe data yang diharapkan
+                success: function(response) {
+                    console.log('Response:', response);
+                    var options = '<option value="">Pilih Pelanggaran</option>';
+                    $.each(response, function(index, value) {
+                        options += '<option value="' + value.id_pelanggaran + '">' + value.nama_pelanggaran + '</option>';
+                    });
+                    $('#pelanggaran_id').html(options);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching pelanggaran:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                }
+            });
+        });
+
+        $('#kategori_id_edit').change(function() {
+            var kategori_id = $(this).val();
+            $.ajax({
+                url: '/guru_bk/pelanggaran_siswa/getPelanggaranByKategori',
+                type: 'POST',
+                data: { kategori_id: kategori_id },
+                dataType: 'json', // Menentukan tipe data yang diharapkan
+                success: function(response) {
+                    console.log('Response:', response);
+                    var options = '<option value="">Pilih Pelanggaran</option>';
+                    $.each(response, function(index, value) {
+                        options += '<option value="' + value.id_pelanggaran + '">' + value.nama_pelanggaran + '</option>';
+                    });
+                    $('#pelanggaran_id_edit').html(options);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching pelanggaran:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                }
+            });
+        });
+
+        $('#BKPelanggaraneditModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var siswa_id = button.data('siswa_id');
+            var kategori_id = button.data('kategori_id');
+            var pelanggaran_id = button.data('pelanggaran_id');
+            var tanggal = button.data('tanggal');
+            var deskripsi = button.data('deskripsi');
+
+            var modal = $(this);
+            modal.find('#id').val(id);
+            modal.find('#siswa_id_edit').val(siswa_id);
+            modal.find('#kategori_id_edit').val(kategori_id);
+            modal.find('#pelanggaran_id_edit').val(pelanggaran_id);
+            modal.find('#tanggal_edit').val(tanggal);
+            modal.find('#deskripsi_edit').val(deskripsi);
+
+            // Set action URL form dengan ID yang sesuai
+            modal.find('#BKPelanggaraneditForm').attr('action', '/guru_bk/pelanggaran_siswa/update/' + id);
+
+            // Load pelanggaran berdasarkan kategori saat modal ditampilkan
+            $.ajax({
+                url: '/guru_bk/pelanggaran_siswa/getPelanggaranByKategori',
+                type: 'POST',
+                data: { kategori_id: kategori_id },
+                dataType: 'json', // Menentukan tipe data yang diharapkan
+                success: function(response) {
+                    console.log('Response:', response);
+                    var options = '<option value="">Pilih Pelanggaran</option>';
+                    $.each(response, function(index, value) {
+                        options += '<option value="' + value.id_pelanggaran + '">' + value.nama_pelanggaran + '</option>';
+                    });
+                    modal.find('#pelanggaran_id_edit').html(options);
+                    modal.find('#pelanggaran_id_edit').val(pelanggaran_id);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching pelanggaran:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                }
+            });
+        });
+
+        // Konfirmasi tambah data
+        $('#BKPelanggaranaddSubmitBtn').click(function() {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data akan ditambahkan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, tambah!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#BKPelanggaranaddForm').submit();
+                }
+            });
+        });
+
+        // Konfirmasi edit data
+        $('#BKPelanggaraneditSubmitBtn').click(function() {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data akan diperbarui!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, perbarui!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#BKPelanggaraneditForm').submit();
+                }
+            });
+        });
+
+        // Konfirmasi hapus data
+        $('.delete-BKbtnpelanggaransiswa').click(function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data akan dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/guru_bk/pelanggaran_siswa/delete/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    text: response.message,
+                                    showConfirmButton: true
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal',
+                                    text: response.message,
+                                    showConfirmButton: true
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error deleting data:', error);
+                            console.error('Status:', status);
+                            console.error('Response Text:', xhr.responseText);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal',
+                                text: 'Terjadi kesalahan saat menghapus data.',
+                                showConfirmButton: true
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+        // Menangani submit form tambah dengan SweetAlert
+        $('#BKPelanggaranaddForm').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: response.message,
+                            showConfirmButton: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error submitting form:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Guru BK - Terjadi kesalahan saat menambahkan data.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        });
+
+        // Menangani submit form edit dengan SweetAlert
+        $('#BKPelanggaraneditForm').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: response.message,
+                            showConfirmButton: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error submitting form:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Admin - Terjadi kesalahan saat memperbarui data.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        });
+
+        // Menangani klik tombol Detail
+        $('.detail-BKPelanggaranbtn').click(function(e) {
+            e.preventDefault();
+            var siswa_id = $(this).data('id');
+
+            $.ajax({
+                url: '/guru_bk/pelanggaran_siswa/getUserById',
+                type: 'POST',
+                data: { id: siswa_id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#detailNamaLengkap').val(response.user.username);
+                        $('#detailEmail').val(response.user.email);
+                        $('#detailNis').val(response.user.nisn);
+                        // Menggabungkan Kelas dan Jurusan
+                        var kelasJurusan = response.user.kelas + ' ' + response.user.jurusan;
+                        $('#detailKelasJurusan').val(kelasJurusan);
+                        $('#detailJenis_Kelamin').val(response.user.jenis_kelamin);
+                        $('#detailAgama').val(response.user.agama);
+                        $('#detailNomor_Wa').val(response.user.nomor_wa);
+                        $('#detailNomor_WA_Ortu').val(response.user.nomor_wa_ortu);
+                        $('#detailAlamat').val(response.user.alamat);
+                          // Menampilkan gambar siswa
+                          var fotoUrl = '/' + response.user.foto;
+                        $('#detailFoto').attr('src', fotoUrl);
+                        // Tambahkan field lainnya sesuai kebutuhan
+
+                        $('#detailModal').modal('show');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching user data:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Admin - Terjadi kesalahan saat mengambil data siswa.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+<!-- END AJAX Untuk Halaman Pelanggaran Siswa - GURU BK -->  
+
+
+
+<!-- START AJAX Untuk Halaman Bimbingan Konseling - GURU BK -->
+<script>
+        $(document).ready(function() {
+            $('#BKPelanggaraneditModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var id_bimbingankonseling = button.data('id');
+                var user_id = button.data('user-id');
+                var tanggal = button.data('tanggal');
+                var pertemuan_ke = button.data('pertemuan-ke');
+                var waktu = button.data('waktu');
+                var tempat = button.data('tempat');
+                var permasalahan = button.data('permasalahan');
+                var hasil = button.data('hasil');
+
+                var modal = $(this);
+                modal.find('.modal-body #id_bimbingankonseling').val(id_bimbingankonseling);
+                modal.find('.modal-body #edit_user_id').val(user_id);
+                modal.find('.modal-body #edit_tanggal').val(tanggal);
+                modal.find('.modal-body #edit_pertemuan_ke').val(pertemuan_ke);
+                modal.find('.modal-body #edit_waktu').val(waktu);
+                modal.find('.modal-body #edit_tempat').val(tempat);
+                modal.find('.modal-body #edit_permasalahan').val(permasalahan);
+                modal.find('.modal-body #edit_hasil').val(hasil);
+            });
+
+            $('#BKaddBimbinganBtn').on('click', function() {
+                $.ajax({
+                    url: '/guru_bk/bimbingan_konseling/store',
+                    type: 'POST',
+                    data: $('#BKaddForm').serialize(),
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat menambahkan data.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+
+            $('#BKeditBimbinganBtn').on('click', function() {
+                $.ajax({
+                    url: '/guru_bk/bimbingan_konseling/update',
+                    type: 'POST',
+                    data: $('#BKeditForm').serialize(),
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat memperbarui data.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+
+        function BKdeleteBimbinganKonseling(id_bimbingankonseling) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/guru_bk/bimbingan_konseling/delete/' + id_bimbingankonseling,
+                        type: 'GET',
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire({
+                                    title: 'Sukses',
+                                    text: response.message,
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: response.message,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat menghapus data.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+<!-- END AJAX Untuk Halaman Bimbingan Konseling -->
+
+
+<!-- START AJAX Untuk Halaman Panggilan Siswa - Guru BK -->
+<script>  
+        $(document).ready(function() {  
+            // Tambah Data  
+            $('#BKPanggilanaddForm').on('submit', function(e) {  
+                e.preventDefault();  
+                $.ajax({  
+                    url: '/guru_bk/data_panggilan_siswa/store',  
+                    type: 'POST',  
+                    data: $(this).serialize(),  
+                    dataType: 'json',  
+                    success: function(response) {  
+                        if (response.status === 'success') {  
+                            Swal.fire({  
+                                title: 'Sukses',  
+                                text: response.message,  
+                                icon: 'success',  
+                                confirmButtonText: 'OK'  
+                            }).then((result) => {  
+                                if (result.isConfirmed) {  
+                                    location.reload();  
+                                }  
+                            });  
+                        } else {  
+                            Swal.fire({  
+                                title: 'Gagal',  
+                                text: response.message,  
+                                icon: 'error',  
+                                confirmButtonText: 'OK'  
+                            });  
+                        }  
+                    },  
+                    error: function() {  
+                        Swal.fire({  
+                            title: 'Gagal',  
+                            text: 'Terjadi kesalahan saat menambahkan data.',  
+                            icon: 'error',  
+                            confirmButtonText: 'OK'  
+                        });  
+                    }  
+                });  
+            });  
+  
+            // Edit Data  
+            $('.BKPanggilaneditBtn').on('click', function() {  
+                var id_panggilansiswa = $(this).data('id');  
+                $.ajax({  
+                    url: '/guru_bk/data_panggilan_siswa/edit/' + id_panggilansiswa,  
+                    type: 'GET',  
+                    dataType: 'json',  
+                    success: function(response) {  
+                        if (response.status === 'success') {  
+                            var data = response.data;  
+                            $('#edit_id_panggilansiswa').val(data.id_panggilansiswa);  
+                            $('#edit_user_id').val(data.user_id);  
+                            $('#edit_tanggal').val(data.tanggal);  
+                            $('#edit_jam_ke').val(data.jam_ke);  
+                            $('#edit_keperluan').val(data.keperluan);  
+                            $('#edit_tempat').val(data.tempat);  
+                            $('#edit_hasil_panggilan').val(data.hasil_panggilan);  
+                            $('#BKPanggilaneditModal').modal('show');  
+                        } else {  
+                            Swal.fire({  
+                                title: 'Gagal',  
+                                text: response.message,  
+                                icon: 'error',  
+                                confirmButtonText: 'OK'  
+                            });  
+                        }  
+                    },  
+                    error: function() {  
+                        Swal.fire({  
+                            title: 'Gagal',  
+                            text: 'Terjadi kesalahan saat mengambil data.',  
+                            icon: 'error',  
+                            confirmButtonText: 'OK'  
+                        });  
+                    }  
+                });  
+            });  
+  
+            // Simpan Edit Data  
+            $('#BKPanggilaneditForm').on('submit', function(e) {  
+                e.preventDefault();  
+                $.ajax({  
+                    url: '/guru_bk/data_panggilan_siswa/update/' + $('#edit_id_panggilansiswa').val(),  
+                    type: 'POST',  
+                    data: $(this).serialize(),  
+                    dataType: 'json',  
+                    success: function(response) {  
+                        if (response.status === 'success') {  
+                            Swal.fire({  
+                                title: 'Sukses',  
+                                text: response.message,  
+                                icon: 'success',  
+                                confirmButtonText: 'OK'  
+                            }).then((result) => {  
+                                if (result.isConfirmed) {  
+                                    location.reload();  
+                                }  
+                            });  
+                        } else {  
+                            Swal.fire({  
+                                title: 'Gagal',  
+                                text: response.message,  
+                                icon: 'error',  
+                                confirmButtonText: 'OK'  
+                            });  
+                        }  
+                    },  
+                    error: function() {  
+                        Swal.fire({  
+                            title: 'Gagal',  
+                            text: 'Terjadi kesalahan saat memperbarui data.',  
+                            icon: 'error',  
+                            confirmButtonText: 'OK'  
+                        });  
+                    }  
+                });  
+            });  
+  
+            // Hapus Data  
+            $('.BKPanggilandeleteBtn').on('click', function() {  
+                var id_panggilansiswa = $(this).data('id');  
+                Swal.fire({  
+                    title: 'Apakah Anda yakin?',  
+                    text: "Anda tidak akan dapat mengembalikan data ini!",  
+                    icon: 'warning',  
+                    showCancelButton: true,  
+                    confirmButtonColor: '#3085d6',  
+                    cancelButtonColor: '#d33',  
+                    confirmButtonText: 'Ya, hapus!'  
+                }).then((result) => {  
+                    if (result.isConfirmed) {  
+                        $.ajax({  
+                            url: '/guru_bk/data_panggilan_siswa/delete/' + id_panggilansiswa,  
+                            type: 'GET',  
+                            dataType: 'json',  
+                            success: function(response) {  
+                                if (response.status === 'success') {  
+                                    Swal.fire({  
+                                        title: 'Sukses',  
+                                        text: response.message,  
+                                        icon: 'success',  
+                                        confirmButtonText: 'OK'  
+                                    }).then((result) => {  
+                                        if (result.isConfirmed) {  
+                                            location.reload();  
+                                        }  
+                                    });  
+                                } else {  
+                                    Swal.fire({  
+                                        title: 'Gagal',  
+                                        text: response.message,  
+                                        icon: 'error',  
+                                        confirmButtonText: 'OK'  
+                                    });  
+                                }  
+                            },  
+                            error: function() {  
+                                Swal.fire({  
+                                    title: 'Gagal',  
+                                    text: 'Terjadi kesalahan saat menghapus data.',  
+                                    icon: 'error',  
+                                    confirmButtonText: 'OK'  
+                                });  
+                            }  
+                        });  
+                    }  
+                });  
+            });  
+        });  
+    </script>  
+<!-- END AJAX Untuk Halaman Data Panggilan Siswa-->
+
+
+
+<!-- START AJAX Untuk Halaman Data Kunjungan Siswa-->
+<script>  
+    $(document).ready(function() {  
+            // Modal Detail  
+        $('.BKVisitdetail-btn').on('click', function(e) {  
+            e.preventDefault();  
+            var id_kunjungan_siswa = $(this).data('id');  
+  
+            $.ajax({  
+                url: '/guru_bk/homevisit/detail',  
+                type: 'POST',  
+                data: { id_kunjungan_siswa: id_kunjungan_siswa },  
+                dataType: 'json',  
+                success: function(response) {  
+                    if (response.success) {  
+                        var data = response.data;  
+                        if (data.users) {  
+                            $('#BKDetail_id_siswa').val(data.users.nama_lengkap);  
+                            $('#BKDetail_nisn').val(data.users.nisn);  
+                            $('#BKDetail_kelas_jurusan').val(data.users.kelas + ' / ' + data.users.jurusan);  
+                            $('#BKDetail_nama_orangtua').val(data.users.nama_orangtua);  
+                            $('#BKDetail_alamat').val(data.users.alamat);  
+                            $('#BKDetail_permasalahan').val(data.permasalahan);  
+                            $('#BKDetail_latar_belakang_sosial_ekonomi').val(data.latar_belakang_sosial_ekonomi);  
+                            $('#BKDetail_faktor_dari_orangtua').val(data.faktor_dari_orangtua);  
+                            $('#BKDetail_kesan_petugas').val(data.kesan_petugas);  
+                            $('#BKDetail_rencana_penanganan').val(data.rencana_penanganan);  
+                            $('#BKDetail_evaluasi').val(data.evaluasi);  
+                            $('#BKDetail_apabila_siswa_kost').val(data.apabila_siswa_kost);  
+                            $('#BKDetail_yang_melaksanakan').val(data.yang_melaksanakan);  
+                            $('#BKDetailModal').modal('show');  
+                        } else {  
+                            Swal.fire({  
+                                icon: 'error',  
+                                title: 'Gagal',  
+                                text: 'Data siswa tidak ditemukan'  
+                            });  
+                        }  
+                    } else {  
+                        Swal.fire({  
+                            icon: 'error',  
+                            title: 'Gagal',  
+                            text: response.message  
+                        });  
+                    }  
+                },  
+                error: function(xhr, status, error) {  
+                    console.error('Error fetching user data:', error);  
+                    console.error('Status:', status);  
+                    console.error('Response Text:', xhr.responseText);  
+                    Swal.fire({  
+                        icon: 'error',  
+                        title: 'Gagal',  
+                        text: 'Terjadi kesalahan saat memuat data'  
+                    });  
+                }  
+            });  
+        });  
+       
+
+           
+           
+            // Modal Edit  
+            $('#BKVisiteditModal').on('show.bs.modal', function (event) {  
+                var button = $(event.relatedTarget);  
+                var id_kunjungan_siswa = button.data('id');  
+                var modal = $(this);  
+  
+                $.ajax({  
+                    url: '/guru_bk/homevisit/edit/' + id_kunjungan_siswa,  
+                    method: 'GET',  
+                    dataType: 'json',  
+                    success: function(data) {  
+                        modal.find('#id_kunjungan_siswa').val(data.id_kunjungan_siswa);  
+                        modal.find('#edit_id_siswa').val(data.id_siswa);  
+                        modal.find('#edit_permasalahan').val(data.permasalahan);  
+                        modal.find('#edit_latar_belakang_sosial_ekonomi').val(data.latar_belakang_sosial_ekonomi);  
+                        modal.find('#edit_faktor_dari_orangtua').val(data.faktor_dari_orangtua);  
+                        modal.find('#edit_kesan_petugas').val(data.kesan_petugas);  
+                        modal.find('#edit_rencana_penanganan').val(data.rencana_penanganan);  
+                        modal.find('#edit_evaluasi').val(data.evaluasi);  
+                        modal.find('#edit_apabila_siswa_kost').val(data.apabila_siswa_kost);  
+                        modal.find('#edit_yang_melaksanakan').val(data.yang_melaksanakan);  
+                        modal.find('#BKKunjunganeditForm').attr('action', '/guru_bk/homevisit/update/' + data.id_kunjungan_siswa);  
+                    }  
+                });  
+            });  
+  
+            // Form Tambah  
+            $('#BKKunjungaaddModal form').on('submit', function(e) {  
+                e.preventDefault();  
+                var formData = $(this).serialize();  
+  
+                $.ajax({  
+                    url: '/guru_bk/homevisit/store',  
+                    method: 'POST',  
+                    data: formData,  
+                    success: function(response) {  
+                        Swal.fire({  
+                            icon: 'success',  
+                            title: 'Berhasil',  
+                            text: 'Data berhasil ditambahkan',  
+                            didClose: () => {  
+                                location.reload();  
+                            }  
+                        });  
+                    },  
+                    error: function(xhr, status, error) {  
+                        Swal.fire({  
+                            icon: 'error',  
+                            title: 'Gagal',  
+                            text: 'Terjadi kesalahan saat menambahkan data'  
+                        });  
+                    }  
+                });  
+            });  
+  
+            // Form Edit  
+            $('#BKKunjunganeditForm').on('submit', function(e) {  
+                e.preventDefault();  
+                var formData = $(this).serialize();  
+  
+                $.ajax({  
+                    url: $(this).attr('action'),  
+                    method: 'POST',  
+                    data: formData,  
+                    success: function(response) {  
+                        Swal.fire({  
+                            icon: 'success',  
+                            title: 'Berhasil',  
+                            text: 'Data berhasil diperbarui',  
+                            didClose: () => {  
+                                location.reload();  
+                            }  
+                        });  
+                    },  
+                    error: function(xhr, status, error) {  
+                        Swal.fire({  
+                            icon: 'error',  
+                            title: 'Gagal',  
+                            text: 'Terjadi kesalahan saat memperbarui data'  
+                        });  
+                    }  
+                });  
+            });  
+  
+            // Hapus Data  
+            $('.delete-btn').on('click', function(e) {  
+                e.preventDefault();  
+                var id_kunjungan_siswa = $(this).data('id');  
+  
+                Swal.fire({  
+                    title: 'Apakah Anda yakin?',  
+                    text: "Anda tidak akan dapat mengembalikan data ini!",  
+                    icon: 'warning',  
+                    showCancelButton: true,  
+                    confirmButtonColor: '#3085d6',  
+                    cancelButtonColor: '#d33',  
+                    confirmButtonText: 'Ya, hapus!'  
+                }).then((result) => {  
+                    if (result.isConfirmed) {  
+                        $.ajax({  
+                            url: '/guru_bk/homevisit/delete/' + id_kunjungan_siswa,  
+                            method: 'GET',  
+                            success: function(response) {  
+                                Swal.fire({  
+                                    icon: 'success',  
+                                    title: 'Berhasil',  
+                                    text: 'Data berhasil dihapus',  
+                                    didClose: () => {  
+                                        location.reload();  
+                                    }  
+                                });  
+                            },  
+                            error: function(xhr, status, error) {  
+                                Swal.fire({  
+                                    icon: 'error',  
+                                    title: 'Gagal',  
+                                    text: 'Terjadi kesalahan saat menghapus data'  
+                                });  
+                            }  
+                        });  
+                    }  
+                });  
+            });  
+        });  
+    </script>  
+<!-- END AJAX Untuk Halaman Data Kunjungan Siswa-->
 
 
 

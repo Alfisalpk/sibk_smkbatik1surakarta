@@ -34,7 +34,7 @@
         <table id="example2" class="table table-hover table-bordered">
             <thead>
             <tr>
-                    <th style="width: 5vh;">ID</th>
+                    
                     <th style="width: 15vh;">Kategori</th>
                     <th style="width: 100vh;">Nama Pelanggaran</th>
                     <th style="width: 20vh;">Klasifikasi</th>
@@ -46,7 +46,7 @@
             <tbody>
                 <?php foreach ($pelanggaran as $p): ?>
                     <tr>
-                        <td><?= $p['id_pelanggaran'] ?></td>
+                        
                         <td><?= $p['nama_kategori'] ?></td>
                         <td><?= $p['nama_pelanggaran'] ?></td>
                         <td><?= $p['klasifikasi'] ?></td>

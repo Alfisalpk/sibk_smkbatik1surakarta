@@ -27,13 +27,13 @@
                 <h4 class="text-center">Data Laporan Bimbingan Konseling</h4>  
             </div>  
             <div class="card-body">  
-                <a href="<?= base_url('admin/laporan/bimbingan/pdf?preview=1') ?>" class="btn btn-primary mb-3">Lihat Semua Data</a>  
-                <a href="<?= base_url('admin/laporan/bimbingan/pdf') ?>" class="btn btn-success mb-3">Download Semua Data</a>  
+                <a href="<?= base_url('guru_bk/laporan/bimbingan/pdf?preview=1') ?>" class="btn btn-primary mb-3">Lihat Semua Data</a>  
+                <a href="<?= base_url('guru_bk/laporan/bimbingan/pdf') ?>" class="btn btn-success mb-3">Download Semua Data</a>  
   
                 <div class="table-responsiveku">
                     <table id="example2" class="table table-bordered table-hover">  
                         <thead>  
-                        <tr>  
+                            <tr>  
                             <!-- <th style="display: none;">ID Bimbingan</th>      -->
                                 <th style="width: 25vh;">Nama Siswa</th>  
                                 <th>Kelas</th>  
@@ -61,10 +61,10 @@
                                     <td><?= esc($row['permasalahan']) ?></td>  
                                     <td><?= esc($row['hasil']) ?></td>  
                                     <td>  
-                                        <a href="<?= base_url('admin/laporan/bimbingan/pdf/' . $row['id_bimbingankonseling'] . '?preview=1') ?>" class="btn btn-outline-primary btn-sm mb-1">Preview
+                                        <a href="<?= base_url('guru_bk/laporan/bimbingan/pdf/' . $row['id_bimbingankonseling'] . '?preview=1') ?>" class="btn btn-outline-primary btn-sm mb-1">Preview
                                         <i class="fa-solid fa-file-pdf"></i>
                                         </a>  
-                                        <a href="<?= base_url('admin/laporan/bimbingan/pdf/' . $row['id_bimbingankonseling']) ?>" class="btn btn-outline-success btn-sm">Download
+                                        <a href="<?= base_url('guru_bk/laporan/bimbingan/pdf/' . $row['id_bimbingankonseling']) ?>" class="btn btn-outline-success btn-sm">Download
                                         <i class="fa-solid fa-download"></i>
                                         </a>  
                                     </td>  

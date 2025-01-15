@@ -121,7 +121,7 @@
                             <label for="excel_file">Upload File Excel</label>
                             <input type="file" class="form-control" id="excel_file" name="excel_file" accept=".xls,.xlsx" required>
                             <small class="form-text text-muted">Format file: .xls atau .xlsx</small>
-                            <a href="<?= base_url('public/template/template_siswa.xlsx') ?>" download="template_siswa.xlsx" class="btn btn-link">Unduh Template</a>
+                            <a href="https://drive.google.com/drive/folders/1GxiifxSrcIfOmayEXhN70VrjzilAw3ZY?usp=drive_link" download="template_siswa.xlsx" class="btn btn-link">Unduh Template</a>
                         </div>
                     </form>
                 </div>

@@ -139,6 +139,54 @@
           </a>
         </li>
       <?php endif; ?>
+        <!-- END Area Sidebar Siswa -->
+
+
+      <?php if (in_groups([4])): // Guru BK ?>
+        <li class="nav-item">
+          <a href="<?= base_url('/guru_bk/dashboard') ?>" class="nav-link <?= $menu == 'dashboard' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-solid fa-user-clock"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('/guru_bk/daftar_siswa_bk') ?>" class="nav-link <?= $menu == 'daftar_siswa' ? 'active' : '' ?>">
+          <i class="nav-icon fa-solid fa-users"></i>
+            <p>Daftar Siswa</p>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a href="<?= base_url('/guru_bk/kelola_pelanggaran_bk') ?>" class="nav-link <?= $menu == 'pelanggaran_siswa' ? 'active' : '' ?>">
+          <i class="nav-icon fa-solid fa-person-chalkboard"></i>
+            <p>Pelanggaran Siswa</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('/guru_bk/bimbingan_konseling_siswa') ?>" class="nav-link <?= $menu == 'bimbingan_konseling_siswa' ? 'active' : '' ?>">
+          <i class="nav-icon  fa-solid fa-user-group"></i>
+            <p>Bimbingan Konseling</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('/guru_bk/data_panggilan_siswa') ?>" class="nav-link <?= $menu == 'data_panggilan_siswa' ? 'active' : '' ?>">
+          <i class="nav-icon fa-solid fa-user-check"></i>
+            <p>Data Panggilan Siswa</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('/guru_bk/data_homevisit_siswa') ?>" class="nav-link <?= $menu == 'homevisit_siswa' ? 'active' : '' ?>">
+          <i class="nav-icon fa-solid fa-house-flag"></i>
+            <p>Data Home Visit</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('/guru_bk/laporan_bimbingankonseling_siswa') ?>" class="nav-link <?= $menu == 'laporan_bimbingankonseling_siswa' ? 'active' : '' ?>">
+          <i class="nav-icon fas fa-file"></i>
+            <p>Laporan Bimbingan Siswa</p>
+          </a>
+        </li>
+      <?php endif; ?>
 
       <!-- Semua ROLE ADA -->
       <li class="nav-item">

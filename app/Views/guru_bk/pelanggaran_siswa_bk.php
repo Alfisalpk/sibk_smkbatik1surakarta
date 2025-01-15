@@ -27,7 +27,7 @@
                 <h4 class="text-center">Data Pelanggaran Siswa</h4>
             </div>
             <div class="card-body">
-            <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</a>
+            <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#BKPelanggaranaddModal">Tambah Pelanggaran</a>
             <div class="table-responsiveku">
                 <table id="example2" class="table table-hover table-bordered table-responsive">
                 <thead>
@@ -38,7 +38,7 @@
                         <th  style="width: 50vh;">Pelanggaran</th>
                         <th  style="width: 15vh;">Tanggal</th>
                         <th  style="width: 100vh;">Deskripsi</th>
-                        <th  style="width: 20vh;">Aksi</th>
+                        <th  style="width: 25vh;">Aksi</th>
                     </tr>
                 </thead>
                 <?php foreach ($pelanggaran_siswa as $ps): ?>
@@ -50,13 +50,13 @@
                 <td><?= $ps['tanggal'] ?></td>
                 <td><?= $ps['deskripsi'] ?></td>
                 <td>
-                    <a href="#" class="btn btn-outline-primary detail-btn" data-id="<?= $ps['siswa_id'] ?>">
+                    <a href="#" class="btn btn-outline-primary detail-BKPelanggaranbtn" data-id="<?= $ps['siswa_id'] ?>">
                     <i class="fa-solid fa-magnifying-glass-plus"></i>
                     </a>
-                    <a href="#" class="btn btn-outline-warning edit-btnpelanggaransiswa" data-toggle="modal" data-target="#editModal" data-id="<?= $ps['id_pelanggaran_siswa'] ?>" data-siswa_id="<?= $ps['siswa_id'] ?>" data-kategori_id="<?= $ps['kategori_id'] ?>" data-pelanggaran_id="<?= $ps['pelanggaran_id'] ?>" data-tanggal="<?= $ps['tanggal'] ?>" data-deskripsi="<?= $ps['deskripsi'] ?>">
+                    <a href="#" class="btn btn-outline-warning edit-btnpelanggaransiswa" data-toggle="modal" data-target="#BKPelanggaraneditModal" data-id="<?= $ps['id_pelanggaran_siswa'] ?>" data-siswa_id="<?= $ps['siswa_id'] ?>" data-kategori_id="<?= $ps['kategori_id'] ?>" data-pelanggaran_id="<?= $ps['pelanggaran_id'] ?>" data-tanggal="<?= $ps['tanggal'] ?>" data-deskripsi="<?= $ps['deskripsi'] ?>">
                     <i class="fa-regular fa-pen-to-square"></i>
                     </a>
-                    <a href="#" class="btn btn-outline-danger delete-btnpelanggaransiswa" data-id="<?= $ps['id_pelanggaran_siswa'] ?>">
+                    <a href="#" class="btn btn-outline-danger delete-BKbtnpelanggaransiswa" data-id="<?= $ps['id_pelanggaran_siswa'] ?>">
                     <i class="fa-regular fa-trash-can"></i>
                     </a>
                 </td>
@@ -70,7 +70,7 @@
     </div>
 
    <!-- Modal Tambah -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="BKPelanggaranaddModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -79,7 +79,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addForm" action="/admin/pelanggaran_siswa/store" method="post">
+            <form id="BKPelanggaranaddForm" action="/guru_bk/pelanggaran_siswa/store" method="post">
                 <div class="modal-body">
                     <div class="form-group1">
                         <label for="siswa_id">Siswa</label>
@@ -115,7 +115,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" id="addSubmitBtn">Simpan</button>
+                    <button type="button" class="btn btn-primary" id="BKPelanggaranaddSubmitBtn">Simpan</button>
                 </div>
             </form>
         </div>
@@ -183,7 +183,7 @@
 </div>
 
   <!-- Modal Edit -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="BKPelanggaraneditModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -192,7 +192,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editForm" action="" method="post">
+            <form id="BKPelanggaraneditForm" action="" method="post">
                 <input type="hidden" id="id" name="id">
                 <div class="modal-body">
                     <div class="form-group">
@@ -228,7 +228,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" id="editSubmitBtn">Simpan</button>
+                    <button type="button" class="btn btn-primary" id="BKPelanggaraneditSubmitBtn">Simpan</button>
                 </div>
             </form>
         </div>

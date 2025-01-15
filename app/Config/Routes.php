@@ -100,13 +100,8 @@ $routes->get('bimbingan_konseling/delete/(:num)', 'BimbinganKonselingController:
 // START Routes Laporan  
 $routes->get('laporan_bimbingan_siswa', 'LaporanAdminController::index');  
 $routes->get('laporan/bimbingan/pdf', 'LaporanAdminController::generatePDF');
+$routes->get('laporan/bimbingan/pdf/(:num)', 'LaporanAdminController::generatePDF/$1');  
 // END Routes Laporan 
-
-
-
-
-
-
 
 
 // END Router CRUD Daftar Siswa
@@ -160,17 +155,76 @@ $routes->group('siswa', ['filter' => 'auth:3'], function($routes) {
     $routes->get('riwayat_pelanggaran', 'SiswaController::riwayat_pelanggaran');
     $routes->get('pengaturan_profile_siswa', 'SiswaController::pengaturan_profile_siswa'); // Pastikan user login
     
-    
     // Area Siswa CRUD
     $routes->get('pengaturan_profile_siswa', 'SiswaController::tampilProfile'); // Pastikan user login
     $routes->post('updateprofile', 'SiswaController::update');
     
 
 });
+// END Siswa Area
 
+// Area Guru BK
 $routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) { 
-    $routes->get('dashboard', 'GuruBkController::dashboard');
+    $routes->get('/', 'GuruBkController::index');
+    $routes->get('dashboard', 'GuruBkController::index');
+    
+    $routes->get('daftar_siswa_bk', 'GuruBkController::siswa_terdaftar');
+
+    // CRUD Daftar Siswa - Bagian Guru BK
+    $routes->post('edit_siswa', 'GuruBkController::edit_siswa');
+    $routes->post('hapus_siswa', 'GuruBkController::hapus_siswa');
+    // END CRUD Daftar Siswa - Bagian Guru BK
+    
+    // START CRUD Pealanggaran Siswa - Bagian Guru BK
+    $routes->get('kelola_pelanggaran_bk', 'GuruBkPelanggaranSiswaController::kelola_pelanggaran_siswa');
+    $routes->post('pelanggaran_siswa/store', 'GuruBkPelanggaranSiswaController::store_pelanggaran_siswa');
+    $routes->post('pelanggaran_siswa/update/(:num)', 'GuruBkPelanggaranSiswaController::update_pelanggaran_siswa/$1'); // Pastikan rute ini ada
+    $routes->get('pelanggaran_siswa/delete/(:num)', 'GuruBkPelanggaranSiswaController::delete_pelanggaran_siswa/$1');
+    $routes->post('pelanggaran_siswa/getPelanggaranByKategori', 'GuruBkPelanggaranSiswaController::getPelanggaranByKategori');
+    $routes->post('pelanggaran_siswa/getUserById', 'GuruBkPelanggaranSiswaController::getUserById');
+    // END CRUD Pealanggaran Siswa - Bagian Guru BK
+    
+    
+    // START CRUD Bimbingan Kosneling Siswa - Bagian Guru BK
+    $routes->get('bimbingan_konseling_siswa', 'GuruBKBimbinganKonselingController::index');
+    $routes->post('bimbingan_konseling/store', 'GuruBKBimbinganKonselingController::store_bimbingankonseling');
+    $routes->post('bimbingan_konseling/update', 'GuruBKBimbinganKonselingController::update_bimbingankonseling');
+    $routes->get('bimbingan_konseling/delete/(:num)', 'GuruBKBimbinganKonselingController::delete/$1');
+    // END CRUD Bimbingan Kosneling Siswa - Bagian Guru BK
+
+    // START Routes Laporan  
+    $routes->get('laporan_bimbingankonseling_siswa', 'LaporanBKController::index');  
+    $routes->get('laporan/bimbingan/pdf', 'LaporanBKController::generatePDF');
+    $routes->get('laporan/bimbingan/pdf/(:num)', 'LaporanAdminController::generatePDF/$1');  
+    // END Routes Laporan 
+    
+    // START Routes Data Panggilan Siswa
+    $routes->get('data_panggilan_siswa', 'BKDataPanggilanSiswaController::index');  
+    $routes->post('data_panggilan_siswa/store', 'BKDataPanggilanSiswaController::store');  
+    $routes->get('data_panggilan_siswa/edit/(:num)', 'BKDataPanggilanSiswaController::edit/$1');  
+    $routes->post('data_panggilan_siswa/update/(:num)', 'BKDataPanggilanSiswaController::update/$1');  
+    $routes->get('data_panggilan_siswa/delete/(:num)', 'BKDataPanggilanSiswaController::delete/$1');  
+    // END Routes Data Panggilan Siswa
+    
+    // START Routes Data Kunjungan Rumah Siswa
+    $routes->get('data_homevisit_siswa', 'BKKunjunganRumahController::index');
+    $routes->get('homevisit/create', 'BKKunjunganRumahController::create');  
+    $routes->post('homevisit/store', 'BKKunjunganRumahController::store');  
+    $routes->get('homevisit/edit/(:num)', 'BKKunjunganRumahController::edit/$1');  
+    $routes->post('homevisit/update/(:num)', 'BKKunjunganRumahController::update/$1');  
+    $routes->get('homevisit/delete/(:num)', 'BKKunjunganRumahController::delete/$1'); 
+    $routes->get('homevisit/detail/(:num)', 'BKKunjunganRumahController::detail/$1'); 
+    // END Routes Data Kunjungan Rumah Siswa
+    
+
+
+
+
+
 });
+
+// END Area Guru BK
+
 
 $routes->group('kepala_sekolah', ['filter' => 'auth:5'], function($routes) {
     $routes->get('dashboard', 'KepalaSekolahController::dashboard');
@@ -178,8 +232,4 @@ $routes->group('kepala_sekolah', ['filter' => 'auth:5'], function($routes) {
 
 
 
-
 // END area mengatur sidebar 
-
-
-

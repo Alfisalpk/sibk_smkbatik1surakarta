@@ -232,7 +232,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="editUsername">Username</label>
+                        <label for="editUsername">Nama Lengkap</label>
                         <input type="text" class="form-control" id="editUsername" name="username" required>
                     </div>
                     <div class="form-group">

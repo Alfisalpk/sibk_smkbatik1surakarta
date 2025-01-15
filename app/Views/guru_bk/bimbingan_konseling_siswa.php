@@ -74,7 +74,7 @@
                             <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#editModal" data-id="<?= $bimbingan['id_bimbingankonseling'] ?>" data-user-id="<?= $bimbingan['user_id'] ?>" data-tanggal="<?= $bimbingan['tanggal'] ?>" data-pertemuan-ke="<?= $bimbingan['pertemuan_ke'] ?>" data-waktu="<?= $bimbingan['waktu'] ?>" data-tempat="<?= $bimbingan['tempat'] ?>" data-permasalahan="<?= $bimbingan['permasalahan'] ?>" data-hasil="<?= $bimbingan['hasil'] ?>">
                             <i class="fa-regular fa-pen-to-square"></i>
                             </button>
-                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteBimbinganKonseling(<?= $bimbingan['id_bimbingankonseling'] ?>)">
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="BKdeleteBimbinganKonseling(<?= $bimbingan['id_bimbingankonseling'] ?>)">
                             <i class="fa-regular fa-trash-can"></i>
                             </button>
                         </td>
@@ -99,7 +99,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="addForm">
+                    <form id="BKaddForm">
                         <div class="form-group">
                             <label for="user_id">Nama Siswa:</label>
                             <select name="user_id" id="user_id" class="form-control">
@@ -136,7 +136,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" id="addBimbinganBtn">Simpan</button>
+                    <button type="button" class="btn btn-primary" id="BKaddBimbinganBtn">Simpan</button>
                 </div>
             </div>
         </div>
@@ -153,7 +153,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="editForm">
+                    <form id="BKeditForm">
                         <input type="hidden" name="id_bimbingankonseling" id="id_bimbingankonseling">
                         <div class="form-group">
                             <label for="user_id">Nama Siswa:</label>
@@ -191,7 +191,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" id="editBimbinganBtn">Simpan</button>
+                    <button type="button" class="btn btn-primary" id="BKeditBimbinganBtn">Simpan</button>
                 </div>
             </div>
         </div>

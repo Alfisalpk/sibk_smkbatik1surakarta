@@ -2,6 +2,10 @@
   max-height: 700px; /* Set your desired height */
   overflow-y: auto; /* Enable vertical scrolling */
 }
+.table-responsiveku2 {
+  max-height: 700px; /* Set your desired height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
 .table-responsivekudashboard {
   max-height: 300px; /* Set your desired height */
   overflow-y: auto; /* Enable vertical scrolling */

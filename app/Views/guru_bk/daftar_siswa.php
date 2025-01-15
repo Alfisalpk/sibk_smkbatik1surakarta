@@ -31,18 +31,18 @@
                 <table id="example2" class="table table-hover table-bordered table-responsive">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 50vh;">NISN</th>
-                            <th scope="col" style="width: 100vh;">Nama Lengkap</th>
-                            <th scope="col" style="width: 100vh;">Nama Orang Tua</th>
-                            <th scope="col" style="width: 100vh;">Kelas</th>
-                            <th scope="col" style="width: 10vh;">Jenis Kelamin</th>
+                            <th scope="col" style="width: 15vh;">NISN</th>
+                            <th scope="col" style="width: 40vh;">Nama Lengkap</th>
+                            <th scope="col" style="width: 40vh;">Nama Orang Tua</th>
+                            <th scope="col" style="width: 10vh;">Kelas</th>
+                            <th scope="col" style="width: 15vh;">Jenis Kelamin</th>
                             <th scope="col" style="width: 10vh;">Agama</th>
-                            <th scope="col" style="width: 100vh;">Nomor WA Siswa</th>
-                            <th scope="col" style="width: 100vh;">Nomor WA Orang Tua</th>
-                            <th scope="col" style="width: 100vh;">Tempat Tanggal Lahir</th>
-                            <th scope="col" style="width: 100vh;">Alamat</th>
-                            <th scope="col" style="width: 100vh;">Email</th>
-                            <th scope="col" style="width: 100vh;">Aksi</th>
+                            <th scope="col" style="width: 20vh;">Nomor WA Siswa</th>
+                            <th scope="col" style="width: 20vh;">Nomor WA Orang Tua</th>
+                            <th scope="col" style="width: 25vh;">Tempat Tanggal Lahir</th>
+                            <th scope="col" style="width: 50vh;">Alamat</th>
+                            <th scope="col" style="width: 30vh;">Email</th>
+                            <th scope="col" style="width: 5vh;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,9 +63,9 @@
                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#editSiswaModal" data-daftarnisnsiswa-id="<?= $s['id'] ?>" data-daftarnisnsiswa-nisn="<?= $s['nisn'] ?>" data-daftarnisnsiswa-username="<?= $s['username'] ?>" data-daftarnisnsiswa-kelas="<?= $s['kelas'] ?>" data-daftarnisnsiswa-jurusan="<?= $s['jurusan'] ?>" data-daftarnisnsiswa-nama_orangtua="<?= $s['nama_orangtua'] ?>" data-daftarnisnsiswa-jenis_kelamin="<?= $s['jenis_kelamin'] ?>" data-daftarnisnsiswa-agama="<?= $s['agama'] ?>" data-daftarnisnsiswa-nomor_wa="<?= $s['nomor_wa'] ?>" data-daftarnisnsiswa-nomor_wa_ortu="<?= $s['nomor_wa_ortu'] ?>" data-daftarnisnsiswa-tempat_lahir="<?= $s['tempat_lahir'] ?>" data-daftarnisnsiswa-tgl_lahir="<?= $s['tgl_lahir'] ?>" data-daftarnisnsiswa-alamat="<?= $s['alamat'] ?>" data-daftarnisnsiswa-email="<?= $s['email'] ?>">
                                     <i class="fas fa-pen-to-square"></i>
                                 </button>
-                                <button type="button" class="btn btn-outline-danger delete-btn" data-toggle="modal" data-target="#hapusSiswaModal" data-daftarnisnsiswa-id="<?= $s['id'] ?>">
+                                <!-- <button type="button" class="btn btn-outline-danger delete-btn" data-toggle="modal" data-target="#hapusSiswaModal" data-daftarnisnsiswa-id="<?= $s['id'] ?>">
                                     <i class="fas fa-trash-can"></i>
-                                </button>
+                                </button> -->
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -90,7 +90,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nisn">NISN</label>
-                            <input type="number" class="form-control" id="nisn" name="nisn" disabled required>
+                            <input type="text" class="form-control" id="nisn" name="nisn" disabled required>
                         </div>
                         <div class="form-group">
                             <label for="nama_lengkap">Nama Lengkap</label>
@@ -182,12 +182,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="editSiswaForm" action="/admin/edit_siswa" method="post">
+                <form id="editSiswaForm" action="/guru_bk/edit_siswa" method="post">
                     <input type="hidden" name="id" id="edit_id">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="edit_nisn">NISN</label>
-                            <input type="number" class="form-control" id="edit_nisn" name="nisn" required>
+                            <input type="hidden" class="form-control" id="edit_nisn" name="nisn" required aria-disabled="false">
                         </div>
                         <div class="form-group">
                             <label for="edit_nama_lengkap">Nama Lengkap</label>
@@ -289,7 +288,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="hapusSiswaForm" action="/admin/hapus_siswa" method="post">
+                <form id="hapusSiswaForm" action="/guru_bk/hapus_siswa" method="post">
                     <input type="hidden" name="id" id="hapus_id">
                     <div class="modal-body">
                         <p>Apakah Anda yakin ingin menghapus siswa ini?</p>

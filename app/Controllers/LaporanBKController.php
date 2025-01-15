@@ -11,7 +11,7 @@ use CodeIgniter\I18n\Time;
 use Dompdf\Dompdf;  
 use Psr\Log\LoggerInterface;  
   
-class LaporanAdminController extends Controller  
+class LaporanBKController extends Controller  
 {  
     protected $laporanBimbinganKonselingModel;  
     protected $userModel;  
@@ -27,12 +27,12 @@ class LaporanAdminController extends Controller
     {  
         $data = [
             'title' => 'Laporan Pelanggaran - SIBK  SMK Batik 1 Surakarta',
-            'menu' => '',
-            'submenu' => 'lap_bimbingan_konseling'
+            'menu' => 'laporan_bimbingankonseling_siswa',
+            'submenu' => ''
 
         ];
         $data['bimbingan'] = $this->laporanBimbinganKonselingModel->join('users', 'users.id = bimbingan_konseling.user_id')->findAll();  
-        return view('admin/lap_bimbingan_konseling', $data);  
+        return view('guru_bk/laporan_bimbingankonseling_siswa', $data);  
     }  
   
     public function generatePDF($id = null)  
