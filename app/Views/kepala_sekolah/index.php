@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard Guru Bimbingan Kosneling</h1>
+            <h1 class="m-0">Dashboard Kepala Sekolah</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -22,13 +22,13 @@
   <section class="content">
   <!-- Small Box (Stat card) -->
   <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <!-- small card -->
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?= $jumlah_siswa ?></h3>
 
-                <p>Data Siswa</p>
+                <p>Jumlah Siswa Terdaftar Sistem</p>
               </div>
               <div class="icon">
                 <i class="fas fa-solid fa-user-graduate"></i>
@@ -40,24 +40,9 @@
           </div>
           <!-- ./col -->
   
-          <div class="col-md-4">
-            <!-- small card -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3> <?= $jumlah_kategori_pelanggaran ?> </h3>
-
-                <p>Data Kategori Pelanggaran</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-solid fa-clipboard-user"></i>
-              </div>
-              <!-- <a href="<?= base_url('/admin/kategori_pelanggaran') ?>" class="small-box-footer">
-                Lihat Data <i class="fas fa-arrow-circle-right"></i>
-              </a> -->
-            </div>
-          </div>
+        
           <!-- ./col -->
-          <div class="col-md-4">
+          <div class="col-md-6">
             <!-- small card -->
             <div class="small-box bg-danger">
               <div class="inner">
@@ -77,14 +62,13 @@
           </section>
 
           <!-- testing tables -->
-          <body>
-  <div class="container-fluid">
+          <div class="container-fluid">
         <div class="card">
             <div class="card-header bg-danger">
                 <h4>Data Pelanggaran Siswa</h4>
             </div>
             <div class="card-body">
-            <a href="<?= base_url('/admin/pelanggaran_siswa') ?>" class="btn btn-danger mb-3">Kelola Data Pelanggaran</a>
+           
             <div class="table-responsivekudashboard">
                 <table id="example2" class="table table-hover table-bordered table-responsive">
                 <thead>
@@ -126,9 +110,9 @@
             </div>
             <div class="card-body">
                 <!-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button> -->
-                <a href="<?= base_url('/guru_bk/daftar_siswa_bk'); ?>" class="btn btn-primary mb-3">Kelola Daftar Siswa</a>
+               
                 <div class="table-responsivekudashboard">
-                <table id="example2ku" class="table table-hover table-bordered table-responsive">
+                <table id="example2ku" class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10vh;">NISN</th>
@@ -168,6 +152,10 @@
             </div>
         </div>
     </div>
+
+
+<!-- Testing Table -->
+ 
 
   <!-- End Dashboard End -->  
     

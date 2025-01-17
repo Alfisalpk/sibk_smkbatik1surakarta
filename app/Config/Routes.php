@@ -228,17 +228,26 @@ $routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) {
 
 
 $routes->group('kepala_sekolah', ['filter' => 'auth:5'], function($routes) {
-    $routes->get('dashboard', 'KepalaSekolahController::dashboard');
+    $routes->get('/', 'KepalaSekolahController::index');
+    $routes->get('dashboard', 'KepalaSekolahController::index');
+   
+    $routes->get('data_riwayat_bimbingan_konseling', 'KepsekBimbinganKonselingController::kepsek_laporan_bimbingankonseling_siswa');
+  
+  
+    $routes->get('data_laporan_bimbingan_konseling', 'KepsekLaporanController::kepsek_laporan_bimbingankonseling_siswa');
+    $routes->get('laporan/bimbingan/pdf', 'KepsekLaporanController::generatePDF');
+    $routes->get('laporan/bimbingan/pdf/(:num)', 'KepsekLaporanController::generatePDF/$1');  
+
+
+
+
+
+
+    $routes->get('data_pelanggaran_siswa', 'KepSekPelanggaranSiswaController::kepsek_kelola_pelanggaran_siswa');
+    $routes->post('pelanggaran_siswa/getPelanggaranByKategori', 'KepSekPelanggaranSiswaController::getPelanggaranByKategori');
+    $routes->post('data_pelanggaran_siswa/getUserById', 'KepSekPelanggaranSiswaController::getUserById');
 });
 
 
 
 // END area mengatur sidebar 
-
-
- 
-$data = [
-    'title' => 'Siswa - SIBK SMK Batik 1 Surakarta',
-    'menu' => 'riwayat_bimbingan',
-    'submenu' => ''
-];

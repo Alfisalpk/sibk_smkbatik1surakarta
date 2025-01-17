@@ -163,6 +163,28 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
+<script>
+  $(function () {
+    $("#example1ku").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false, "paging": false,
+      
+      
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+       $('#example2ku').DataTable({
+      "paging": false,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    //   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    //   "scrollY": "300px", // Atur tinggi scroll vertikal
+    //   "scrollX": true, // Aktifkan scroll horizontal
+   
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  });
+</script>
 
 
 
@@ -2357,6 +2379,72 @@
         });  
     </script>  
 <!-- END AJAX Untuk Halaman Data Kunjungan Siswa-->
+
+
+
+
+
+<!-- ------------------------Area Guru BK---------------------------------------------- -->
+<!-- START AJAX Untuk Data Halaman Pelanggaran Siswa - Kepala Sekolah -->
+ 
+<script>
+    $(document).ready(function() {
+        
+        // Menangani klik tombol Detail
+        $('.detail-KepsekPelanggaranbtn').click(function(e) {
+            e.preventDefault();
+            var siswa_id = $(this).data('id');
+
+            $.ajax({
+                url: '/kepala_sekolah/data_pelanggaran_siswa/getUserById',
+                type: 'POST',
+                data: { id: siswa_id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#detailNamaLengkap').val(response.user.username);
+                        $('#detailEmail').val(response.user.email);
+                        $('#detailNis').val(response.user.nisn);
+                        // Menggabungkan Kelas dan Jurusan
+                        var kelasJurusan = response.user.kelas + ' ' + response.user.jurusan;
+                        $('#detailKelasJurusan').val(kelasJurusan);
+                        $('#detailJenis_Kelamin').val(response.user.jenis_kelamin);
+                        $('#detailAgama').val(response.user.agama);
+                        $('#detailNomor_Wa').val(response.user.nomor_wa);
+                        $('#detailNomor_WA_Ortu').val(response.user.nomor_wa_ortu);
+                        $('#detailAlamat').val(response.user.alamat);
+                          // Menampilkan gambar siswa
+                          var fotoUrl = '/' + response.user.foto;
+                        $('#detailFoto').attr('src', fotoUrl);
+                        // Tambahkan field lainnya sesuai kebutuhan
+
+                        $('#detailModal').modal('show');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching user data:', error);
+                    console.error('Status:', status);
+                    console.error('Response Text:', xhr.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Kepsek - Terjadi kesalahan saat mengambil data siswa.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+<!-- END AJAX Untuk Halaman Data Pelanggaran Siswa - Kepala Sekolah -->  
 
 
 

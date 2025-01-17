@@ -190,6 +190,39 @@
         </li>
       <?php endif; ?>
       <!-- END Area Sidebar Guru BK -->
+      
+      
+      <!-- START Area Sidebar Kepala Sekolah -->
+      <?php if (in_groups([5])): // Kepala Sekiolah ?>
+        <li class="nav-item">
+          <a href="<?= base_url('/kepala_sekolah/dashboard') ?>" class="nav-link <?= $menu == 'dashboard' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-solid fa-user-clock"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+       
+        <li class="nav-item">
+          <a href="<?= base_url('/kepala_sekolah/data_pelanggaran_siswa') ?>" class="nav-link <?= $menu == 'data_pelanggaran_siswa' ? 'active' : '' ?>">
+          <i class="nav-icon fa-solid fa-person-chalkboard"></i>
+            <p>Data Pelanggaran Siswa</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('/kepala_sekolah/data_riwayat_bimbingan_konseling') ?>" class="nav-link <?= $menu == 'data_riwayat_bimbingan_konseling' ? 'active' : '' ?>">
+          <i class="nav-icon fa-solid fa-user-group"></i>
+            <p>Data Bimbingan Konseling</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="<?= base_url('/kepala_sekolah/data_laporan_bimbingan_konseling') ?>" class="nav-link <?= $menu == 'laporan_bimbingankonseling_siswa' ? 'active' : '' ?>">
+          <i class="nav-icon fas fa-file"></i>
+            <p>Laporan Bimbingan Konseling</p>
+          </a>
+        </li>
+      <?php endif; ?>
+      <!-- END Area Sidebar Kepala Sekolah -->
+
 
       <!-- Semua ROLE ADA -->
       <li class="nav-item">
