@@ -24,6 +24,7 @@
     <!-- Profiles Dashboar Siswa -->
     <section class="content">
   <!-- Small Box (Stat card) -->
+  <div class="row">
    <div class="col-md-6">
             <!-- small card -->
             <div class="small-box bg-danger">
@@ -41,7 +42,7 @@
             </div>
           </div>      
   
-  <div class="row">
+
           <div class="col-md-6">
             <!-- small card -->
             <div class="small-box bg-info">
