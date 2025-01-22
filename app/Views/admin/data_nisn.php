@@ -57,7 +57,7 @@
                                         <!-- <button type="button" class="btn btn-outline-warning edit-btn" data-id="<?= $s['id'] ?>">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button> -->
-                                        <button type="button" class="btn btn-outline-danger delete-btn" data-id="<?= $s['id'] ?>">
+                                        <button type="button" class="btn btn-outline-danger delete-btnNISN" data-id="<?= $s['id'] ?>">
                                             <i class="fa-regular fa-trash-can"></i>
                                         </button>
                                     </td>

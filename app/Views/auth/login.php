@@ -38,7 +38,7 @@
                                     <form class="user" action="<?= base_url('login') ?>" method="post">
                                     <?= csrf_field() ?>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" value="<?= old('identity')?>"
+                                            <input type="email" class="form-control form-control-user" value="<?= old('identity')?>"
                                                 name="username_or_email" aria-describedby="emailHelp"
                                                 placeholder="Email atau Username">
                                                 <div class="invalid-feedback">

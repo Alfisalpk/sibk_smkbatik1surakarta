@@ -650,7 +650,7 @@
             });
 
             // Hapus Siswa
-            $('#example2').on('click', '.delete-btn', function() {
+            $('#example2').on('click', '.delete-btnNISN', function() {
                 var id = $(this).data('id');
                 $('#delete_id').val(id);
                 $('#deleteSiswaModal').modal('show');

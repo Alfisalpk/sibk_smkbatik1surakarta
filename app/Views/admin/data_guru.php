@@ -72,6 +72,7 @@
                                         <option value="OTKP">OTKP</option>
                                         <option value="BDP">BDP</option>
                                         <option value="AKL">AKL</option>
+                                        <option value="BK">BK</option>
                                     </select>
                                     <label for="floatingJurusan">Guru Jurusan</label>
                                 </div>
