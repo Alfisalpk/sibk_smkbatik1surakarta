@@ -8,7 +8,7 @@
         @media print {  
             @page {  
                 size: A4; /* Ukuran A4 */  
-                margin: 20mm; /* Margin halaman */  
+                margin: 10mm; /* Margin halaman */  
             }  
             body {  
                 margin: 0; /* Menghilangkan margin default */  
@@ -28,18 +28,18 @@
   
         .container {  
             width: 100%;  
-            padding: 20px;  
+            padding: 10px;  
         }  
   
         .header {  
             width: 100%;  
             display: table;  
-            margin-bottom: 20px;  
+            margin-bottom: 0px;  
         }  
   
         .header-left {  
             display: table-cell;  
-            width: 20%;  
+            width: 5%;  
             vertical-align: top;  
         }  
   
@@ -95,8 +95,9 @@
         }  
   
         .signature-left {  
+            margin-top: 100px;  
             display: table-cell;  
-            width: 20%;  
+            width: 80%;  
             vertical-align: top;  
         }  
   
@@ -110,7 +111,7 @@
         .signature-bottom {  
             width: 100%;  
             text-align: center;  
-            margin-top: 10px;  
+            margin-top: 5px;  
         }  
   
         .spacing {  
@@ -118,7 +119,10 @@
         }  
   
         .spacingalamat {  
-            margin-bottom: auto; /* Jarak bawah untuk kelas ini */  
+            margin-bottom: 1px; /* Jarak bawah untuk kelas ini */  
+        }  
+        .spacetelepon {  
+            margin-bottom: 1px; /* Jarak bawah untuk kelas ini */  
         }  
   
         .text-center {  
@@ -146,7 +150,7 @@
                     <h3 class="text-center">SMK BATIK I SURAKARTA</h3>  
                     <h3 class="text-center">(TERAKREDITASI "A")</h3>  
                     <p class="text-center spacingalamat">Jl. Slamet Riyadi - Kleco Surakarta 51746</p>  
-                    <p class="text-center">Telp/Fax (0271) 711325/729939</p>  
+                    <p class="text-center spacetelepon">Telp/Fax (0271) 711325/729939</p>  
                 </div>  
                 <div class="header-right">  
                 <img src="data:image/png;base64,<?= base64_encode(file_get_contents(FCPATH . '/assets/img/smkbatik1surakarta.png')) ?>" alt="Yayasan Pendidikan Batik">
@@ -154,12 +158,12 @@
             </div>  
             <hr>  
             <h4 class="text-center mt-4">LAPORAN PELAKSANAAN LAYANAN KONSELING INDIVIDU</h4>  
-            <h4 class="text-center">TAHUN PELAJARAN 2025 / 2026</h4>  
+            <h4 class="text-center">TAHUN <?= esc(date('Y'))?> </h4>  
   
-            <table class="table table-bordered mt-4">  
+            <table class="table table-bordered mt-4 table-striped">  
                 <tbody>  
                     <tr>  
-                        <td>1. Nama Konseli</td>  
+                        <td>1. Nama Konseling</td>  
                         <td><?= esc($row['username']) ?></td>  
                     </tr>  
                     <tr>  
@@ -186,23 +190,28 @@
                         <td>7. Permasalahan</td>  
                         <td><?= esc($row['permasalahan']) ?></td>  
                     </tr>  
-                    <tr>  
-                        <td>8. Hasil Yang Dicapai</td>  
-                        <td><?= esc($row['hasil']) ?></td>  
+                    <tr>    
+                    <tr>    
+                        <td>8. Hasil Yang Dicapai</td>    
+                        <td style="writing-mode: vertical-rl; text-orientation: mixed;">  
+                            <?= esc($row['hasil']) ?>  
+                        </td>    
                     </tr>  
                 </tbody>  
             </table>  
   
             <div class="signature">  
                 <div class="signature-left">  
+                    <br><br>
                     <p class="spacing">WKS Kesiswaan</p>  
                     <p>Nur Arijati, S. Pd., M. Pd</p>  
-                    <p>NIK: 176 195 777</p>  
+                    <p>NIK/P: 176 195 777</p>  
                 </div>  
                 <div class="signature-right">  
                     <p>Surakarta, <?= esc(date('d F Y')) ?></p>  
-                    <p class="spacing">Guru BK/Konselor</p>  
-                    <p>NIK/P: -</p>  
+                    <p class="spacing">Koordinator Guru BK</p>  
+                    <p>Putri Utami Khuswatun Khasanah S.Pd</p>  
+                    <p>NIK/P: 176 195 777 </p>  
                 </div>  
             </div>  
   

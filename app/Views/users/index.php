@@ -118,7 +118,7 @@
             </div>
             <div class="card-body">
             <div class="table-responsiveku">
-                <table id="example1" class="table table-hover table-bordered table-responsive">
+                <table id="example2" class="table table-hover table-bordered table-responsive">
                 <thead>  
                 <tr>  
                     <th style="width: 25vh;">Nama Siswa</th>  

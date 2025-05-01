@@ -124,7 +124,7 @@
 
     <footer class="footer text-center py-3 mt-auto">
         <div class="container">
-            <p class="mb-0 text-muted">Copyright © <?= date('Y') ?> SMK Batik 1 Surakarta Dev By Alfisal Punjung K</p>
+            <p class="mb-0 text-muted">Skripsi <?= date('Y') ?> SMK Batik 1 Surakarta Dev By Alfisal Punjung K</p>
         </div>
     </footer>
 </body>

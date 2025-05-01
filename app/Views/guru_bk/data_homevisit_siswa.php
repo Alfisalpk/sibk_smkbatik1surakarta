@@ -31,7 +31,7 @@
             Tambah Kunjungan Rumah  
         </button> 
                 <div class="table-responsiveku">
-                <table id="example2" class="table table-hover table-bordered">
+                <table id="example3" class="table table-hover table-bordered">
                 <thead>  
                 <tr>  
                      

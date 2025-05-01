@@ -51,10 +51,10 @@ class AdminController extends BaseController
         $data['gurus'] = $gurus;
 
         // Menghitung jumlah guru yang belum dihapus
-        $data['jumlah_pelanggaran_siswa_model'] = $this->pelanggaranSiswaModel->where('deleted_at', null)->countAll();
-        $data['jumlah_siswa'] = $this->userModel->where('deleted_at', null)->countAll();
-        $data['jumlah_kategori_pelanggaran'] = $this->pelanggaranModel->where('deleted_at', null)->countAll();
-        $data['jumlah_guru'] = $this->userGuruModel->where('deleted_at', null)->countAll();
+        $data['jumlah_pelanggaran_siswa_model'] = $this->pelanggaranSiswaModel->where('deleted_at', null)->countAllResults();
+        $data['jumlah_siswa'] = $this->userModel->where('deleted_at', null)->countAllResults();
+        $data['jumlah_kategori_pelanggaran'] = $this->pelanggaranModel->where('deleted_at', null)->countAllResults();
+        $data['jumlah_guru'] = $this->userGuruModel->where('deleted_at', null)->countAllResults();
 
         // Mengambil data siswa yang belum dihapus
         $dashboardaftarsiswa = $this->daftarSiswaModel->where('deleted_at', null)->findAll();
@@ -92,11 +92,11 @@ class AdminController extends BaseController
             'nama_lengkap' => $this->request->getPost('nama_lengkap')
         ];
 
-        // Simpan data ke tabel tb_siswa
+        // ke tabel tb_siswa
         if ($this->nisnSiswaModel->save($data)) {
-            return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil didaftarkan.']);
+            return $this->response->setJSON(['status' => 'success', 'message' => 'NISN Siswa Berhasil Didaftarkan.']);
         } else {
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Terjadi kesalahan saat mendaftar siswa.']);
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Data NISN Sudah Terdaftar.']);
         }
     }
 
@@ -115,7 +115,7 @@ class AdminController extends BaseController
                 array_shift($sheetData);
 
                 foreach ($sheetData as $row) {
-                    // Asumsikan kolom pertama adalah NISN dan kolom kedua adalah Nama Lengkap
+                    // kolom pertama NISN, kolom kedua nama lengkap siswa
                     $data = [
                         'nisn' => $row[0],
                         'nama_lengkap' => $row[1],
@@ -160,10 +160,8 @@ class AdminController extends BaseController
     public function hapusSiswa()
     {
         $id = $this->request->getPost('id');
-        // Soft delete
-        $this->nisnSiswaModel->update($id, ['deleted_at' => date('Y-m-d H:i:s')]);
-
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil dihapus.']);
+        $this->nisnSiswaModel->delete($id);
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Siswa berhasil dihapus secara permanen.']);
     }
     // END Fungsi Di Halaman data_nisn
     
@@ -177,6 +175,7 @@ class AdminController extends BaseController
         ];
         return view('admin/pelanggaran_siswa', $data);
     }
+
     public function bimbingan_konseling()
     {
         $data = [
@@ -222,7 +221,7 @@ class AdminController extends BaseController
             'tgl_lahir' => $this->request->getPost('tgl_lahir'),
             'alamat' => $this->request->getPost('alamat'),
             'email' => $this->request->getPost('email'),
-            // tambahkan field lain sesuai kebutuhan
+           
         ];
         $daftarSiswaModel->insert($data);
         return $this->response->setJSON(['status' => 'success']);
@@ -246,7 +245,7 @@ class AdminController extends BaseController
             'tgl_lahir' => $this->request->getPost('tgl_lahir'),
             'alamat' => $this->request->getPost('alamat'),
             'email' => $this->request->getPost('email'),
-            // tambahkan field lain sesuai kebutuhan
+            
         ];
         $daftarSiswaModel->update($id, $data);
         return $this->response->setJSON(['status' => 'success']);
@@ -398,16 +397,17 @@ class AdminController extends BaseController
         return $this->response->setJSON(['status' => 'success', 'message' => 'Guru berhasil diperbarui.']);
     }
 
-    public function hapusGuru()
+    
+public function hapusGuru()
 {
     $id = $this->request->getPost('id');
-    // Soft delete
-    $this->userGuruModel->update($id, ['deleted_at' => date('Y-m-d H:i:s')]);
+    
+    // Hard delete
+    $this->userGuruModel->delete($id);
 
     return $this->response->setJSON(['status' => 'success', 'message' => 'Guru berhasil dihapus.']);
 }
-    // END FUngsi DataGuru
-    
+
 }
 
 

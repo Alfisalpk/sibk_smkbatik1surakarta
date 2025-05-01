@@ -25,10 +25,11 @@ class UserGuruModel extends Model
         'updated_at', 
         'deleted_at'
     ];
-    // protected $useSoftDeletes = true;
+    protected $useSoftDeletes = false;
+    // protected $deletedField = 'deleted_at'; // Kolom untuk soft delete
     protected $deletedField = 'deleted_at'; // Kolom untuk soft delete
     protected $useTimestamps = true;
-    protected $returnType = 'array'; // Pastikan ini diatur ke 'array'
+    protected $returnType = 'array'; // ke 'array'
 
     public function updatePassword($id, $password)
     {

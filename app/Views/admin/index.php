@@ -98,10 +98,10 @@
             <div class="card-body">
             <a href="<?= base_url('/admin/pelanggaran_siswa') ?>" class="btn btn-danger mb-3">Kelola Data Pelanggaran</a>
             <div class="table-responsivekudashboard">
-                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <table id="example3" class="table table-hover table-bordered table-responsive">
                 <thead>
                     <tr>
-                        <th  style="width: 5vh;">ID</th>
+                        <th  style="width: 5vh;">No. Pelanggaran</th>
                         <th  style="width: 30vh;">Nama Siswa</th>
                         <th  style="width: 15vh;">Kategori</th>
                         <th  style="width: 80vh;">Pelanggaran</th>
@@ -112,7 +112,7 @@
                 </thead>
                 <?php foreach ($pelanggaran_siswa as $ps): ?>
             <tr>
-                <td><?= $ps['id_pelanggaran_siswa'] ?></td> <!-- Ubah menjadi id_pelanggaran_siswa -->
+                <td><?= $ps['id_pelanggaran_siswa'] ?></td> 
                 <td><?= $ps['username_siswa'] ?></td>
                 <td><?= $ps['nama_kategori'] ?></td>
                 <td><?= $ps['nama_pelanggaran'] ?></td>

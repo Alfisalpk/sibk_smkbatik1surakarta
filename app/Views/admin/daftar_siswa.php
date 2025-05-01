@@ -28,7 +28,7 @@
             <div class="card-body">
                 <!-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button> -->
                 <div class="table-responsiveku">
-                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <table id="daftarsiswa1" class="table table-hover table-bordered table-responsive">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 15vh;">NISN</th>
@@ -40,9 +40,10 @@
                             <th scope="col" style="width: 15vh;">Nomor WA Siswa</th>
                             <th scope="col" style="width: 15vh;">Nomor WA Orang Tua</th>
                             <th scope="col" style="width: 50vh;">Tempat Tanggal Lahir</th>
-                            <th scope="col" style="width: 50vh;">Alamat</th>
-                            <th scope="col" style="width: 30vh;">Email</th>
-                            <th scope="col" style="width: 50vh;">Aksi</th>
+                            <th scope="col" style="width: 25vh;">Alamat</th>
+                            <th scope="col" style="width: 10vh;">Email</th>
+                            <th scope="col" style="width: 30vh;">Daftar Pada TGL</th>
+                            <th scope="col" style="width: 90vh;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,11 +60,12 @@
                             <td><?= $s['tempat_lahir'] ?>, <?= $s['tgl_lahir'] ?></td>
                             <td><?= $s['alamat'] ?></td>
                             <td><?= $s['email'] ?></td>
+                            <td><?= $s['created_at'] ?></td>
                             <td>
                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#editSiswaModal" data-daftarnisnsiswa-id="<?= $s['id'] ?>" data-daftarnisnsiswa-nisn="<?= $s['nisn'] ?>" data-daftarnisnsiswa-username="<?= $s['username'] ?>" data-daftarnisnsiswa-kelas="<?= $s['kelas'] ?>" data-daftarnisnsiswa-jurusan="<?= $s['jurusan'] ?>" data-daftarnisnsiswa-nama_orangtua="<?= $s['nama_orangtua'] ?>" data-daftarnisnsiswa-jenis_kelamin="<?= $s['jenis_kelamin'] ?>" data-daftarnisnsiswa-agama="<?= $s['agama'] ?>" data-daftarnisnsiswa-nomor_wa="<?= $s['nomor_wa'] ?>" data-daftarnisnsiswa-nomor_wa_ortu="<?= $s['nomor_wa_ortu'] ?>" data-daftarnisnsiswa-tempat_lahir="<?= $s['tempat_lahir'] ?>" data-daftarnisnsiswa-tgl_lahir="<?= $s['tgl_lahir'] ?>" data-daftarnisnsiswa-alamat="<?= $s['alamat'] ?>" data-daftarnisnsiswa-email="<?= $s['email'] ?>">
                                     <i class="fas fa-pen-to-square"></i>
                                 </button>
-                                <button type="button" class="btn btn-outline-danger delete-btn" data-toggle="modal" data-target="#hapusSiswaModal" data-daftarnisnsiswa-id="<?= $s['id'] ?>">
+                                <button type="button" class="btn btn-outline-danger delete-btn1" data-toggle="modal" data-target="#hapusSiswaModal" data-daftarnisnsiswa-id="<?= $s['id'] ?>">
                                     <i class="fas fa-trash-can"></i>
                                 </button>
                             </td>
@@ -281,7 +283,7 @@
 
     <!-- Modal Hapus Siswa -->
     <div class="modal fade" id="hapusSiswaModal" tabindex="-1" role="dialog" aria-labelledby="hapusSiswaModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="hapusSiswaModalLabel">Hapus Siswa</h5>

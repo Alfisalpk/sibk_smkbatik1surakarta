@@ -28,7 +28,7 @@
             <div class="card-body">
                 <!-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button> -->
                 <div class="table-responsiveku">
-                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <table id="daftarsiswa1" class="table table-hover table-bordered table-responsive">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 15vh;">NISN</th>

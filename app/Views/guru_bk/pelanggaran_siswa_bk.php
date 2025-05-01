@@ -29,7 +29,7 @@
             <div class="card-body">
             <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#BKPelanggaranaddModal">Tambah Pelanggaran</a>
             <div class="table-responsiveku">
-                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <table id="example1" class="table table-hover table-bordered table-responsive">
                 <thead>
                     <tr>
                         

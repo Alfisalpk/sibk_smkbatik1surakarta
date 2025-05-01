@@ -64,7 +64,7 @@ class AuthController extends BaseController
     
         // Foto siswa
         $photo = $this->request->getFile('photo');
-        $photoName = 'default.jpg'; // Set default photo jika tidak ada file diunggah
+        $photoName = 'default.jpg'; // photo jika tidak ada file diunggah
     
         if ($photo && $photo->isValid() && !$photo->hasMoved()) {
             $photoName = $photo->getRandomName();
@@ -144,7 +144,7 @@ class AuthController extends BaseController
                 'role' => $user['role'],
                 'foto' => isset($user['foto']) ? $user['foto'] : 'assets/img/default.jpg', // Simpan foto ke session
                 'is_logged_in' => true,
-                // untuk menampilkan info sesi login tambahkan sesuai yang ada di datahbase
+                // untuk menampilkan sesi login 
             ]);
 
             // Redirect berdasarkan peran
@@ -163,7 +163,7 @@ class AuthController extends BaseController
                     return redirect()->to('/');
             }
         } else {
-            return redirect()->back()->with('error', 'Email atau password salah.');
+            return redirect()->back()->with('error', 'Email, password, atau status akun tidak valid. Pastikan akun anda sudah terdaftar.');
         }
     }
 

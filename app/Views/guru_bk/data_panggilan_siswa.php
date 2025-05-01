@@ -28,10 +28,10 @@
             <div class="card-body">
             <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addModalBKPanggilan">Tambah Panggilan Siswa</button>  
                 <div class="table-responsiveku">
-                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <table id="example3" class="table table-hover table-bordered table-responsive">
                    <thead>  
                 <tr>  
-                    <th style="width: 5vh;">ID</th>  
+                    <th style="width: 5vh;">Nomor Panggilan</th>  
                     <th style="width: 25vh;">Nama Siswa</th>  
                     <th style="width: 10vh;">Kelas</th>  
                     <th style="width: 10vh;">Jurusan</th>  

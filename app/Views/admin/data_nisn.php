@@ -39,7 +39,7 @@
                 <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSiswaModal">Tambah Siswa</button>
                 <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#uploadExcelModal">Upload Excel</button>
                 <div class="table-responsiveku">
-                <table id="example2" class="table table-hover table-bordered">
+                <table id="example3" class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 100vh;">NISN</th>
@@ -110,7 +110,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="uploadExcelModalLabel">Upload Excel</h5>
+                    <h5 class="modal-title" id="uploadExcelModalLabel">Upload Data NISN</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

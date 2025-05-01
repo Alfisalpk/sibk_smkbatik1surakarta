@@ -29,21 +29,23 @@
             <div class="card-body">
             <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</a>
             <div class="table-responsiveku">
-                <table id="example2" class="table table-hover table-bordered table-responsive">
+                <table id="example3" class="table table-hover table-bordered table-responsive">
                 <thead>
                     <tr>
                         
+                        <th  style="width: 5vh;">No. Pelanggaran</th>
                         <th  style="width: 30vh;">Siswa</th>
                         <th  style="width: 15vh;">Kategori</th>
                         <th  style="width: 50vh;">Pelanggaran</th>
                         <th  style="width: 15vh;">Tanggal</th>
-                        <th  style="width: 100vh;">Deskripsi</th>
+                        <th  style="width: 80vh;">Deskripsi</th>
                         <th  style="width: 20vh;">Aksi</th>
                     </tr>
                 </thead>
                 <?php foreach ($pelanggaran_siswa as $ps): ?>
             <tr>
                 
+                <td><?= $ps['id_pelanggaran_siswa'] ?></td>
                 <td><?= $ps['username'] ?></td>
                 <td><?= $ps['nama_kategori'] ?></td>
                 <td><?= $ps['nama_pelanggaran'] ?></td>
@@ -71,7 +73,7 @@
 
    <!-- Modal Tambah -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addModalLabel">Tambah Pelanggaran</h5>
@@ -124,7 +126,7 @@
 
 <!-- Modal Detail Siswa -->
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="detailModalLabel">Detail Siswa</h5>
@@ -184,7 +186,7 @@
 
   <!-- Modal Edit -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editModalLabel">Edit Pelanggaran</h5>

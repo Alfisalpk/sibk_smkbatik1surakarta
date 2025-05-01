@@ -227,9 +227,11 @@
                     <div class="form-group">
                         <label for="editRole">Role</label>
                         <select class="form-control" id="editRole" name="role" required>
-                            <?php foreach ($roles as $role): ?>
-                                <option value="<?= $role['id'] ?>"><?= $role['role'] ?></option>
-                            <?php endforeach; ?>
+                        <?php foreach ($roles as $role): ?>
+                                                <?php if ($role['id'] != 3): // Mengecualikan opsi ID 3 ?>
+                                                    <option value="<?= $role['id']; ?>"><?= $role['role']; ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">

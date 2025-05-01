@@ -54,10 +54,10 @@ class GuruBKController extends BaseController
          $data['gurus'] = $gurus;
  
          // Menghitung jumlah guru yang belum dihapus
-         $data['jumlah_pelanggaran_siswa_model'] = $this->pelanggaranSiswaModel->where('deleted_at', null)->countAll();
-         $data['jumlah_siswa'] = $this->userModel->where('deleted_at', null)->countAll();
-         $data['jumlah_kategori_pelanggaran'] = $this->pelanggaranModel->where('deleted_at', null)->countAll();
-         $data['jumlah_guru'] = $this->userGuruModel->where('deleted_at', null)->countAll();
+         $data['jumlah_pelanggaran_siswa_model'] = $this->pelanggaranSiswaModel->where('deleted_at', null)->countAllResults();
+        $data['jumlah_siswa'] = $this->userModel->where('deleted_at', null)->countAllResults();
+        $data['jumlah_kategori_pelanggaran'] = $this->pelanggaranModel->where('deleted_at', null)->countAllResults();
+        $data['jumlah_guru'] = $this->userGuruModel->where('deleted_at', null)->countAllResults();
  
          // Mengambil data siswa yang belum dihapus
          $dashboardaftarsiswa = $this->daftarSiswaModel->where('deleted_at', null)->findAll();

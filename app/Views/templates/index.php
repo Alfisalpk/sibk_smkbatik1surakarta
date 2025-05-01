@@ -69,7 +69,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; <?= date('Y') ?> </strong>
-    SIBK Skripsi
+    SIBK Skripsi Alfisal Punjung Kurniawan
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
     </div>
@@ -141,11 +141,11 @@
 <!--End Data Tabless -->
 
 <!-- Page specific script -->
-<script>
+<!-- <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false, "paging": false,
-      
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
        $('#example2').DataTable({
@@ -156,14 +156,14 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
-    //   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     //   "scrollY": "300px", // Atur tinggi scroll vertikal
     //   "scrollX": true, // Aktifkan scroll horizontal
    
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
-</script>
-<script>
+</script> -->
+<!-- <script>
   $(function () {
     $("#example1ku").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false, "paging": false,
@@ -184,8 +184,52 @@
    
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
+</script> -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["excel", "print"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+        "paging": false,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": false,
+        "buttons": true,
+    });
+    $("#example3").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false, "paging": false,
+      "buttons": ["excel", "print"]
+    }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+    $("#daftarsiswa1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["excel", "print"]
+    }).buttons().container().appendTo('#daftarsiswa1_wrapper .col-md-6:eq(0)');
+});
 </script>
 
+<!-- <script>
+  $(function () {
+    $("#example3").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf", "print"]
+    }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+    $('#example4').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": false,
+      "buttons": true,
+    });
+  });
+</script> -->
 
 
 
@@ -537,8 +581,8 @@
                     error: function(xhr) {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Gagal',
-                            text: 'Terjadi kesalahan saat menambahkan data.'
+                            title: 'NISN Terdaftar!',
+                            text: 'Data NISN Siswa Sudah Terdaftar.'
                         });
                     }
                 });
@@ -574,8 +618,8 @@
                     error: function(xhr) {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Gagal',
-                            text: 'Terjadi kesalahan saat mengunggah file.'
+                            title: 'Sudah Terdaftar',
+                            text: 'Data Sudah Terdaftar.'
                         });
                     }
                 });
@@ -650,7 +694,7 @@
             });
 
             // Hapus Siswa
-            $('#example2').on('click', '.delete-btnNISN', function() {
+            $('#example3').on('click', '.delete-btnNISN', function() {
                 var id = $(this).data('id');
                 $('#delete_id').val(id);
                 $('#deleteSiswaModal').modal('show');
@@ -842,13 +886,13 @@
                 e.preventDefault();
                 var id = $(this).data('id');
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Apakah Anda Yakin?',
+                    text: "Data Tidak Bisa Dikembalikan Lagi!",
                     icon: 'warning',
-                    showCancelButton: true,
+                    showCancelButton: 'true',
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Ya, Hapus Data'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
