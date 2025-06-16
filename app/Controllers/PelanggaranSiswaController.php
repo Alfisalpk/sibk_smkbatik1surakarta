@@ -104,4 +104,32 @@ class PelanggaranSiswaController extends BaseController
             return $this->response->setJSON(['success' => false, 'message' => 'Siswa tidak ditemukan.']);
         }
     }
+
+    public function pelanggaran_siswafilter()
+    {
+        $startDate = $this->request->getGet('start_date');
+        $endDate = $this->request->getGet('end_date');
+    
+        // Validasi tanggal
+        if ($startDate && $endDate && $startDate > $endDate) {
+            return redirect()->back()->with('error', 'Tanggal mulai tidak boleh lebih besar dari tanggal akhir');
+        }
+    
+        $data = [
+            'title' => 'Pelanggaran Siswa',
+            'menu' => 'master_data',
+            'submenu' => 'pelanggaran_siswa',
+            'pelanggaran_siswa' => $this->pelanggaranSiswaModel->getPelanggaranByDateRange($startDate, $endDate),
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+            'pelanggaran' => $this->pelanggaranModel->findAll(),
+            'kategori_pelanggaran' => $this->kategoriPelanggaranModel->findAll(),
+            'users' => $this->userModel->findAll()
+        ];
+    
+        return view('admin/pelanggaran_siswa', $data);
+    }
+
+
+
 }

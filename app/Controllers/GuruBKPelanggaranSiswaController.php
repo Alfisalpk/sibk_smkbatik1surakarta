@@ -104,4 +104,35 @@ class GuruBKPelanggaranSiswaController extends BaseController
             return $this->response->setJSON(['success' => false, 'message' => 'Siswa tidak ditemukan.']);
         }
     }
+
+    // Tamabahn Fitur Filter Tanggal
+    public function pelanggaran_siswafilter()
+    {
+        $startDate = $this->request->getGet('start_date');
+        $endDate = $this->request->getGet('end_date');
+    
+        // Validasi tanggal
+        if ($startDate && $endDate && $startDate > $endDate) {
+            return redirect()->back()->with('error', 'Tanggal mulai tidak boleh lebih besar dari tanggal akhir');
+        }
+    
+        $data = [
+            'title' => 'Pelanggaran Siswa',
+            'menu' => 'pelanggaran_siswa',
+           'submenu' => '',
+            'pelanggaran_siswa' => $this->pelanggaranSiswaModel->getPelanggaranByDateRange($startDate, $endDate),
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+            'pelanggaran' => $this->pelanggaranModel->findAll(),
+            'kategori_pelanggaran' => $this->kategoriPelanggaranModel->findAll(),
+            'users' => $this->userModel->findAll()
+        ];
+    
+        return view('guru_bk/pelanggaran_siswa_bk', $data);
+    }
+    // END Tamabahn Fitur Filter Tanggal
+
+
+
 }
+

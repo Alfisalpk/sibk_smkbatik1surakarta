@@ -22,4 +22,38 @@ class BimbinganKonselingModel extends Model
     {
         return $this->find($id_bimbingankonseling);
     }
+    
+    // Tambahan Fitur Filter
+
+    public function getByDateRange($startDate, $endDate)
+    {
+        return $this->db->table('bimbingan_konseling')
+            ->select('bimbingan_konseling.*, users.username, users.kelas, users.jurusan')
+            ->join('users', 'users.id = bimbingan_konseling.user_id') // Diubah ke users.id
+            ->where('tanggal >=', $startDate)
+            ->where('tanggal <=', $endDate)
+            ->orderBy('tanggal', 'ASC')
+            ->get()
+            ->getResultArray();
+    }
+    
+    public function getAllWithUser()
+    {
+        return $this->db->table('bimbingan_konseling')
+            ->select('bimbingan_konseling.*, users.username, users.kelas, users.jurusan')
+            ->join('users', 'users.id = bimbingan_konseling.user_id') // Diubah ke users.id
+            ->get()
+            ->getResultArray();
+    }
+    public function getPelanggaranForBimbingan()
+{
+    return $this->db->table('pelanggaran_siswa')
+        ->select('pelanggaran_siswa.*, users.username, users.kelas, users.jurusan')
+        ->join('users', 'users.id = pelanggaran_siswa.siswa_id')
+        ->where('pelanggaran_siswa.is_converted', 0) // Hanya yang belum dikonversi
+        ->get()
+        ->getResultArray();
 }
+// END Tambahan Filter
+}
+

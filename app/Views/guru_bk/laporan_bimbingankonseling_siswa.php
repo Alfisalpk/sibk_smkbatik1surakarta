@@ -25,10 +25,37 @@
         <div class="card">  
             <div class="card-header bg-primary">  
                 <h4 class="text-center">Data Laporan Bimbingan Konseling</h4>  
-            </div>  
-            <div class="card-body">  
-                <a href="<?= base_url('guru_bk/laporan/bimbingan/pdf?preview=1') ?>" class="btn btn-primary mb-3">Lihat Semua Data</a>  
-                <a href="<?= base_url('guru_bk/laporan/bimbingan/pdf') ?>" class="btn btn-success mb-3">Download Semua Data</a>  
+            </div> 
+            <div class="card-body">
+            
+            <a href="<?= base_url('guru_bk/laporan/bimbingan/pdf?preview=1' . 
+    (isset($start_date) ? '&start_date='.$start_date.'&end_date='.$end_date : '')) ?>" 
+   class="btn btn-primary mb-3">Lihat Data</a>
+
+<a href="<?= base_url('guru_bk/laporan/bimbingan/pdf' . 
+    (isset($start_date) ? '?start_date='.$start_date.'&end_date='.$end_date : '')) ?>" 
+   class="btn btn-success mb-3">Download Data</a>   
+
+                  <!-- Tambahkan form filter di bawah card-header -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <form method="GET" action="<?= base_url('guru_bk/laporan_bimbingankonseling_siswafilter') ?>">
+                <div class="input-group">
+                    <input type="date" class="form-control" name="start_date" 
+                        value="<?= isset($start_date) ? $start_date : '' ?>">
+                    <input type="date" class="form-control" name="end_date" 
+                        value="<?= isset($end_date) ? $end_date : '' ?>">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-filter"></i> Filter Tanggal</button>
+                        <a href="<?= base_url('guru_bk/laporan_bimbingankonseling_siswafilter') ?>" 
+                           class="btn btn-outline-secondary">
+                           <i class="fas fa-sync"></i> Reset</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+                <!-- END Tambahan Fitu Filter Pasca Sidang -->
   
                 <div class="table-responsiveku">
                     <table id="example2" class="table table-bordered table-hover">  

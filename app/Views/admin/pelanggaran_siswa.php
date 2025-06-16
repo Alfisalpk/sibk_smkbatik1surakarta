@@ -23,11 +23,44 @@
   <body>
   <div class="container-fluid">
         <div class="card">
+            
             <div class="card-header bg-danger">
                 <h4 class="text-center">Data Pelanggaran Siswa</h4>
             </div>
+            
             <div class="card-body">
+                <!-- Form Filter -->
+<div class="row mb-3">
+    <div class="col-md-4">
+        <form method="GET" action="<?= base_url('admin/pelanggaran_siswafilter') ?>">
+            <div class="input-group">
+                <input type="date" 
+                       class="form-control" 
+                       name="start_date" 
+                       value="<?= !empty($start_date) ? $start_date : '' ?>">
+                <input type="date" 
+                       class="form-control" 
+                       name="end_date" 
+                       value="<?= !empty($end_date) ? $end_date : '' ?>">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-danger" type="submit">
+                        <i class="fas fa-filter"></i> Filter Tanggal
+                    </button>
+                    <a href="<?= base_url('admin/pelanggaran_siswafilter') ?>" 
+                       class="btn btn-outline-secondary">
+                        <i class="fas fa-sync"></i> Reset
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
             <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</a>
+
+          
+
+            
+
             <div class="table-responsiveku">
                 <table id="example3" class="table table-hover table-bordered table-responsive">
                 <thead>
@@ -35,10 +68,10 @@
                         
                         <th  style="width: 5vh;">No. Pelanggaran</th>
                         <th  style="width: 30vh;">Siswa</th>
-                        <th  style="width: 15vh;">Kategori</th>
+                        <th  style="width: 15vh;">Bentuk Pelanggaran</th>
                         <th  style="width: 50vh;">Pelanggaran</th>
                         <th  style="width: 15vh;">Tanggal</th>
-                        <th  style="width: 80vh;">Deskripsi</th>
+                        <th  style="width: 50vh;">Deskripsi</th>
                         <th  style="width: 20vh;">Aksi</th>
                     </tr>
                 </thead>

@@ -550,6 +550,73 @@
     </script>
 <!-- END AJAX Untuk Halaman Data_Guru -->
 
+<!-- START AJAX Untuk Halaman Konversi Data PElanggaran - ROLE ADMIN Admin -->
+<script>
+    // Handle modal konversi
+    $('#convertModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        
+        modal.find('#pelanggaran_id').val(button.data('pelanggaran-id'));
+        modal.find('#convert_user_id').val(button.data('user-id'));
+        modal.find('#convert_nama').val(button.data('nama'));
+        modal.find('#convert_kelas').val(button.data('kelas'));
+        modal.find('#convert_jurusan').val(button.data('jurusan'));
+        modal.find('#convert_tanggal').val(button.data('tanggal'));
+        modal.find('#convert_permasalahan').val("Pelanggaran: " + button.data('deskripsi'));
+    });
+
+    // Handle konversi pelanggaran
+    $('#convertBtn').click(function() {
+        var formData = $('#convertForm').serialize();
+        
+        $.ajax({
+            url: '<?= base_url('admin/bimbingan_konseling/convert') ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json', // Tambahkan ini untuk otomatis parse JSON
+            success: function(res) { // Langsung gunakan res karena sudah di-parse
+                if(res.status == 'success') {
+                    $('#convertModal').modal('hide');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil Konversi',
+                        text: res.message,
+                        showConfirmButton: true // Pastikan tombol OK muncul
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: res.message || 'Terjadi kesalahan'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Terjadi kesalahan saat mengirim data'
+                });
+                console.error(error);
+            }
+        });
+    });
+</script>
+
+
+
+<!-- START AJAX Untuk Halaman Konversi Data PElanggaran - ROLE ADMIN Admin -->  
+
+
+
+
+
+
 <!-- START AJAX Untuk Halaman Data_NISN -->
 <script>
         $(document).ready(function() {
@@ -1549,6 +1616,68 @@
             });
         }
     </script>
+
+<!-- <script>
+$(document).ready(function() {
+    let currentPelanggaranId = null;
+    let currentUserId = null;
+
+    // Handle klik tombol konversi
+    $(document).on('click', '.btn-convert', function() {
+        currentPelanggaranId = $(this).data('id');
+        currentUserId = $(this).data('user-id');
+        
+        // Isi data otomatis
+        $('#convertNama').val($(this).data('nama'));
+        $('#convertKelas').val($(this).data('kelas'));
+        $('#convertJurusan').val($(this).data('jurusan'));
+        $('#convertDeskripsi').val($(this).data('deskripsi'));
+        $('#idPelanggaran').val(currentPelanggaranId);
+        
+        $('#convertModal').modal('show');
+    });
+
+    // Handle submit form
+    $('#convertForm').submit(function(e) {
+        e.preventDefault();
+        
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: "Yakin ingin mengkonversi data ini?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Konversi!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '<?= base_url('admin/bimbingan_konseling/convert') ?>',
+                    method: 'POST',
+                    data: $(this).serialize() + '&user_id=' + currentUserId,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            // Hapus baris dari tabel
+                            $(`tr[data-id="${currentPelanggaranId}"]`).fadeOut(100);
+                            $('#convertModal').modal('hide');
+                            Swal.fire('Berhasil!', response.message, 'success');
+                        } else {
+                            Swal.fire('Gagal!', response.message, 'error');
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire('Error!', 'Terjadi kesalahan server', 'error');
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
+
+
+</script> -->
 <!-- END AJAX Untuk Halaman Bimbingan Konseling -->
 
 
@@ -2056,6 +2185,68 @@
         }
     </script>
 <!-- END AJAX Untuk Halaman Bimbingan Konseling -->
+
+<!-- START AJAX Untuk Halaman Konversi Data PElanggaran - ROLE Guru Bk -->
+<script>
+    // Handle modal konversi
+    $('#convertModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        
+        modal.find('#pelanggaran_id').val(button.data('pelanggaran-id'));
+        modal.find('#convert_user_id').val(button.data('user-id'));
+        modal.find('#convert_nama').val(button.data('nama'));
+        modal.find('#convert_kelas').val(button.data('kelas'));
+        modal.find('#convert_jurusan').val(button.data('jurusan'));
+        modal.find('#convert_tanggal').val(button.data('tanggal'));
+        modal.find('#convert_permasalahan').val("Pelanggaran: " + button.data('deskripsi'));
+    });
+
+    // Handle konversi pelanggaran
+    $('#convertBtnBK').click(function() {
+        var formData = $('#convertFormBK').serialize();
+        
+        $.ajax({
+            url: '<?= base_url('guru_bk/bimbingan_konseling/convert') ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json', // Tambahkan ini untuk otomatis parse JSON
+            success: function(res) { // Langsung gunakan res karena sudah di-parse
+                if(res.status == 'success') {
+                    $('#convertModal').modal('hide');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil Konversi',
+                        text: res.message,
+                        showConfirmButton: true // Pastikan tombol OK muncul
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: res.message || 'Terjadi kesalahan'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Terjadi kesalahan saat mengirim data'
+                });
+                console.error(error);
+            }
+        });
+    });
+</script>
+
+
+
+<!-- START AJAX Untuk Halaman Konversi Data PElanggaran - ROLE Guru BK -->  
 
 
 <!-- START AJAX Untuk Halaman Panggilan Siswa - Guru BK -->

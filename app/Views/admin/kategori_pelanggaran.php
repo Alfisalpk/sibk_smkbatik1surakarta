@@ -29,13 +29,13 @@
             </div>
             <div class="card-body">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Tambah Pelanggaran</button>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addKategoriModal">Tambah Kategori</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addKategoriModal">Tambah Bentuk Pelanggaran</button>
         <div class="table-responsiveku">
         <table id="example2" class="table table-hover table-bordered">
             <thead>
             <tr>
                     
-                    <th style="width: 15vh;">Kategori</th>
+                    <th style="width: 15vh;">Bentuk Pelanggaran </th>
                     <th style="width: 100vh;">Nama Pelanggaran</th>
                     <th style="width: 20vh;">Klasifikasi</th>
                     <th style="width: 25vh;">Petugas Penanganan</th>

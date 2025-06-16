@@ -27,6 +27,35 @@
                 <h4 class="text-center">Data Pelanggaran Siswa</h4>
             </div>
             <div class="card-body">
+             <!-- Tambahan Fitur FILTER TANGGAL -->
+             <div class="row mb-3">
+    <div class="col-md-4">
+        <form method="GET" action="<?= base_url('guru_bk/pelanggaran_siswa_filter') ?>">
+            <div class="input-group">
+                <input type="date" 
+                       class="form-control" 
+                       name="start_date" 
+                       value="<?= !empty($start_date) ? $start_date : '' ?>">
+                <input type="date" 
+                       class="form-control" 
+                       name="end_date" 
+                       value="<?= !empty($end_date) ? $end_date : '' ?>">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-danger" type="submit">
+                        <i class="fas fa-filter"></i> Filter Tanggal
+                    </button>
+                    <a href="<?= base_url('guru_bk/pelanggaran_siswa_filter') ?>" 
+                       class="btn btn-outline-secondary">
+                        <i class="fas fa-sync"></i> Reset
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+            <!-- END Tambahan Fitur FILTER TANGGAL -->
+
+            
             <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#BKPelanggaranaddModal">Tambah Pelanggaran</a>
             <div class="table-responsiveku">
                 <table id="example1" class="table table-hover table-bordered table-responsive">
@@ -34,7 +63,7 @@
                     <tr>
                         
                         <th  style="width: 30vh;">Siswa</th>
-                        <th  style="width: 15vh;">Kategori</th>
+                        <th  style="width: 15vh;">Bentuk Pelanggaran</th>
                         <th  style="width: 50vh;">Pelanggaran</th>
                         <th  style="width: 15vh;">Tanggal</th>
                         <th  style="width: 100vh;">Deskripsi</th>

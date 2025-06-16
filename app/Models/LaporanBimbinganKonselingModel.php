@@ -22,4 +22,20 @@ class LaporanBimbinganKonselingModel extends Model
     {
         return $this->find($id_bimbingankonseling);
     }
+
+    // Tambahan Fitur Filter TANGGAL PASCA SIDANG
+    public function getByDateRange($startDate, $endDate)
+    {
+        return $this->db->table('bimbingan_konseling')
+            ->select('bimbingan_konseling.*, users.username, users.kelas, users.jurusan')
+            ->join('users', 'users.id = bimbingan_konseling.user_id')
+            ->where('tanggal >=', $startDate)
+            ->where('tanggal <=', $endDate)
+            ->orderBy('tanggal', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+    // END Tambahan Fitur Filter TANGGAL PASCA SIDANG
+
+
 }

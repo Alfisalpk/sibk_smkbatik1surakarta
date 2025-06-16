@@ -87,6 +87,7 @@ $routes->post('pelanggaran_siswa/update/(:num)', 'PelanggaranSiswaController::up
 $routes->get('pelanggaran_siswa/delete/(:num)', 'PelanggaranSiswaController::delete_pelanggaran_siswa/$1');
 $routes->post('pelanggaran_siswa/getPelanggaranByKategori', 'PelanggaranSiswaController::getPelanggaranByKategori');
 $routes->post('pelanggaran_siswa/getUserById', 'PelanggaranSiswaController::getUserById');
+$routes->get('pelanggaran_siswafilter', 'PelanggaranSiswaController::pelanggaran_siswafilter');
 // END Routes CRUD Pelanggaran Siswa
 
 // START Routes CRUD Bimbingan Siswa
@@ -94,6 +95,8 @@ $routes->get('bimbingan_konseling', 'BimbinganKonselingController::index');
 $routes->post('bimbingan_konseling/store', 'BimbinganKonselingController::store_bimbingankonseling');
 $routes->post('bimbingan_konseling/update', 'BimbinganKonselingController::update_bimbingankonseling');
 $routes->get('bimbingan_konseling/delete/(:num)', 'BimbinganKonselingController::delete/$1');
+$routes->get('bimbingan_konselingfilter', 'BimbinganKonselingController::filter');
+$routes->post('bimbingan_konseling/convert', 'BimbinganKonselingController::convertPelanggaran');
 // END Routes CRUD Bimbingan Siswa
 
 
@@ -101,6 +104,7 @@ $routes->get('bimbingan_konseling/delete/(:num)', 'BimbinganKonselingController:
 $routes->get('laporan_bimbingan_siswa', 'LaporanAdminController::index');  
 $routes->get('laporan/bimbingan/pdf', 'LaporanAdminController::generatePDF');
 $routes->get('laporan/bimbingan/pdf/(:num)', 'LaporanAdminController::generatePDF/$1');  
+$routes->get('laporan_bimbingan_siswa_filter', 'LaporanAdminController::laporanadminfilter');  
 // END Routes Laporan 
 
 
@@ -183,6 +187,7 @@ $routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) {
     $routes->get('pelanggaran_siswa/delete/(:num)', 'GuruBkPelanggaranSiswaController::delete_pelanggaran_siswa/$1');
     $routes->post('pelanggaran_siswa/getPelanggaranByKategori', 'GuruBkPelanggaranSiswaController::getPelanggaranByKategori');
     $routes->post('pelanggaran_siswa/getUserById', 'GuruBkPelanggaranSiswaController::getUserById');
+    $routes->get('pelanggaran_siswa_filter', 'GuruBkPelanggaranSiswaController::pelanggaran_siswafilter');
     // END CRUD Pealanggaran Siswa - Bagian Guru BK
     
     
@@ -191,12 +196,16 @@ $routes->group('guru_bk', ['filter' => 'auth:4'], function($routes) {
     $routes->post('bimbingan_konseling/store', 'GuruBKBimbinganKonselingController::store_bimbingankonseling');
     $routes->post('bimbingan_konseling/update', 'GuruBKBimbinganKonselingController::update_bimbingankonseling');
     $routes->get('bimbingan_konseling/delete/(:num)', 'GuruBKBimbinganKonselingController::delete/$1');
+    $routes->get('bimbingan_konseling_siswafilter', 'GuruBKBimbinganKonselingController::filter');
+    $routes->post('bimbingan_konseling/convert', 'GuruBKBimbinganKonselingController::convertPelanggaran');
     // END CRUD Bimbingan Kosneling Siswa - Bagian Guru BK
 
     // START Routes Laporan  
     $routes->get('laporan_bimbingankonseling_siswa', 'LaporanBKController::index');  
     $routes->get('laporan/bimbingan/pdf', 'LaporanBKController::generatePDF');
     $routes->get('laporan/bimbingan/pdf/(:num)', 'LaporanAdminController::generatePDF/$1');  
+    $routes->get('laporan_bimbingankonseling_siswafilter', 'LaporanBKController::laporanguru_bkfilter');  
+    
     // END Routes Laporan 
     
     // START Routes Data Panggilan Siswa
@@ -246,6 +255,7 @@ $routes->group('kepala_sekolah', ['filter' => 'auth:5'], function($routes) {
     $routes->get('data_pelanggaran_siswa', 'KepSekPelanggaranSiswaController::kepsek_kelola_pelanggaran_siswa');
     $routes->post('pelanggaran_siswa/getPelanggaranByKategori', 'KepSekPelanggaranSiswaController::getPelanggaranByKategori');
     $routes->post('data_pelanggaran_siswa/getUserById', 'KepSekPelanggaranSiswaController::getUserById');
+    $routes->get('data_pelanggaran_siswa', 'KepSekPelanggaranSiswaController::kepsek_pelanggaran_siswafilter');
 });
 
 

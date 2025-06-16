@@ -22,6 +22,123 @@
 
   <body>
   <div class="container-fluid">
+
+     <!-- Tambahkan Tabel Data Pelanggaran -->
+<div class="card mt-4">
+    <div class="card-header bg-danger text-white">
+        <h4 class="text-center">Data Pelanggaran Siswa (Belum Dikonversi)</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-resposivekubimbingankonseling">
+            <table id="example2" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama Siswa</th>
+                        <th>Kelas</th>
+                        <th>Jurusan</th>
+                        <th>Tanggal</th>
+                        <th>Deskripsi Pelanggaran</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($pelanggaran_siswa as $pelanggaran): ?>
+                        <tr>
+                            <td><?= $pelanggaran['username'] ?></td>
+                            <td><?= $pelanggaran['kelas'] ?></td>
+                            <td><?= $pelanggaran['jurusan'] ?></td>
+                            <td><?= $pelanggaran['tanggal'] ?></td>
+                            <td><?= $pelanggaran['deskripsi'] ?></td>
+                            <td>
+                                <button type="button" class="btn btn-outline-primary btn-sm" 
+                                    data-toggle="modal" 
+                                    data-target="#convertModal"
+                                    data-pelanggaran-id="<?= $pelanggaran['id_pelanggaran_siswa'] ?>"
+                                    data-user-id="<?= $pelanggaran['siswa_id'] ?>"
+                                    data-nama="<?= $pelanggaran['username'] ?>"
+                                    data-kelas="<?= $pelanggaran['kelas'] ?>"
+                                    data-jurusan="<?= $pelanggaran['jurusan'] ?>"
+                                    data-tanggal="<?= $pelanggaran['tanggal'] ?>"
+                                    data-deskripsi="<?= $pelanggaran['deskripsi'] ?>">
+                                    <i class="fas fa-exchange-alt"></i> Konversi
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Konversi Pelanggaran -->
+<div class="modal fade" id="convertModal" tabindex="-1" role="dialog" aria-labelledby="convertModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="convertModalLabel">Konversi Pelanggaran ke Bimbingan Konseling</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="convertFormBK">
+                    <input type="hidden" name="pelanggaran_id" id="pelanggaran_id">
+                    <input type="hidden" name="user_id" id="convert_user_id">
+                    
+                    <div class="form-group">
+                        <label>Nama Siswa:</label>
+                        <input type="text" class="form-control" id="convert_nama" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Kelas:</label>
+                        <input type="text" class="form-control" id="convert_kelas" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Jurusan:</label>
+                        <input type="text" class="form-control" id="convert_jurusan" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="convert_tanggal">Tanggal:</label>
+                        <input type="date" name="tanggal" id="convert_tanggal" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="convert_pertemuan_ke">Pertemuan Ke:</label>
+                        <input type="number" name="pertemuan_ke" id="convert_pertemuan_ke" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="convert_waktu">Waktu:</label>
+                        <input type="time" name="waktu" id="convert_waktu" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="convert_tempat">Tempat:</label>
+                        <input type="text" name="tempat" id="convert_tempat" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="convert_permasalahan">Permasalahan:</label>
+                        <textarea name="permasalahan" id="convert_permasalahan" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="convert_hasil">Hasil:</label>
+                        <textarea name="hasil" id="convert_hasil" class="form-control" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" id="convertBtnBK">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END BAGIAN TAMBAH TABEL Data PElanggaran -->
+
+
+
+
+
+
+
         <div class="card">
             <div class="card-header bg-primary">
                 <h4 class="text-center">Data Bimbingan Konseling</h4>
@@ -37,13 +154,41 @@
                         <?= session('error') ?>
                     </div>
                 <?php endif; ?>
+                <!-- Revisi PASCA SIDANG -->
+        <div class="row mb-3">
+    <div class="col-md-4">
+        <form method="GET" action="<?= base_url('guru_bk/bimbingan_konseling_siswafilter') ?>">
+            <div class="input-group">
+                <input type="date" class="form-control" name="start_date" 
+                    value="<?= isset($_GET['start_date']) ? $_GET['start_date'] : '' ?>">
+                <input type="date" class="form-control" name="end_date" 
+                    value="<?= isset($_GET['end_date']) ? $_GET['end_date'] : '' ?>">
+                <!-- Di dalam form filter -->
+<div class="input-group-append">
+<button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-filter"></i> Filter Tanggal
+                    </button>
+    <a href="<?= base_url('guru_bk/bimbingan_konseling_siswafilter') ?>" class="btn btn-outline-secondary">
+    <i class="fas fa-sync"></i> Reset</a>
+</div>
+                </div>
+                
+            </div>
+            
+        </form>
+    </div>
+
+    <!-- END REVISI PASCA SIDANG -->
                 <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addModal">
             Tambah Bimbingan Konseling
         </button>
+        
 
                 <div class="table-responsiveku">
                 <table id="example3" class="table table-hover table-bordered">
+                    
                 <thead>
+                    
                 <tr>
                     <th style="width: 25vh;">Nama Siswa</th>
                     <th style="width: 5vh;">Kelas</th>
@@ -81,10 +226,10 @@
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-
                 </table>
             </div>
             </div>
+            
         </div>
     </div>
 

@@ -31,6 +31,33 @@
                 <a href="<?= base_url('kepala_sekolah/laporan/bimbingan/pdf') ?>" class="btn btn-success mb-3">Download Semua Data</a>  
   
                 <div class="table-responsiveku">
+                   <!-- Tambahan Fitur FILTER TANGGAL -->
+             <div class="row mb-3">
+    <div class="col-md-4">
+        <form method="GET" action="<?= base_url('guru_bk/pelanggaran_siswa_filter') ?>">
+            <div class="input-group">
+                <input type="date" 
+                       class="form-control" 
+                       name="start_date" 
+                       value="<?= !empty($start_date) ? $start_date : '' ?>">
+                <input type="date" 
+                       class="form-control" 
+                       name="end_date" 
+                       value="<?= !empty($end_date) ? $end_date : '' ?>">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-filter"></i> Filter Tanggal
+                    </button>
+                    <a href="<?= base_url('guru_bk/pelanggaran_siswa_filter') ?>" 
+                       class="btn btn-outline-secondary">
+                        <i class="fas fa-sync"></i> Reset
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+            <!-- END Tambahan Fitur FILTER TANGGAL -->
                     <table id="example2" class="table table-bordered table-hover">  
                         <thead>  
                             <tr>  

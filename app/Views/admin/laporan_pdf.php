@@ -139,6 +139,16 @@
     </style>  
 </head>  
 <body>  
+<div class="container">
+        <?php if (!empty($bimbingan)): ?>
+            <?php foreach ($bimbingan as $row): ?>
+                <!-- Konten PDF -->
+            <?php endforeach; ?>
+        <?php else: ?>
+            <h3 class="text-center mt-5">Tidak ada data bimbingan konseling</h3>
+        <?php endif; ?>
+    </div>  
+    
     <div class="container">  
         <?php foreach ($bimbingan as $row): ?>  
             <div class="header">  
