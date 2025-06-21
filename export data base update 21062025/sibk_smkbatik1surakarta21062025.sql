@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Bulan Mei 2025 pada 07.58
+-- Waktu pembuatan: 21 Jun 2025 pada 03.17
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -50,12 +50,18 @@ INSERT INTO `bimbingan_konseling` (`id_bimbingankonseling`, `user_id`, `pelangga
 (20, 20, NULL, '2025-01-02', 86, '20:57:00', 'Ruang Guru', 'qwerty', 'UBAH TERBARU', '2025-01-13 18:55:02', '2025-01-15 09:16:24'),
 (23, 22, NULL, '2025-01-15', 12, '10:19:00', 'Ruang Guru', 'Keluarga dan teman', 'Saling bersahabatan Ubah Admin', '2025-01-15 20:10:44', '2025-01-15 21:24:22'),
 (25, 23, NULL, '2025-05-02', 5, '23:20:00', 'Sekolah', 'Pergi Jauh', 'Dipertanyakan', '2025-05-02 13:20:43', '2025-05-02 13:20:43'),
-(26, 24, NULL, '2025-05-03', 50, '13:59:00', 'Sekolah', 'Jarang Masuk', 'akan masuk terus', '2025-05-03 04:01:47', '2025-05-03 04:01:47'),
 (27, 22, NULL, '2025-05-06', 1, '16:20:00', 'Jakarta', 'Hayo Merokok Kan', 'Tidak Mengulanginya Lagi', '2025-05-04 09:18:38', '2025-05-04 09:18:38'),
 (28, 22, NULL, '2025-05-04', 5, '18:16:00', 'Sekolah', 'Main', 'Belajar Test Pasca Sidang', '2025-05-04 10:17:12', '2025-05-04 10:17:12'),
 (29, 22, NULL, '2025-05-05', 5, '19:31:00', 'TESING KONVERSI', 'Hayo Merokok Kan', 'KONVERSI TESINGKKUUUUUUUU', '2025-05-04 10:31:53', '2025-05-04 10:31:53'),
 (30, 22, NULL, '2025-05-14', 500, '21:30:00', 'Uji HILANGGG TESKU', 'Pangilann ORtu', 'Bismillah BISA', '2025-05-04 13:29:49', '2025-05-04 13:29:49'),
-(31, 22, NULL, '2025-05-20', 9, '20:44:00', 'Sekolah', 'HEHEH TAMABH', 'OKEII DIPAHAMI', '2025-05-04 13:42:15', '2025-05-04 13:42:15');
+(31, 22, NULL, '2025-05-20', 9, '20:44:00', 'Sekolah', 'HEHEH TAMABH', 'OKEII DIPAHAMI', '2025-05-04 13:42:15', '2025-05-04 13:42:15'),
+(54, 22, NULL, '2025-04-23', 5, '13:19:00', 'Sekolah', 'Pelanggaran: Pangilann ORtu', 'Damai Dengan Guru', '2025-06-06 04:19:38', '2025-06-06 04:19:38'),
+(66, 33, NULL, '2025-05-01', 0, '00:00:00', 'Dirumah', 'Pelanggaran: testong data', 'qjklwheluhwgeqrlgadlsfkjhgalkjshgdf', '2025-06-06 04:34:02', '2025-06-06 04:34:02'),
+(67, 35, NULL, '2025-06-06', 8, '13:44:00', 'Ruang Bk', 'Pelanggaran: Penilaian', 'Mengakui Kesalahan Dan belajar dengan lebih giat', '2025-06-06 04:45:30', '2025-06-06 04:45:30'),
+(68, 37, NULL, '2025-05-08', 0, '00:00:00', 'Sekolah', 'Pelanggaran: SAKITTT', 'Okeioii Mengakui Kesalahan', '2025-06-06 07:07:46', '2025-06-06 07:07:46'),
+(69, 23, NULL, '2025-01-13', 8, '21:24:00', 'SMK Batik 1', 'Pelanggaran: Alpaha', 'Siswa akan m', '2025-06-06 11:25:22', '2025-06-06 11:25:22'),
+(70, 22, NULL, '2025-01-07', 8, '18:33:00', 'Sekolah', 'Pelanggaran: Hayo Merokok Kan', 'Sudah teratasi', '2025-06-06 11:31:52', '2025-06-06 11:31:52'),
+(71, 34, NULL, '2025-05-08', 500, '20:32:00', 'Diluar', 'Pelanggaran: hehe', 'Aman', '2025-06-06 11:33:01', '2025-06-06 11:33:01');
 
 -- --------------------------------------------------------
 
@@ -171,11 +177,21 @@ CREATE TABLE `pelanggaran_siswa` (
 
 INSERT INTO `pelanggaran_siswa` (`id_pelanggaran_siswa`, `siswa_id`, `kategori_id`, `pelanggaran_id`, `tanggal`, `deskripsi`, `created_at`, `updated_at`, `deleted_at`, `is_converted`) VALUES
 (67, 22, 7, 17, '2025-01-09', 'Dari Admin TEsting', '2025-01-15 20:39:37', '2025-04-23 17:09:03', '2025-04-23 17:09:03', 0),
-(68, 22, 9, 34, '2025-01-07', 'Hayo Merokok Kan', '2025-01-15 20:48:18', '2025-01-15 20:48:18', NULL, 0),
-(69, 23, 5, 15, '2025-01-13', 'Alpaha', '2025-01-16 08:03:09', '2025-01-16 08:03:09', NULL, 0),
-(71, 24, 4, 9, '2025-04-10', 'Ke Kesiswaan', '2025-04-23 17:23:47', '2025-04-23 17:23:47', NULL, 0),
-(72, 31, 4, 9, '2025-04-17', 'Jalan Kaki', '2025-04-27 08:43:20', '2025-04-27 08:43:20', NULL, 0),
-(73, 22, 4, 36, '2025-04-23', 'Pangilann ORtu', '2025-04-28 06:46:32', '2025-04-28 06:46:32', NULL, 0);
+(68, 22, 9, 34, '2025-01-07', 'Hayo Merokok Kan', '2025-01-15 20:48:18', '2025-06-06 11:31:52', NULL, 1),
+(69, 23, 5, 15, '2025-01-13', 'Alpaha', '2025-01-16 08:03:09', '2025-06-06 11:25:22', NULL, 1),
+(72, 31, 4, 9, '2025-04-17', 'Jalan Kaki', '2025-04-27 08:43:20', '2025-06-06 04:23:57', NULL, 1),
+(73, 22, 4, 36, '2025-04-23', 'Pangilann ORtu', '2025-04-28 06:46:32', '2025-06-06 04:19:41', NULL, 1),
+(74, 33, 4, 9, '2025-05-01', 'testong data', '2025-05-08 08:17:11', '2025-06-06 04:34:02', NULL, 1),
+(75, 34, 4, 36, '2025-05-08', 'hehe', '2025-05-08 09:14:28', '2025-06-06 11:33:01', NULL, 1),
+(76, 37, 5, 15, '2025-05-08', 'SAKITTT', '2025-05-08 09:15:25', '2025-06-06 07:07:46', NULL, 1),
+(77, 34, 4, 9, '2025-06-18', 'Penilaian', '2025-06-04 13:22:12', '2025-06-04 13:22:12', NULL, 0),
+(78, 35, 4, 36, '2025-06-04', 'Penilaian', '2025-06-04 13:23:14', '2025-06-06 04:45:30', NULL, 1),
+(79, 36, 4, 9, '2025-06-04', 'Penilaian\r\n', '2025-06-04 13:47:55', '2025-06-04 13:47:55', NULL, 0),
+(80, 37, 4, 9, '2025-06-04', 'Penilaian', '2025-06-04 13:48:27', '2025-06-06 04:19:28', NULL, 1),
+(81, 38, 5, 10, '2025-06-04', 'Penilaian', '2025-06-04 13:48:50', '2025-06-04 13:48:50', NULL, 0),
+(82, 39, 4, 9, '2025-06-04', 'Penilaian', '2025-06-04 13:50:08', '2025-06-04 13:50:08', NULL, 0),
+(83, 40, 5, 11, '2025-06-05', 'Penilaian', '2025-06-04 13:54:17', '2025-06-04 13:54:17', NULL, 0),
+(84, 41, 4, 9, '2025-06-04', 'Penilaian', '2025-06-04 13:54:42', '2025-06-04 13:54:42', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -203,7 +219,9 @@ INSERT INTO `reset_password_tokens` (`id`, `email`, `token`, `expiry`, `created_
 (30, 'ninaaakawaii13@gmail.com', '3e1d83f97798ca8846e24a467532289a4723add5057c98bd3122182cfb1281548df15a188498ae24ebaa8d6d391577976ddc', '2024-12-21 02:06:33', '2024-12-21 01:36:33', '2024-12-21 01:36:33'),
 (32, 'punjungalfisal@gmail.com', '391f9b8445cb7864b5d32b506b7ef1af36ee994b084e2f55a1d819afa9764536bcdde118e24624bfdc85bfdb4e620e05cb97', '2025-01-15 15:26:07', '2025-01-15 14:56:07', '2025-01-15 14:56:07'),
 (37, 'asna@gmail.com', '1d4dddffd9aa6d4fea2411a30375ee1a71897f8543112aab994a57e353932ebb1c1f5892bce5f5a108d6dfecae6e37798f0c', '2025-01-23 04:45:37', '2025-01-23 04:15:37', '2025-01-23 04:15:37'),
-(38, 'asna@gmail.com', 'a47e2091a25c48195a2ed167f1a7cecb67c7b3e0146cf5d55c74380f3ca397f2709bc5179f1f5f61a8b1f92eba65eb44156c', '2025-01-23 04:46:08', '2025-01-23 04:16:08', '2025-01-23 04:16:08');
+(38, 'asna@gmail.com', 'a47e2091a25c48195a2ed167f1a7cecb67c7b3e0146cf5d55c74380f3ca397f2709bc5179f1f5f61a8b1f92eba65eb44156c', '2025-01-23 04:46:08', '2025-01-23 04:16:08', '2025-01-23 04:16:08'),
+(41, 'punjungalfisal@gmail.com', '477bf841d3fb79a4c87328a75def0824f61b3ee4ef1b3e2e847016b9c72ba832fa2a85874bda9906efc79f6097c2a2234f54', '2025-05-22 16:14:02', '2025-05-22 15:44:02', '2025-05-22 15:44:02'),
+(42, 'punjungalfisal@gmail.com', '41cff1dc7037faad8d731a3ac467f304e46056969499001867e0499b23eb00f5f520ac57c35b6be1644095eb668a97a40065', '2025-05-22 16:14:39', '2025-05-22 15:44:39', '2025-05-22 15:44:39');
 
 -- --------------------------------------------------------
 
@@ -375,7 +393,16 @@ INSERT INTO `tb_siswa` (`id`, `nisn`, `nama_lengkap`, `created_at`, `updated_at`
 (376, '618853548', 'Gita', '2025-04-28 06:38:53', '2025-04-28 06:38:53', NULL),
 (377, '781082276', 'Siti', '2025-04-28 06:38:53', '2025-04-28 06:38:53', NULL),
 (378, '552791595', 'Joko', '2025-04-28 06:38:53', '2025-04-28 06:38:53', NULL),
-(379, '500001', 'Testing Satu File', '2025-04-28 06:38:53', '2025-04-28 06:38:53', NULL);
+(379, '500001', 'Testing Satu File', '2025-04-28 06:38:53', '2025-04-28 06:38:53', NULL),
+(380, '200', 'Tiara Test', '2025-05-08 08:11:06', '2025-05-08 08:11:06', NULL),
+(381, '20', 'Ayesa', '2025-05-08 08:49:36', '2025-05-08 08:49:36', NULL),
+(382, '21', 'Kalista', '2025-05-08 08:49:52', '2025-05-08 08:49:52', NULL),
+(383, '22', 'MM', '2025-05-08 08:50:12', '2025-05-08 08:50:12', NULL),
+(384, '23', 'mm', '2025-05-08 08:50:32', '2025-05-08 08:50:32', NULL),
+(385, '24', 'mm', '2025-05-08 08:50:47', '2025-05-08 08:50:47', NULL),
+(386, '25', 'mm', '2025-05-08 08:51:03', '2025-05-08 08:51:03', NULL),
+(387, '26', 'mm', '2025-05-08 08:51:15', '2025-05-08 08:51:15', NULL),
+(388, '27', 'mm', '2025-05-08 08:51:38', '2025-05-08 08:51:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -420,13 +447,16 @@ INSERT INTO `users` (`id`, `nisn`, `nama_lengkap`, `username`, `nama_orangtua`, 
 (20, '2001', NULL, 'Nirina Khoirun Naja Musyafa', 'Musayafa Ubah Admin 1', 'ninaaakawaii13@gmail.com', '$2y$10$VtOGMtV.gKrMv3qDbxywm.3Xu6HI6C7H/x9btwrgvGouxYPXl7tgG', 'XII', 'DKV 1', 'Laki-Laki', 'Islam', '0813326154242', '081325659017', 'Kartasura', '2025-01-23', 'Banjarsari, Surakarta, Jawa Tengah', 'Home Schooling', '2018', 'Fotografi', 3, 'uploads/siswa/1735755307_bea1a1a21745d4e6960a.jpg', NULL, NULL, '2025-01-01 18:13:13', '2025-01-15 09:31:46', NULL),
 (22, '2025', NULL, 'Mahasisw Lengkapku', 'TEsting UBAH GURU BK 5', 'mahasiswa@gmail.com', '$2y$10$LtTCNTo.v73HnJWfPnrTXe3Gu2xImFXDmMPA11dVPCp984TcxpH2K', 'XII', 'TKJ 1', 'Laki-Laki', 'Islam', '08151216046', '08121316482434', 'Sukoharjo', '2025-04-24', 'Griya Kratonan 2, Pucangan, Kartasura', 'Mahasiswa', '2018', 'Muncak', 3, 'uploads/siswa/1745696069_37474a85ed1624b4acb8.jpg', NULL, NULL, '2025-01-15 08:20:43', '2025-04-26 19:34:29', NULL),
 (23, '2027', NULL, 'Bintang Wahyudi', 'Bambang Wahyudi ', 'bintang@3gmail.com', '$2y$10$G38sq2LcmE945KUBtGOtXeDL4J6qb5Xg1.RjQLr0lM7cF4LPF807O', 'XII', 'DKV 1', 'Laki-Laki', 'Islam', '0895422933366', '0895422933366', 'Surakarta ', '2007-01-02', 'purbayan,baki, Sukoharjo ', 'smpn Muhammadiyah 5', '2021', 'fotografi ', 3, 'uploads/siswa/1737014655_09c2372963854ce34eec.jpg', NULL, NULL, '2025-01-16 08:01:43', '2025-04-27 14:30:18', NULL),
-(24, '2029', NULL, 'Reyhan Ramadhani ', 'Agus Prasetyo ', 'ramad@gmail.com', '$2y$10$tl3Xe9ghwN3SOBJ50jZ.L.cDk7ARXwPi8h3IEtnvfQgNkqxKlWCGe', 'X', 'DKV 1', 'Laki-Laki', 'Islam', '08974178787', '089678542660', 'Sukoharjo', '2008-09-06', 'Waringin Rejo RT 8 RW 19 ', 'SMPN 2 Grogol ', '2024', 'Sepak bola ', 3, '\'default.jpg\'', NULL, NULL, '2025-01-16 10:09:07', '2025-04-27 08:47:25', NULL),
-(25, '2033', 'Zanury, iyan', 'Zanury dwi nurdiyansyah', 'Deni, dwi', 'zanurydwin@gmail.com', '$2y$10$QBYwJSHp6CyTv.BN9f91aO8psGq0uODHfkBqR4r6PQj8X2CJZtUxe', 'X', 'DKV 2', 'Laki-Laki', 'Islam', '0895366546200', '085', 'Sukoharjo, ngad', '2009-01-22', 'Sukoharjo ', 'SMP muhammadiyah 1 Kartasura', '2024', 'Sepedaan, mengambar', 3, '\'default.jpg\'', NULL, NULL, '2025-01-16 10:09:24', '2025-01-16 10:09:24', NULL),
-(26, '2031', 'Ali', 'Mush\'ab Ali Zulfikar', 'Sucipto', 'mushabalizulfikar@gmail.com', '$2y$10$0SLSSJ4.cqyt4U2hNgIDb.Ht0.3ljc4IKQcTRm/7CkowRPDPdZnEu', 'X', 'DKV 1', 'Laki-Laki', 'Islam', '085871671466', '088134643515', 'Tokyo', '2008-10-07', 'Karanganyar ', 'SMPIT Nur Hidayah Surakarta ', '2024', 'Ngegame', 3, '\'default.jpg\'', NULL, NULL, '2025-01-16 10:09:31', '2025-01-16 10:09:31', NULL),
-(27, '2032', 'Larry', 'Larry Constantine ', 'Carroll Constantine ', 'kerang693@gmail.com', '$2y$10$EunA8mxGIE3XAXIA18kVq.A2FGCn0vT/RblxuSlMZVrMWUuX8lfza', 'X', 'DKV 2', 'Laki-Laki', 'Islam', '081366543221', '082231366152', 'Nevana', '2002-12-28', 'Nevana', 'UNIGA', '2012', 'Bercerita ', 3, '\'default.jpg\'', NULL, NULL, '2025-01-16 10:11:45', '2025-01-16 10:11:45', NULL),
-(28, '2037', 'Lita', 'Kalista armelia ramadhan ', 'Priyanta ', 'litakalista221@gmail.com', '$2y$10$uqaeNQL/cJniVc7ULTbZT.Tg7EjvHXsk6x.8U14TWI7.DkCLJVPzC', 'X', 'DKV 2', 'Perempuan', 'Islam', '089618516168', '089618516168', 'Sukoharjo ', '2008-09-22', 'Asrama grup 2 kopassus', 'SMP BATIK SURAKARTA', '2024', 'Renang , badminton ', 3, '\'default.jpg\'', NULL, NULL, '2025-01-16 10:12:44', '2025-01-16 10:12:44', NULL),
-(29, '2035', 'Zahir', 'Nur muhammad zahir ', 'Hari suriawan', 'kingashura@gmail.com', '$2y$10$E5J2m1JVTzrRZ1NaKdqmN.u4C.hcLSHLuDcLJLB0OedLTiSwf4tIW', 'X', 'DKV 1', 'Laki-Laki', 'Islam', '0895351319660', '0895351319660', 'Karanganyar ', '2007-10-25', 'Kompleks antariksa', 'Pesantren rumah setia', '2024', 'Gambar ', 3, '\'default.jpg\'', NULL, NULL, '2025-01-16 10:13:25', '2025-01-16 10:13:25', NULL),
-(31, '26042025', 'tessssssssssssss', 'tes', 'jjhhhhh', '26@gmail.com', '$2y$10$v1WwOD9nU6BL6K2uULJtSOmlFqgV4hyAdYEiYWhRVyWNLfi6KfAKG', 'X', 'DKV 2', 'Laki-Laki', 'Hindu', '65435435434354', '3545343512134', 'Papu', '2025-04-09', 'Jakarta Barat', 'SMK Batik 1 Surakarta', '2017', 'Terjun Payung', 3, '\'default.jpg\'', NULL, NULL, '2025-04-27 08:40:16', '2025-04-27 08:40:16', NULL);
+(31, '26042025', 'tessssssssssssss', 'tes', 'jjhhhhh', '26@gmail.com', '$2y$10$v1WwOD9nU6BL6K2uULJtSOmlFqgV4hyAdYEiYWhRVyWNLfi6KfAKG', 'X', 'DKV 2', 'Laki-Laki', 'Hindu', '65435435434354', '3545343512134', 'Papu', '2025-04-09', 'Jakarta Barat', 'SMK Batik 1 Surakarta', '2017', 'Terjun Payung', 3, '\'default.jpg\'', NULL, NULL, '2025-04-27 08:40:16', '2025-04-27 08:40:16', NULL),
+(33, '200', 'Tiara', 'Tiara MM', 'mm', 'tiara@gmail.com', '$2y$10$6wRV04wXVFcAezZt/VXtf.NzG/zPgVW7W1EQg4HV1Kz/6gko1OnpS', 'XI', 'DKV 1', 'Perempuan', 'Islam', '081325559017', '08133261514', 'Jakarta', '2025-04-11', 'plesungan', 'Smk Batik 1 Surakarta', '2018', 'Fotografi', 3, 'uploads/siswa/1746692177_520714f1015767a2aa04.jpg', NULL, NULL, '2025-05-08 08:14:55', '2025-05-08 08:16:17', NULL),
+(34, '21', 'Lita', 'Kalista armelia ramadhan ', 'Priyanta ', 'litakalista221@gmail.com', '$2y$10$57Z2au1FII4eJm/nhKWUGeTt8iRx3.xeAfRu51r1SH8ByBrzgrSMG', 'X', 'DKV 2', 'Perempuan', 'Islam', '089618516168', '081215661466', 'Garjo', '2008-09-22', 'Asrama grup 2 kopassus', 'SMP BATIK SURAKARTA', '2023', 'Renang , badminton ', 3, 'uploads/siswa/1746696984_4b07422f5d52f190e961.jpg', NULL, NULL, '2025-05-08 09:04:35', '2025-05-08 09:36:24', NULL),
+(35, '27', 'Nur', 'Nur muhammad zahir ', 'H', 'Kingashura124@gmail.com', '$2y$10$JfHWceSRdWjuggc6nskKmuHCtR59lT9CeuSJajUqSWAKUxqLrs/2u', 'X', 'DKV 1', 'Laki-Laki', 'Islam', '0895351319660', '0895351319660', 'Karanganyar ', '2007-05-25', 'Kompleks antariksa', 'Pesantren rumah setia', '2024', 'Gambar ', 3, 'uploads/siswa/1746696266_94f959084c1b24883958.jpg', NULL, NULL, '2025-05-08 09:04:37', '2025-05-08 09:24:26', NULL),
+(36, '24', 'Zulfikar', 'Mush\'ab Ali Zulfikar', 'HA', 'mushabalizulfikar@gmail.com', '$2y$10$luxQzQ5ksvM9De2p3qpbJeHbwFXt7AroFVNhUJQ.KsLJxiIavAnU6', 'X', 'DKV 1', 'Laki-Laki', 'Islam', '085871671466', '94649469446', 'Gondangrejo ', '2008-10-07', 'Sanggrahan', 'SMPIT Nur Hidayah Surakarta', '2024', 'Ngerakit gunpla', 3, 'uploads/siswa/1746696897_e88c201363552813ed49.jpg', NULL, NULL, '2025-05-08 09:06:15', '2025-05-08 09:34:57', NULL),
+(37, '20', 'Ayesha ', 'Ayesha Aynun nahr ', 'Salina', 'crimsonc821@gmail.com', '$2y$10$rx9yhbueYDl75.r3ajDhKeZZ7MuPuTvzEDFgJVKVGwHggQSCmdXwq', 'XI', 'DKV 1', 'Perempuan', 'Islam', '081225875924', '081329800062', 'Sukoharjo ', '2008-03-23', 'Dk. Tebon Bakipandeyan Baki RT/RW 01/05 ', 'SMP N Baki 2', '2021', 'Photography ', 3, 'uploads/siswa/1746696853_b1bf38b9fa3061d55f9d.jpg', NULL, NULL, '2025-05-08 09:06:36', '2025-05-08 09:34:13', NULL),
+(38, '22', 'Galeh', 'SETYAJI GALEH PRATAMA ', 'Panji', 'ecaridea@gmail.com', '$2y$10$9zIFBrwzYrFebgNNzrf4zuAxKIkDry.S0LyssfXbyYZW3AXtqA84G', 'X', 'DKV 2', 'Laki-Laki', 'Islam', '081326832265', '082166235122', 'Surakarta ', '2008-12-28', 'Pajang', 'SMP N 2 Grogol ', '2023', 'Bercerita ', 3, 'uploads/siswa/1746697112_8b38cac5df7a3af378d4.jpg', NULL, NULL, '2025-05-08 09:06:46', '2025-05-08 09:38:32', NULL),
+(39, '26', 'Reyhan', 'Reyhan Ramadhani ', 'Agus', 'ramadhanireyhan25@gmail.com', '$2y$10$KDBiteyuGyRL4zw49ImFG.Y3ns79PrSNC29qvcMG5kTTJSZnwwtFO', 'X', 'DKV 1', 'Laki-Laki', 'Islam', '08974178787', '089678542660', 'Sukoharjo', '2008-09-06', 'Waringin Rejo, cemani', 'SMPN 2 GROGOL', '2024', 'Sepakbola ', 3, 'uploads/siswa/1746696316_62b5d232f8dfc32afdd7.jpg', NULL, NULL, '2025-05-08 09:07:18', '2025-05-08 09:25:16', NULL),
+(40, '25', 'Faiz', 'Muhammad Faiz Irfansyah', 'Eny Herwati', 'izzkanaeru@gmail.com', '$2y$10$mHKLIZAhaFLLF7toRBCU6eNPETiqyiHQS5VAv9jyCds.hSpvceP2S', 'X', 'OTKP 2', 'Laki-Laki', 'Islam', '088221096227', '089541864', 'Solo, Surakarta', '2008-11-10', 'Jl. Pamugaran Utama No.92', 'SMPN 23 Surakarta ', '24', 'Menulis, Olahraga tim', 3, 'uploads/siswa/1746696100_9dfeaae7b61a9ba66a5a.jpeg', NULL, NULL, '2025-05-08 09:07:27', '2025-05-08 09:21:40', NULL),
+(41, '23', 'Nur, nury, iyan, zan', 'Zanury dwi nurdiyansyah', 'Dwi', 'zanuridwi833@gmail.com', '$2y$10$ksfFtyDnFTh/gkTtqkqrtuWRmSJEDslSZ9bf/L9i94/HWvrYh3Y1W', 'X', 'DKV 2', 'Laki-Laki', 'Islam', '0895366546200', '368655662562', 'Sukoharjo', '2009-01-22', 'Kopen', 'SMP muhammadiyah 1 Kartasura', '2023', 'Menggambar dan bersepeda', 3, '\'default.jpg\'', NULL, NULL, '2025-05-08 09:20:42', '2025-05-08 09:20:42', NULL);
 
 -- --------------------------------------------------------
 
@@ -567,7 +597,7 @@ ALTER TABLE `user_guru`
 -- AUTO_INCREMENT untuk tabel `bimbingan_konseling`
 --
 ALTER TABLE `bimbingan_konseling`
-  MODIFY `id_bimbingankonseling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_bimbingankonseling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_pelanggaran`
@@ -591,13 +621,13 @@ ALTER TABLE `pelanggaran`
 -- AUTO_INCREMENT untuk tabel `pelanggaran_siswa`
 --
 ALTER TABLE `pelanggaran_siswa`
-  MODIFY `id_pelanggaran_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_pelanggaran_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT untuk tabel `reset_password_tokens`
 --
 ALTER TABLE `reset_password_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`
@@ -627,13 +657,13 @@ ALTER TABLE `tb_panggilan_siswa`
 -- AUTO_INCREMENT untuk tabel `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=380;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=389;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_guru`
